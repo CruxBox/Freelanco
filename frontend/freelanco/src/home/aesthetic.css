@@ -1,0 +1,111 @@
+@font-face {
+  font-family: Pacifico;
+  src: url("./fonts/Pacifico-Regular.ttf");
+}
+
+@font-face {
+  font-family: Kaushan Script;
+  src: url("./fonts/KaushanScript-Regular.ttf");
+}
+
+@font-face {
+}
+
+body {
+  padding: 0%;
+  margin: 0;
+}
+.home {
+  text-align: center;
+  font-family: Kaushan Script;
+  font-size: xx-large;
+  background-image: url("./images/olia-gozha-J4kK8b9Fgj8-unsplash.jpg");
+  padding-top: 5%;
+  background-attachment: fixed;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+}
+.no-margin-top {
+  margin-top: 0;
+  padding-top: 0px;
+  margin-bottom: 5px;
+  transform: rotate(-1deg);
+  font-size: xx-large;
+  font-size: 80px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.about {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.centre-h4 {
+  margin-top: 0;
+  font-size: 40;
+  font-family: Pacifico;
+  font-size: 30px;
+  color: black;
+  font-weight: 600;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+}
+
+.logo {
+  padding-top: 0px;
+}
+
+.about {
+  background-image: url("./images/bench-accounting-nvzvOPQW0gc-unsplash.jpg");
+  background-repeat: no-repeat;
+  padding-top: 0%;
+  margin-top: -15px;
+  background-attachment: fixed;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+
+  background-repeat: no-repeat;
+  background-size: 100% 150%;
+  height: 100%;
+  width: 100%;
+}
+
+.about-tag {
+  padding-left: 30px;
+  padding-top: 150px;
+}
