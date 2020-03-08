@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Freelanco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="./css/home.css" />
+  </head>
+
+  <body>
+    <div class="navbar">
+      <ul>
+        <li>
+          <a class="active" href="#home">
+            Freelanco
+          </a>
+        </li>
+        <li>
+          <a href="#news">News</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+        <li>
+          <a href="#abt">Services</a>
+        </li>
+        <li>
+          <a class="log" href="">Login/Sign Up</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="home" id="home">
+      <div class="bg"></div>
+      <div class="logo">
+        <img src="./css/images/logo.png" />
+        <h1 class="no-margin-top">Freelanco</h1>
+        <h6 class="centre-h4">~Your need is our deed~</h6>
+      </div>
+    </div>
+
+    <div
+      data-aos="fade-up"
+      data-aos-anchor-placement="top-bottom"
+      class="about"
+      id="abt"
+    >
+      <h1 class="welcoming-tag">What are you Searching For ?</h1>
+      <form><input type="text" name="search" placeholder="Search.." /></form>
+    </div>
+
+    <script src="./node_modules/aos/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 800 });
+    </script>
+  </body>
+</html>
