@@ -6,7 +6,8 @@ from .views import gettingStarted
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-	path('', gettingStarted, name='gettingStarted')
+	path('', gettingStarted, name='gettingStarted'),
+	path('accounts/',include('users.urls')),
 ]
 
 if settings.DEBUG:
