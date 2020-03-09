@@ -11,19 +11,18 @@ class Item(models.Model):
 	#Category left
 	slug = models.SlugField()
 	description = models.TextField()
-    def __str__(self):
-        return self.title
-
+	def __str__(self):
+		return self.title
 
 class OrderItem(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+	item = models.ForeignKey(Item, on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=0)
 	ordered = models.BooleanField(default=false)
 	user = models.ForeignKey(CustomerProfile,
 								on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.title
+	def __str__(self):
+		return self.title
 
 
 class Order(models.Model):
