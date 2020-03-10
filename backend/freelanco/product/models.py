@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from users.models FreelancerProfile,CustomerProfile
+from users.models import FreelancerProfile, CustomerProfile
 
 class Item(models.Model):
 	title = models.CharField(max_length=100)
@@ -17,7 +17,7 @@ class Item(models.Model):
 class OrderItem(models.Model):
 	item = models.ForeignKey(Item, on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=0)
-	ordered = models.BooleanField(default=false)
+	ordered = models.BooleanField(default=False)
 	user = models.ForeignKey(CustomerProfile,
 								on_delete=models.CASCADE)
 
