@@ -38,3 +38,6 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
     'SHOW_TOOLBAR_CALLBACK': show_toolbar
 }
+
+#client_id=27002450847-jposhfmk76db203osbpshhulminfk052.apps.googleusercontent.com
+#secret_key=Bf0E_PPadIggLWfTFQ5PacCF
