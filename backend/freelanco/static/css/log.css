@@ -1,0 +1,126 @@
+@font-face {
+  font-family: Pacifico;
+  src: url(./css/fonts/Pacifico-Regular.ttf);
+}
+
+@font-face {
+  font-family: Kaushan;
+  src: url(./css/fonts/KaushanScript-Regular.ttf);
+}
+
+body {
+  padding: 0%;
+  margin: 0;
+}
+.home {
+  text-align: center;
+  font-size: xx-large;
+  background-image: url("./images/mountains.jpg");
+
+  padding-top: 5%;
+  background-attachment: fixed;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 600px;
+}
+
+.no-margin-top {
+  margin-top: 0;
+  padding-top: 0px;
+  margin-bottom: 5px;
+  transform: rotate(-1deg);
+  font-size: xx-large;
+  font-size: 80px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li a.log {
+  text-align: right;
+}
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a.active {
+  font-family: "Kaushan";
+  transform: rotate(-2deg);
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.centre-h4 {
+  margin-top: 0;
+  font-size: 40;
+  font-family: "Pacifico";
+  font-size: 30px;
+  color: black;
+  font-weight: 600;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  font-family: "Poppins";
+}
+.about {
+  background-image: url("./images/bench-accounting-nvzvOPQW0gc-unsplash.jpg");
+  background-repeat: no-repeat;
+  padding-top: 50px;
+  text-align: center;
+  background-attachment: fixed;
+  font-family: "Poppins";
+
+  height: 600px;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 18px;
+  font-weight: 400;
+  display: block;
+}
+
+.about-tag {
+  padding-left: 30px;
+  padding-top: 150px;
+}
+
+.no-margin-top {
+  font-family: "Kaushan";
+}
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;

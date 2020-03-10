@@ -6,8 +6,9 @@ from .views import gettingStarted
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-	path('', TemplateView.as_view(template_name="social_app/index.html")),
+	path('', TemplateView.as_view(template_name="temp/home.html")),
 	path('accounts/',include('users.urls')),
+	path('login',TemplateView.as_view(template_name="temp/login.html"))
 	#path('services/',include('services.urls')),
 
 
