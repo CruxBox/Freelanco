@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Freelanco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+ <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="navbar">
+      <ul>
+        <li>
+          <a class="active" href="#home">
+            Freelanco
+          </a>
+        </li>
+        <li>
+          <a href="#news">News</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+        <li>
+          <a href="#abt">Services</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a class="log" href="{% url 'users:logout'%}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="log" href="{% url 'users:login'%}">Login</a>
+        </li>
+         <li>
+          <a  href="{% url 'users:signup' %}">Signup as a customer</a>
+        </li>
+        <li>
+        <a href="{% url 'users:signup' %}">Signup as a freelancer</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <div class="home" id="home">
+      <div class="bg"></div>
+      <div class="logo">
+       
+        <div data-aos="zoom-in-down">
+           <img src="{% static 'css/images/logo.png' %}" style="height: 100px;width: 100px; margin-bottom: -30px;" />
+          <h1 class="no-margin-top">Freelanco</h1>
+          
+          
+        </div>
+      </div>
+    </div>
+
+    <div  data-aos='fade-up'class="about" id="abt">
+      <h1 class="welcoming-tag">What are you Searching For ?</h1>
+      <div class="row">
+        <div class="col" style="float: right;">
+          <form>
+            <input type="text" name="search" placeholder="Location." />
+          </form>
+        </br>
+      
+          <form>
+            <input type="text" name="search" placeholder="Search.." />
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src={% static "node_modules/aos/src/js/aos.js" %}> AOS.init({ duration: 700 });</script>
+  </body>
+</html>
