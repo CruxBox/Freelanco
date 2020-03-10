@@ -6,12 +6,9 @@ from .views import gettingStarted
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-	path('', TemplateView.as_view(template_name="temp/home.html")),
+	path('', TemplateView.as_view(template_name="temp/home.html"),name='home'),
 	path('accounts/',include('users.urls')),
-	path('login',TemplateView.as_view(template_name="temp/login.html"))
-	#path('services/',include('services.urls')),
-
-
+	path('accounts/',include('allauth.urls')),
 ]
 
 if settings.DEBUG:

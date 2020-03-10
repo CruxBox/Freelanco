@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Freelanco</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'main.css' %}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/main.css' %}" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
@@ -37,12 +37,21 @@
         <li>
           <a href="#abt">Services</a>
         </li>
+        {% if user.is_authenticated %}
         <li>
-          <a class="log" href="./log1.html">Login</a>
+          <a class="log" href="{% url 'users:logout'%}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="log" href="{% url 'users:login'%}">Login</a>
         </li>
          <li>
-          <a  href="./signup.html">Signup</a>
+          <a  href="{% url 'users:signup' %}">Signup as a customer</a>
         </li>
+        <li>
+        <a href="{% url 'users:signup' %}">Signup as a freelancer</a>
+        </li>
+        {% endif %}
       </ul>
     </div>
 
@@ -76,9 +85,6 @@
       </div>
     </div>
 
-    <script src="./node_modules/aos/dist/aos.js"></script>
-    <script>
-      AOS.init({ duration: 700 });
-    </script>
+    <script src={% static "node_modules/aos/src/js/aos.js" %}> AOS.init({ duration: 700 });</script>
   </body>
 </html>

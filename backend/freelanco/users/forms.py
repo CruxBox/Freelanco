@@ -22,6 +22,12 @@ class CustomerProfileForm(forms.ModelForm):
         model=CustomerProfile
         fields=('location',)
 
+class FreelancerProfileForm(forms.ModelForm):
+
+    class Meta:
+        models=FreelancerProfile
+        fields=('location',)
+
 
 class SignupForm(forms.Form):
     freelance=forms.BooleanField(required=False)

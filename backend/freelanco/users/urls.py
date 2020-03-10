@@ -1,9 +1,16 @@
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-from .views import add_customer
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+from .views import *
+app_name = 'users'
 
 urlpatterns = [
-	path('',include('allauth.urls')),
-	path('profile',add_customer)
+	path('signup/',view=customer_signup,name='signup'),
+	path('login/',view=user_login,name='login'),
+	path('logout/',view=user_logout,name="logout"),
+	path('',include('django.contrib.auth.urls')),
+	#path('login'),
+	#path()
 ]

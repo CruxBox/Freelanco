@@ -24,8 +24,10 @@ INSTALLED_APPS = [
 
     #custom apps
     'users',
+    'crispy_forms',
+    
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #ALLAUTH SETTINGS
@@ -37,6 +39,10 @@ SOCIALACCOUNT_QUERY_EMAIL=ACCOUNT_EMAIL_REQUIRED
 SOCIALACCOUNT_EMAIL_REQUIRED=ACCOUNT_EMAIL_REQUIRED
 SOCIALACCOUNT_STORE_TOKENS=False
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
+
+#DJANGO AUTH BACKEND
+LOGIN_REDIRECT_URL = 'home'
+
 SOCIALACCOUNT_PROVIDERS = {
      'google': {
         'SCOPE': [
@@ -129,8 +135,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
-STATICFILE_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 VENV_PATH = os.path.dirname(BASE_DIR)
-STATIC_ROOT = os.path.join(VENV_PATH, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media')
