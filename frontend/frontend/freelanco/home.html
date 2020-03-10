@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="./css/home.css" />
+ <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -36,7 +37,10 @@
           <a href="#abt">Services</a>
         </li>
         <li>
-          <a class="log" href="">Login/Sign Up</a>
+          <a class="log" href="./log1.html">Login</a>
+        </li>
+         <li>
+          <a  href="./signup.html">Signup</a>
         </li>
       </ul>
     </div>
@@ -44,25 +48,36 @@
     <div class="home" id="home">
       <div class="bg"></div>
       <div class="logo">
-        <img src="./css/images/logo.png" />
-        <h1 class="no-margin-top">Freelanco</h1>
-        <h6 class="centre-h4">~Your need is our deed~</h6>
+       
+        <div data-aos="zoom-in-down">
+           <img src="./css/images/logo.png" style="height: 100px;width: 100px; margin-bottom: -30px;" />
+          <h1 class="no-margin-top">Freelanco</h1>
+          
+          
+        </div>
       </div>
     </div>
 
-    <div
-      data-aos="fade-up"
-      data-aos-anchor-placement="top-bottom"
-      class="about"
-      id="abt"
-    >
+    <div  data-aos='fade-up'class="about" id="abt">
       <h1 class="welcoming-tag">What are you Searching For ?</h1>
-      <form><input type="text" name="search" placeholder="Search.." /></form>
+      <div class="row">
+        <div class="col" style="float: right;">
+          <form>
+            <input type="text" name="search" placeholder="Location." />
+          </form>
+        </br>
+      
+          <form>
+            <input type="text" name="search" placeholder="Search.." />
+            
+          </form>
+        </div>
+      </div>
     </div>
 
     <script src="./node_modules/aos/dist/aos.js"></script>
     <script>
-      AOS.init({ duration: 800 });
+      AOS.init({ duration: 700 });
     </script>
   </body>
 </html>

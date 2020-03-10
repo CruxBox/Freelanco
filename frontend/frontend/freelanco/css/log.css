@@ -1,11 +1,11 @@
 @font-face {
   font-family: Pacifico;
-  src: url(./fonts/Pacifico-Regular.ttf);
+  src: url(./css/fonts/Pacifico-Regular.ttf);
 }
 
 @font-face {
   font-family: Kaushan;
-  src: url(./fonts/KaushanScript-Regular.ttf);
+  src: url(./css/fonts/KaushanScript-Regular.ttf);
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 .home {
   text-align: center;
   font-size: xx-large;
-  background-image: url("./images/teamwork_white_1_dribbble-01-01.png");
+  background-image: url("./images/mountains.jpg");
 
   padding-top: 5%;
   background-attachment: fixed;
@@ -32,7 +32,6 @@ body {
   transform: rotate(-1deg);
   font-size: xx-large;
   font-size: 80px;
-  font-family: 'Abril Fatface', cursive;
 }
 
 ul {
@@ -73,11 +72,10 @@ html {
 .centre-h4 {
   margin-top: 0;
   font-size: 40;
-  font-family: 'Abril Fatface', cursive;
+  font-family: "Pacifico";
   font-size: 30px;
   color: black;
   font-weight: 600;
-  margin-top: -20px;
 }
 
 .navbar {
@@ -86,14 +84,14 @@ html {
   font-family: "Poppins";
 }
 .about {
-  background-image: url("./images/ava.jpg");
+  background-image: url("./images/bench-accounting-nvzvOPQW0gc-unsplash.jpg");
   background-repeat: no-repeat;
-  padding-top: x;
+  padding-top: 50px;
   text-align: center;
-
+  background-attachment: fixed;
   font-family: "Poppins";
 
-  height: 900px;
+  height: 600px;
   padding-left: 50px;
   padding-right: 50px;
   font-size: 18px;
@@ -107,22 +105,22 @@ html {
 }
 
 .no-margin-top {
- font-family: 'Lobster', cursive;
+  font-family: "Kaushan";
 }
-input[type="text"] {
-  width: 300px;
+input[type=text] {
+  width: 130px;
   box-sizing: border-box;
   border: 2px solid #ccc;
-  border-radius: 30px;
+  border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  background-image: url("searchicon.png");
-  background-position: 10px 10px;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
-  /* -webkit-transition: width 0.1s ease-in-out;
-  transition: width 0.4s ease-in-out; */ */
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
 }
-/* 
+
 input[type=text]:focus {
-  width: 65%; */
+  width: 100%;
