@@ -1,8 +1,9 @@
 import os
+from decouple import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-SECRET_KEY = 'j2ebz21gfuv7mweplq&_w)zj+$(v^z-e13uh@gu=#)*2vu=jx5'
+SECRET_KEY = config('SECRET_KEY')
 
 # Application definition
 
