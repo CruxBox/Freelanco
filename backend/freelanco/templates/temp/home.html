@@ -46,10 +46,10 @@
           <a class="log" href="{% url 'users:login'%}">Login</a>
         </li>
          <li>
-          <a  href="{% url 'users:signup' %}">Signup as a customer</a>
+          <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
         </li>
         <li>
-        <a href="{% url 'users:signup' %}">Signup as a freelancer</a>
+        <a href="{% url 'users:customer_signup' %}">Signup as a freelancer</a>
         </li>
         {% endif %}
       </ul>
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <div  data-aos='fade-up'class="about" id="abt">
+    <div  data-aos='fade-up'class="about" id="abt" style="background-image=url("{% static css/images/ava.jpg %")">
       <h1 class="welcoming-tag">What are you Searching For ?</h1>
       <div class="row">
         <div class="col" style="float: right;">

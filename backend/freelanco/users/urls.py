@@ -7,7 +7,7 @@ from .views import *
 app_name = 'users'
 
 urlpatterns = [
-	path('signup/',view=customer_signup,name='signup'),
+	path('signup/',view=customer_signup,name='customer_signup'),
 	path('login/',view=user_login,name='login'),
 	path('logout/',view=user_logout,name="logout"),
 	path('',include('django.contrib.auth.urls')),

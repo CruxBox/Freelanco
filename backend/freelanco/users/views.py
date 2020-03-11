@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
+from .models import *
 # Create your views here.
 
 @login_required
@@ -24,34 +25,44 @@ def user_login(request):
             return render(request,'temp/log1.html',{'not_exist':True})
     else:
         return render(request,'temp/log1.html',)
+
+
 def customer_signup(request):
     if request.method=='POST':
         print("lol")
-        uform=CustomUserCreationForm(data=request.POST)
-        if uform.is_valid():
-            user=uform.save()
+        username=request.POST['username']
+        password1=request.POST['password1']
+        password2=request.POST['password2']
+        if not CustomUser.objects.filter(username=username).exists():
+            user=CustomUser.objects.create_user(username, password=password1)
             user.is_freelancer=False
             user.save()
+            cust_profile=CustomerProfile(user=user)
+            cust_profile.save()
+            user=authenticate(username=username,password=password1)
+            login(request,user)
             return render(request,"temp/home.html")
+        else:
+           return render(request,"temp/signup.html",{"user_exists":True}) 
     else:
-        uform=UserCreationForm()
-        pform=CustomerProfileForm()
-        kwargs={"uform":uform,"pform":pform}
-        return render(request,"temp/signup.html",kwargs)
+        return render(request,"temp/signup.html")
 
 def freelancer_signup(request):
     if request.method=='POST':
-        uform=CustomUserCreationForm(data=request.POST)
-        if uform.is_valid() and pform.is_valid():
-            user=uform.save()
+        print("lol")
+        username=request.POST['username']
+        password1=request.POST['password1']
+        password2=request.POST['password2']
+        if not CustomUser.objects.filter(username=username).exists():
+            user=CustomUser.objects.create_user(username, password=password1)
             user.is_freelancer=True
             user.save()
-            profile=pform.save(commit=False)
-            profile.user=user
-            profile.save()
+            cust_profile=FreelancerProfile(user=user)
+            cust_profile.save()
+            user=authenticate(username=username,password=password1)
+            login(request,user)
             return render(request,"temp/home.html")
+        else:
+           return render(request,"temp/signup.html",{"user_exists":True}) 
     else:
-        uform=CustomCreationForm()
-        pform=FreelancerProfileForm()
-        kwargs={"uform":uform,"pform":pform}
-        return render(request,"temp/profile.html",kwargs)
+        return render(request,"temp/signup.html")
