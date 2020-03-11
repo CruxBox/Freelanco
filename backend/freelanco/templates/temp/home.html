@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,6 +19,7 @@
     />
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
  <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+  
   </head>
 
   <body>
@@ -59,7 +61,7 @@
       <div class="bg"></div>
       <div class="logo">
        
-        <div data-aos="zoom-in-down">
+        <div >
            <img src="{% static 'css/images/logo.png' %}" style="height: 100px;width: 100px; margin-bottom: -30px;" />
           <h1 class="no-margin-top">Freelanco</h1>
           
@@ -68,7 +70,7 @@
       </div>
     </div>
 
-    <div  data-aos='fade-up'class="about" id="abt">
+    <div class="about" id="abt">
       <h1 class="welcoming-tag">What are you Searching For ?</h1>
       <div class="row">
         <div class="col" style="float: right;">
@@ -83,8 +85,37 @@
           </form>
         </div>
       </div>
+    </div> <div class="footer-dark" style="margin-top:-25px;">
+        <footer>
+            <div class="container" style="text-align:center;">
+                <div class="row"style="text-align:center;">
+                    <div class="col-sm-6 col-md-3 item ">
+                        <h3>Services</h3>
+                        <ul style="text-align:center">
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Freelanco.inc</h3>
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">Company Name © 2020</p>
+            </div>
+        </footer>
     </div>
 
-    <script src={% static "node_modules/aos/src/js/aos.js" %}> AOS.init({ duration: 700 });</script>
+    <script src={% static "" %}> AOS.init({ duration: 700 });</script>
   </body>
 </html>
