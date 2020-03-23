@@ -8,9 +8,14 @@
   src: url(./fonts/KaushanScript-Regular.ttf);
 }
 
-@font-face{
+@font-face{ 
   font-family: Abril Fatface ;
   src: url(./fonts/AbrilFatface-Regular.ttf);
+}
+
+@font-face{
+  font-family: Lobster;
+  src: url(./fonts/Lobster-Regular.ttf);
 }
 
 body {
