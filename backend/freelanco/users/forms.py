@@ -14,7 +14,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model=CustomUser
-        fields=UserChangeForm.Meta.fields
+        fields=('username','email','is_freelancer')
 
 
 class CustomerProfileForm(forms.ModelForm):
@@ -37,3 +37,8 @@ class SignupForm(forms.Form):
             profile=FreelancerProfile.objects.create(user=user)
         else:
             profile=CustomerProfile.objects.create(user=user)
+
+class EditCustomerProfileForm(forms.ModelForm):
+    class Meta:
+        models=CustomerProfile
+        fields=('location',)

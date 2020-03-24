@@ -8,6 +8,16 @@
   src: url(./fonts/KaushanScript-Regular.ttf);
 }
 
+@font-face{ 
+  font-family: Abril Fatface ;
+  src: url(./fonts/AbrilFatface-Regular.ttf);
+}
+
+@font-face{
+  font-family: Lobster;
+  src: url(./fonts/Lobster-Regular.ttf);
+}
+
 body {
   padding: 0%;
   margin: 0;
@@ -88,7 +98,7 @@ html {
 .about {
   background-image: url("./images/ava.jpg");
   background-repeat: no-repeat;
-  padding-top: x;
+  padding-top: 60px;
   text-align: center;
 
   font-family: "Poppins";

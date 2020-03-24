@@ -60,7 +60,41 @@
     <!--===============================================================================================-->
   </head>
   <body>
-    <div class="limiter">
+    <div class="navbar">
+      <ul>
+        <li>
+          <a class="active" href="#home">
+            Freelanco
+          </a>
+        </li>
+        <li>
+          <a href="#news">News</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+        <li>
+          <a href="#abt">Services</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a class="log" href="{% url 'users:logout'%}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="log" href="{% url 'users:login'%}">Login</a>
+        </li>
+         <li>
+          <a  href="{% url 'users:signup' %}">Signup as a customer</a>
+        </li>
+        <li>
+        <a href="{% url 'users:signup' %}">Signup as a freelancer</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  <div>
+   <div class="limiter">
       <div class="container-login100" style="box-shadow:10px">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
           <form class="login100-form validate-form" method="post" action="{% url 'users:login' %}">
@@ -141,6 +175,8 @@
     </div>
 
     <div id="dropDownSelect1"></div>
+  </div>
+   
 
     <!--===============================================================================================-->
     <script src="{% static "vendor/jquery/jquery-3.2.1.min.js"%}"></script>
