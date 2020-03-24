@@ -7,6 +7,7 @@ class Item(models.Model):
 	serviceCost = models.FloatField()
 	discountedCost = models.FloatField()
 	provider = models.ForeignKey(FreelancerProfile, on_delete = models.CASCADE)
+	post_date = models.DateField(null=True,blank=True,auto_now_add=True)
 
 	#Category left
 	slug = models.SlugField()

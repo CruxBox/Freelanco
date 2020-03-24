@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'movies/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/services_temp.css' %}">
 
     <title>Services</title>
 </head>
@@ -21,19 +21,18 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="{% url 'movie-display' %}">Movies</a>
+                <a class="navbar-brand mr-4" href="{% url 'item list' %}">Services</a>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{% url 'movie-display' %}">Home</a>
+                        <a class="nav-item nav-link" href="{% url 'item list' %}">Home</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                        <a class="nav-item nav-link" href="{% url 'users:logout' %}">Logout</a>
                         {% else %}
-                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                        <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                        <a class="nav-item nav-link" href="{% url 'users:login' %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url 'users:customer_signup' %}">Register</a>
                         {% endif %}
                     </div>
                 </div>

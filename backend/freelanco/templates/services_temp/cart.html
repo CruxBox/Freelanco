@@ -1,5 +1,9 @@
 {% extends "services_temp/base.html" %}
 {% block content %}
+{% if !user.is_authenticated %}
+<h2> You need to sign up :) </h2>
+{% else %}
+<h2> Welcome to your cart! </h2>
 {% if items_exist %}
 {% for item in items %}
 <article class="media content-section">
@@ -18,10 +22,9 @@
             {% else %}
             {% endif %}
             <small> Cost: {{ item.serviceCost }}</small>
-            <br>
-            <small> Service Provider: {{ item.provider }} (Add link to his profile)</small>
+            <h3> Service Provider: {{ item.provider }} (Add link to his profile)</h3>
             <p class="article-content">
-                <small>Description:</small>
+                <h2>Description:</h2>
                 {{ item.description }}
             </p>
         </div>
@@ -29,6 +32,7 @@
 </article>
 {% endfor %}
 {% else %}
-<h4> Sorry, no services have been listed. </h4>
+<h4> Sigh! There is nothing in your cart! </h4>
+{% endif %}
 {% endif %}
 {% endblock content %}
