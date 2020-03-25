@@ -99,7 +99,7 @@ a:active {color: black;}
           <a href="#abt">Get Started ?</a>
         </li>
         <li>
-        <a href="#serv">Services</a>
+        <a href="{% url 'item list' %}">Services</a>
         </li>
         {% if user.is_authenticated %}
         <li>
@@ -382,7 +382,7 @@ a:active {color: black;}
             <p class="menu">
               <a href="#"> Home</a> |
               <a href="#"> About</a> |
-              <a href="#"> Services</a> |
+              <a href="{% url 'item list' %}"> Services</a> |
               <a href="#"> Portfolio</a> |
               <a href="#"> News</a> |
               <a href="#"> Contact</a>
