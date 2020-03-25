@@ -9,6 +9,14 @@ LOCATION_CHOICES=[
 ]
     
 # Create your models here.
+
+class Address(models.Model):
+    address1 = models.CharField("Address line 1", max_length=1024)
+    address2 = models.CharField("Address line 2", max_length=1024, blank=True, null=True)
+    pin_code = models.CharField("PIN", max_length=6)
+    city = models.CharField("City", max_length=20)
+    state=models.CharField("State",max_length=20)
+    
 class CustomUser(AbstractUser):
     """
     Extended from Abstract User
@@ -19,6 +27,9 @@ class CustomUser(AbstractUser):
 class CustomerProfile(models.Model):
     user=models.OneToOneField(to=CustomUser,on_delete=models.CASCADE,null=False,related_name="customer_profile")
     location=models.TextField(choices=LOCATION_CHOICES,max_length=None,default='Hyd')
+    address=models.OneToOneField(to=Address,on_delete=models.CASCADE,null=True,related_name="customer_address")
+    image=models.ImageField(upload_to='profile_image',blank=True)
+
     #should add additional fields
 
     def __str__(self):
@@ -32,6 +43,7 @@ class FreelancerProfile(models.Model):
 
     def __str__(self):
         return f"Freelancer-{self.user.username}"
+
 
 """
 @receiver(post_save, sender=CustomUser)

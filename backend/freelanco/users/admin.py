@@ -13,3 +13,4 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser,CustomUserAdmin)
 admin.site.register(FreelancerProfile)
 admin.site.register(CustomerProfile)
+admin.site.register(Address)

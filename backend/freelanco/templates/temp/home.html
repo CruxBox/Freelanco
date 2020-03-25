@@ -45,18 +45,21 @@
         </li>
         {% if user.is_authenticated %}
         <li>
-          <a class="log" href="{% url 'users:logout'%}">Logout</a>
+          <a class="log" href="{% url 'users:logout' %}">Logout</a>
+        </li>
+        <li>
+            {{ user.username }}
         </li>
         {% else %}
         <li>
-          <a class="log" href="{% url 'users:login'%}">Login</a>
+          <a class="log" href="{% url 'users:login' %}">Login</a>
         </li>
          <li>
           <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
         </li>
         <li>
-        <a href="{% url 'users:customer_signup' %}">Signup as a freelancer</a>
-        </li>
+        <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+        </li> 
         {% endif %}
       </ul>
     </div>
