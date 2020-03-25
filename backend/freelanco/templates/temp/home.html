@@ -34,9 +34,51 @@
   <link href="{% static "assets/footer/css/style.css"%}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+
+<style>
+#services 
+ {
+  max-width:100%;
+  margin:10px auto;
+  padding-top: 20px
+  border:0px solid white;
+  text-align:center;
+  background-color: white;
+  font-family: 'Poppins';
+}
+#services figure 
+{
+  display:inline-block;
+  max-width:100%;
+  margin: 20px;
+}
+#services img 
+{
+  display:block;
+  margin: auto;`
+}
+a:hover 
+{
+  color: black;
+  font-weight: bold;
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+figcaption{font-size: 14px;}
+a:link {color: #0060b6;}
+a:active {color: black;}
+</style>
         
   
   </head>
+
+  
 
   <body>
   
@@ -54,7 +96,10 @@
           <a href="#contact">Contact</a>
         </li>
         <li>
-          <a href="#abt">Services</a>
+          <a href="#abt">Get Started ?</a>
+        </li>
+        <li>
+        <a href="#serv">Services</a>
         </li>
         {% if user.is_authenticated %}
         <li>
@@ -103,6 +148,43 @@
 
       </div>
 
+      <div id="services">
+        <a class="link" href="#">
+        <figure>
+            <img src ="{% static "assets/img/salon.png"%}" height="70px" width="70px">
+            <figcaption>Salon at Home</figcaption>
+        </figure>
+        </a>
+        <a  href="#">
+        <figure>
+            <img src ="{% static "assets/img/massage1.png"%}" height="70px" width="70px">
+            <figcaption>Massage at Home</figcaption>
+        </figure>
+        </a>
+        <a  href="#"><figure>
+            <img src ="{% static "assets/img/ac.svg"%}" height="70px" width="70px">
+            <figcaption>Electronic Repair</figcaption>
+        </figure>
+        </a>
+        <a  href="#">
+        <figure>
+            <img src ="{% static "assets/img/cleaning.svg"%}" height="70px" width="70px">
+            <figcaption>Cleaning</figcaption>
+        </figure>
+        </a>
+        <a  href="#">
+        <figure>
+            <img src ="{% static "assets/img/Plumber.svg"%}" height="70px" width="70px">
+            <figcaption>Electrician Plumber</figcaption>
+        </figure>
+        </a>
+        <a  href="#">
+        <figure>
+            <img src ="{% static "assets/img/heart.svg"%}" height="70px" width="70px">
+            <figcaption>Fitness and Yoga</figcaption>
+        </figure>
+        </a>
+</div>
 
       
       <div class="container-fluid"style="width: 100%;">
@@ -257,34 +339,8 @@
         <span class="sr-only">Next</span>
       </a>
         </div>
-        <div id="carousel-example-3" class="carousel slide" data-ride="carousel">
-            <h2>&nbsp;&nbsp;Massage at Home</h2>
-          <div class="carousel-inner row w-100 mx-auto" role="listbox">
-
-              <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-          <img src="{% static "assets/carousel/carousel/img/massage/1.jpg"%}" class="img-fluid mx-auto d-block" alt="img1">
-          <p>Massage for Men</p>
-          
-        </div>
-        <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/massage/2.jpg"%}" class="img-fluid mx-auto d-block" alt="img2">
-          <p>Massage for Women</p>
-        </div>
-        <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/massage/3.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>Men's Haircut & Grooming</p>
-        </div>
-          </div>
-          <a class="carousel-control-prev" href="#carousel-example-3" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carousel-example-3" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-        </div>
-      </div>
+    
+      
 
   <div style='background-color: black;color: white;'>
     <footer class="page-footer black" >
@@ -298,22 +354,39 @@
           </div>
           
           <div class="col l3 s12">
-            <h5 style="font-family: 'Poppins'" class="white-text">Settings</h5>
-            <ul>
-              <li><a class="white-text" href="#!">Link 1</a></li>
-              <li><a class="white-text" href="#!">Link 2</a></li>
-              <li><a class="white-text" href="#!">Link 3</a></li>
-              <li><a class="white-text" href="#!">Link 4</a></li>
-            </ul>
+            <h5 style="font-family: 'Poppins'" class="white-text">Reach Us</h5>
+            <div style="display: block;">
+              <i class="fa fa-map-marker"></i>
+              <p style="color: white;"><span> Aviato.inc HeadQuarters</span> California, USA</p>
+          </div>
+        
+
+          <div style="color: white; display:;">
+          
+          <p style="color: white;">  021-5531-4224
+            
+            <i class="fa fa-phone">
+            </i>
+          </p>
+             
+            
+          </div>
+        </br>
+          <div>
+              <i class="fa fa-envelope"></i>
+              <p><a href="#"> help@freelanco.com</a></p>
+          </div>
           </div>
           <div class="col l3 s12">
-            <h5 class="white-text">Connect</h5>
-            <ul>
-              <li><a class="white-text" href="#!">Link 1</a></li>
-              <li><a class="white-text" href="#!">Link 2</a></li>
-              <li><a class="white-text" href="#!">Link 3</a></li>
-              <li><a class="white-text" href="#!">Link 4</a></li>
-            </ul>
+            <h1 style="font-family:'Lobster'">Freelanco</h5>
+            <p class="menu">
+              <a href="#"> Home</a> |
+              <a href="#"> About</a> |
+              <a href="#"> Services</a> |
+              <a href="#"> Portfolio</a> |
+              <a href="#"> News</a> |
+              <a href="#"> Contact</a>
+          </p>
           </div>
         </div>
       </div>
@@ -340,5 +413,8 @@
     <script src="{% static 'assets/carousel/carousel/js/wow.min.js'%}"></script>
     <script src="{% static 'assets/carousel/carousel/js/scripts.js'%}"></script>
     
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static  "assets/js/materialize.min.js"%}"></script>
+
   </body>
 </html>

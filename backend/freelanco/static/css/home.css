@@ -26,6 +26,7 @@
 body {
   padding: 0%;
   margin: 0;
+  text-decoration: none;
 }
 .home {
   text-align: center;
@@ -120,6 +121,10 @@ html {
 .about-tag {
   padding-left: 30px;
   padding-top: 150px;
+}
+
+.about.no-margin-top{
+  font-family: 'Poppins';
 }
 
 .no-margin-top {
