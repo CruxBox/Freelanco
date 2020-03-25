@@ -1,0 +1,60 @@
+
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+.tab {
+  float: left;
+  border: 1px solid white;
+  background-color: white;
+  width: 20%;
+  height: 407px;
+  padding: 6px 6px;
+}
+.tab button {
+  display: block;
+  background-color: #848a86;
+  color: black;
+  padding: 15px 12px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+  font-family: Poppins;
+  
+}
+.tab button.active {
+  background-color: white;
+  border-left: 5px solid black;
+}
+.tabcontent {
+  float: left;
+  border: 1px solid white;
+  width: 25%;
+  border-left: none;
+  height: 407px;
+  padding: 6px 6px;
+}
+.btn-group button {
+  background-color: white;
+  border: 1px solid white; 
+  color: black; 
+  padding: 8px 24px; 
+  cursor: pointer; 
+  width: 100%; 
+  display: block;
+  text-align: left;
+  height: 60px;
+  font-family: Poppins;
+
+}
+.btn-group button:not(:last-child) {
+  border-bottom: none;
+}
+.btn-group button:hover {
+  background-color: black;
+  color:white;
+  font-weight: bold;
+  font-family: Poppins;
+}

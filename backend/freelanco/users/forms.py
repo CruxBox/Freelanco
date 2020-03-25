@@ -1,7 +1,7 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth import get_user_model
-from .models import CustomerProfile,FreelancerProfile
+from .models import *
 CustomUser=get_user_model()
 class CustomUserCreationForm(UserCreationForm):
 
@@ -14,7 +14,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model=CustomUser
-        fields=UserChangeForm.Meta.fields
+        fields=('username','email','last_name','first_name')
 
 
 class CustomerProfileForm(forms.ModelForm):
@@ -37,3 +37,14 @@ class SignupForm(forms.Form):
             profile=FreelancerProfile.objects.create(user=user)
         else:
             profile=CustomerProfile.objects.create(user=user)
+
+class EditCustomerProfileForm(forms.ModelForm):
+    class Meta:
+        model=CustomerProfile
+        fields=('location','image',)
+
+class EditAddress(forms.ModelForm):
+
+    class Meta:
+        model=Address
+        fields='__all__'

@@ -66,3 +66,18 @@ def freelancer_signup(request):
            return render(request,"temp/signup.html",{"user_exists":True}) 
     else:
         return render(request,"temp/signup.html")
+
+@login_required
+def view_customer_profile(request):
+    return render(request,"temp/profile.html")
+
+
+@login_required
+def edit_customer_profile(request):
+    if request.method=='POST':
+        form=EditCustomerProfileForm(request.POST,instance=request.user)
+    else:
+        form=EditCustomerProfileForm(instance=request.user)
+        forml=CustomUserChangeForm(instance=request.user)
+        context={"form":form,"forml":forml}
+        return render(request,'temp/profile.html',context)

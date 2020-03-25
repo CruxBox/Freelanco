@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="services_popup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" /> 
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'salon')" id="defaultOpen"><img src="img/salon.png"style="width:15px;height: 15px">  &nbsp;&nbsp;Salon at Home</button>
+      <button class="tablinks" onclick="openCity(event, 'massage')"><img src="img/massage1.png"style="width:15px;height: 15px">&nbsp;&nbsp;Massage at Home</button>
+      <button class="tablinks" onclick="openCity(event, 'appli')"><img src="img/ac.svg"style="width:20px;height:20px; "/>&nbsp;&nbsp;Appliances and Electronic Repair</button>
+      <button class="tablinks" onclick="openCity(event, 'clean')"><img src="img/cleaning.svg"style="width:20px;height: 20px">&nbsp;&nbsp;Cleaning</button>
+      <button class="tablinks" onclick="openCity(event, 'elec')"><img src="img/plumber.svg"style="width:20px;height: 20px">&nbsp;&nbsp;Electrician Plumber Carpenter</button>
+      <button class="tablinks" onclick="openCity(event, 'yoga')"><i class="fa fa-heartbeat"></i>&nbsp;&nbsp;Fitness and Yoga</button>
+     </div>
+
+    <div id="salon" class="tabcontent">
+      <div class="btn-group">
+        <button>Saloon at Home for Women</button>
+        <button>Men's Haircut & Grooming</button>
+        <button>Massage For Women</button>
+        <button>Makeup and Hairstyling</button>
+        <button>Yoga Trainer at Home</button>
+        <button>Fitness Trainer at Home</button>
+      </div>
+    </div>
+
+    <div id="massage" class="tabcontent">
+      <div class="btn-group">
+        <button>Massage For Men</button>
+        <button>Massage For Women</button>
+        <button>Men's Haircut & Grooming</button>
+      </div> 
+    </div>
+
+    <div id="appli" class="tabcontent">
+      <div class="btn-group">
+        <button>Geyser Service and Repair</button>
+        <button>Microwave Repair</button>
+        <button>Refrigerator Repair</button>
+        <button>Wahing Machine Service & Repair</button>
+        <button>AC Service and Repair</button>
+        <button>RO or Water Purifier Repair</button>
+      </div>
+    </div>
+    <div id="clean" class="tabcontent">
+      <div class="btn-group">
+        <button>Bathroom Deep Cleaning</button>
+        <button>Sofa Cleaning</button>
+        <button>Carpet Cleaning</button>
+        <button>Full Home Deep Cleaning</button>
+        <button>Kitchen Deep Cleaning</button>
+        <button>Car Cleaning</button>
+      </div>
+    </div>
+    <div id="yoga" class="tabcontent">
+      <div class="btn-group">
+        <button>Fitness Trainer at Home</button>
+        <button>Yoga Trainer at Home</button>
+      </div>
+    </div>
+    <div id="elec" class="tabcontent">
+      <div class="btn-group">
+        <button>Electricians</button>
+        <button>Plumbers</button>
+        <button>Carpenters</button>
+        <button>Woodwork and furniture Making</button>
+      </div>
+    </div>
+
+  <script>
+  function openCity(evt, cityName) 
+  {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) 
+    {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) 
+    {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+     }
+     document.getElementById(cityName).style.display = "block";
+     evt.currentTarget.className += " active";
+  }
+    document.getElementById("defaultOpen").click();
+   </script>
+   
+ </body>
+</html> 

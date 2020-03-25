@@ -1,5 +1,8 @@
 {% load static %}
 {% load crispy_forms_tags %}
+{% load i18n %}
+{% load account socialaccount %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,12 +61,46 @@
     <!--===============================================================================================-->
   </head>
   <body>
+      <div class="navigationbar">
+      <ul>
+        <li>
+          <a class="active" href="{% url "home" %}">
+            Freelanco
+          </a>
+        </li>
+        <li>
+          <a href="#news">News</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+        <li>
+          <a href="#abt">Services</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a class="log" href="{% url 'users:logout'%}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="log" href="{% url 'users:login'%}">Login</a>
+        </li>
+         <li>
+          <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+        </li>
+        <li>
+        <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  <div>
     <div class="limiter">
       <div class="container-login100" style="box-shadow:10px">
-        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-30 p-b-54">
           <form class="login100-form validate-form" method="post" action="{% url 'users:customer_signup' %}">
           {%  csrf_token %}
-            <span class="login100-form-title p-b-49">
+            <span class="login100-form-title p-b-60">
               Sign Up
             </span>
             {% if user_exists %}
@@ -131,8 +168,7 @@
                 </button>
               </div>
             </div>
-
-            <div class="txt1 text-center p-t-54 p-b-20">
+            <div class="txt1 text-center p-t-40 p-b-20">
               <span>
                 Or Sign Up Using
               </span>
@@ -147,7 +183,7 @@
                 <i class="fa fa-twitter"></i>
               </a> -->
 
-              <a href="#" class="login100-social-item bg3">
+              <a href="{% provider_login_url 'google' %}" class="login100-social-item bg3">
                 <i class="fa fa-google"></i>
               </a>
             </div>
