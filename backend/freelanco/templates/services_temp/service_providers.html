@@ -1,0 +1,435 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<!--Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- materialize.css-->
+	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen,projection" />
+	<!-- <link href="css/materialize.min.css"> -->
+	<!-- font awesome -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+
+	<title>Basic Generic Components</title>
+</head>
+
+
+<body>
+	<!-- navbar    initiates -->
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand text-white" href="#">FreeLanco</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse"
+				aria-controls="nvbCollapse">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="nvbCollapse">
+
+				<!-- Arama -->
+				<div class="">
+					<form class="form-inline">
+						<input class="form-control search-input rounded-0 border-dark border-right-0 ml-5" type="search"
+							placeholder="Search" aria-label="Search" style="width:1000px">
+						<button class="btn btn-light search-btn border-left-0 border-dark rounded-0" type="submit">
+							<i class="fa fa-search text-secondary "></i>
+						</button>
+					</form>
+				</div>
+				<!-- #Arama -->
+
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active pl-1">
+						<a class="nav-link" href="#"><i class="fa fa-home fa-fw mr-1"></i>Home</a>
+					</li>
+					<li class="nav-item  pl-1">
+						<a class="nav-link" href="#"><i class="fa fa-th-list fa-fw mr-1"></i>Services</a>
+					</li>
+					<li class="nav-item pl-1">
+						<a class="nav-link" href="#"><i class="fa fa-info-circle fa-fw mr-1"></i>About</a>
+					</li>
+					<li class="nav-item pl-1">
+						<a class="nav-link" href="#"><i class="fa fa-phone fa-fw fa-rotate-180 mr-1"></i>Contact</a>
+					</li>
+					<li class="nav-item pl-1">
+						<a class="nav-link" href="#"><i class="fa fa-user-plus fa-fw mr-1"></i>Login</a>
+					</li>
+					<li class="nav-item pl-1">
+						<a class="nav-link" href="#"><i class="fa fa-sign-in fa-fw mr-1"></i>Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- navbar terminates -->
+
+
+	<div class="pt-3 row">
+		<!-- checkbox section starts-->
+		<div id="sidebar11" class="col-md-3 col-lg-2 pr-5 pl-5 pt-4">
+
+
+			<p class="mt-4">Brands</p>
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox1" type="checkbox">
+				<label for="checkbox1">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox2" type="checkbox">
+				<label for="checkbox2">
+					Checkbox
+				</label>
+			</div>
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox3" type="checkbox">
+				<label for="checkbox3">
+					Checkbox
+				</label>
+			</div>
+
+			<p class="mt-4">Brands</p>
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox4" type="checkbox">
+				<label for="checkbox4">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox5" type="checkbox">
+				<label for="checkbox5">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox6" type="checkbox">
+				<label for="checkbox6">
+					Checkbox
+				</label>
+			</div>
+
+
+			<p class="mt-4">Brands</p>
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox7" type="checkbox">
+				<label for="checkbox7">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox8" type="checkbox">
+				<label for="checkbox8">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox9" type="checkbox">
+				<label for="checkbox9">
+					Checkbox
+				</label>
+			</div>
+
+
+			<p class="mt-4">Brands</p>
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox10" type="checkbox">
+				<label for="checkbox10">
+					Checkbox
+				</label>
+			</div>
+
+
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox11" type="checkbox">
+				<label for="checkbox11">
+					Checkbox
+				</label>
+			</div>
+
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox12" type="checkbox">
+				<label for="checkbox12">
+					Checkbox
+				</label>
+			</div>
+
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox12" type="checkbox">
+				<label for="checkbox12">
+					Checkbox
+				</label>
+			</div>
+
+
+
+
+			<p class="mt-4">Brands</p>
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox10" type="checkbox">
+				<label for="checkbox10">
+					Checkbox
+				</label>
+			</div>
+
+
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox11" type="checkbox">
+				<label for="checkbox11">
+					Checkbox
+				</label>
+			</div>
+
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox12" type="checkbox">
+				<label for="checkbox12">
+					Checkbox
+				</label>
+			</div>
+
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox12" type="checkbox">
+				<label for="checkbox12">
+					Checkbox
+				</label>
+			</div>
+
+
+
+			<p class="mt-4">Brands</p>
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox10" type="checkbox">
+				<label for="checkbox10">
+					Checkbox
+				</label>
+			</div>
+
+
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox11" type="checkbox">
+				<label for="checkbox11">
+					Checkbox
+				</label>
+			</div>
+
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox12" type="checkbox">
+				<label for="checkbox12">
+					Checkbox
+				</label>
+			</div>
+
+
+			<p class="mt-4">Brands</p>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox10" type="checkbox">
+				<label for="checkbox10">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox11" type="checkbox">
+				<label for="checkbox11">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox12" type="checkbox">
+				<label for="checkbox12">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox12" type="checkbox">
+				<label for="checkbox12">
+					Checkbox
+				</label>
+			</div>
+
+
+			<p class="mt-4">Brands</p>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox10" type="checkbox">
+				<label for="checkbox10">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox11" type="checkbox">
+				<label for="checkbox11">
+					Checkbox
+				</label>
+			</div>
+
+
+			<div class="checkbox checkbox-circle">
+				<input id="checkbox12" type="checkbox">
+				<label for="checkbox12">
+					Checkbox
+				</label>
+			</div>
+
+
+		</div>
+		<!-- checkbox section ends -->
+
+
+		<!-- service providers list starts -->
+		<div id="content11" class="col-md-9 col-lg-10 card_sec">
+
+
+			{% if items_exist %}
+			{% for item in items %}
+			<div class="borderLR" p-0 m-0 pl-4 ">
+				<div class=" row pt-3 pb-3 mb-1 ">
+					<div class=" col s2 ">
+						<div class=" p-0 m-0 ">
+							<img src=" {{ item.picture }}" style="height: 200px;width: 250px; padding-right: 5px; ">
+			</div>
+		</div>
+
+
+		<div class="col s7 ">
+			<span class="cart_item_details ">{{ item.title }}</span>
+			{% if item.discounted_cost == -1 %}
+			<p class="cart_item_details brown-text "> &#8377 {{ item.actual_cost }} </p>
+			{% else %}
+			<p class="cart_item_details brown-text "> &#8377 {{ item.discounted_cost }} </p>
+			{% endif %}
+			<p class="cart_item_details grey-text "> Post Date: {{ item.post_date }} </p>
+			<p class="cart_item_details grey-text "> Offered By: {{ item.provider }}</p>
+			<p class="cart_item_price grey-text "> About: {{ item.description }} </p>
+		</div>
+
+
+		<div class="col s3 ">
+			<a class="btn black waves-effect waves-light " href="#! " style="float:right ">
+				<i class="material-icons left ">shopping_cart</i> Add</a>
+		</div>
+	</div>
+	</div>
+	{% endfor %}
+	{% else %}
+	<div>
+		<p> No items to show. </p>
+	</div>
+	{% endif %}
+	<!-- service providers list ends -->
+
+	</div>
+
+	<!--  footer initiates -->
+	<div class="foot clearfix">
+		<footer class="footer clearfix">
+			<div class="footer-left col-md-4 col-sm-6">
+				<p class="about">
+					<span> About the company</span> With millions of videos across every genre of adult entertainment,
+					Pornhub is a one-stop shop the lusty kinks of individuals and couples across the world. It hosts the
+					most popular porn stars of all
+					time and dominates the online market for smut
+				</p>
+				<div class="icons">
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+					<a href="#"><i class="fa fa-google-plus"></i></a>
+					<a href="#"><i class="fa fa-instagram"></i></a>
+				</div>
+			</div>
+			<div class="footer-center col-md-4 col-sm-6">
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span> gali ka naam aur number</span> sehr, Desh</p>
+				</div>
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>
+						(+00) xxxx xxx xxx
+					</p>
+				</div>
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="#"> help@freelanco.com</a></p>
+				</div>
+			</div>
+			<div class="footer-right col-md-4 col-sm-6">
+				<h2> Company<span> logo</span></h2>
+				<p class="menu">
+					<a href="#"> Home</a> |
+					<a href="#"> About</a> |
+					<a href="#"> Services</a> |
+					<a href="#"> Portfolio</a> |
+					<a href="#"> News</a> |
+					<a href="#"> Contact</a>
+				</p>
+				<p class="name">
+					FREELANCO &copy; 2016
+				</p>
+			</div>
+		</footer>
+	</div>
+	<!-- footer terminates -->
+
+
+
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+
+	<script>
+	</script>
+</body>
+
+</html>

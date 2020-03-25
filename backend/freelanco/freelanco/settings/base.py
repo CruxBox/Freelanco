@@ -25,8 +25,8 @@ INSTALLED_APPS = [
     #custom apps
     'users',
     'crispy_forms',
+  
     'product',
-    'material.theme.amber',
     'material',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
