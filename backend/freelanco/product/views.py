@@ -6,7 +6,7 @@ from .models import Item, OrderItem, Order
 
 def item_list(request):
 	items = Item.objects.all()
-	if items.exist():
+	if items.exists():
 		context = {
 			'items': items,
 			'items_exist': True
@@ -15,7 +15,7 @@ def item_list(request):
 		context = {
 			'items_exist': False
 		}
-	render(request, "base.html", context)
+	return render(request, "services_temp/service_providers.html", context)
 
 def display_cart_items(request):
 	order_objects = Order.objects.filter(user=request.user, ordered = False)
@@ -29,7 +29,7 @@ def display_cart_items(request):
 		context = {
 			'items_exist': False
 		}
-	render(request, "base.html", context)
+	return render(request, "services_temp/cart.html", context)
 
 def old_orders(request):
     # This will give a list of orders that are now history
@@ -43,7 +43,7 @@ def old_orders(request):
         context = {
             'order_exists':False
         }
-    render(request, "base.html", context)
+    return render(request, "base.html", context)
 
 # Add item
 @login_required
@@ -96,11 +96,11 @@ def detail_view(request, slug):
 	item = get_object_or_404(Item, slug = slug)
 
 	context = {
-		'item': item
+		'item': item,
 		'provider': item.provider
 	}
 
-	render(request, 'base.html', context)
+	return render(request, 'base.html', context)
 
 
 # Place order - Need to work on this

@@ -4,10 +4,12 @@ from users.models import FreelancerProfile, CustomerProfile
 
 class Item(models.Model):
 	title = models.CharField(max_length=100)
-	serviceCost = models.FloatField()
-	discountedCost = models.FloatField()
+	actual_cost = models.FloatField()
+	discounted_cost = models.FloatField(default = -1)
 	provider = models.ForeignKey(FreelancerProfile, on_delete = models.CASCADE)
-
+	post_date = models.DateField(null=True,blank=True,auto_now_add=True)
+	picture = models.ImageField(default = './default.jpg', upload_to = 'uploads/% Y/% m/% d/')
+	
 	#Category left
 	slug = models.SlugField()
 	description = models.TextField()

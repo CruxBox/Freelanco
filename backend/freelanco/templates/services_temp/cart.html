@@ -1,0 +1,38 @@
+{% extends "services_temp/base.html" %}
+{% block content %}
+{% if !user.is_authenticated %}
+<h2> You need to sign up :) </h2>
+{% else %}
+<h2> Welcome to your cart! </h2>
+{% if items_exist %}
+{% for item in items %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="media">
+            <div class="article-metadata">
+                <a class="mr-2 ml-5" href="#">{{ item.title }} (Add link to detailed view using slug)</a>
+                <small class="text-muted">{{ item.post_date|date:"F d, Y" }}</small>
+            </div>
+        </div>
+        <div>
+            {% if item.serviceCost != item.discountedCost %}
+            <small> Actual Cost: {{ item.serviceCost }}</small>
+            <br>
+            <small> Discounted Cost: {{ item.discountedCost }}</small>
+            {% else %}
+            {% endif %}
+            <small> Cost: {{ item.serviceCost }}</small>
+            <h3> Service Provider: {{ item.provider }} (Add link to his profile)</h3>
+            <p class="article-content">
+                <h2>Description:</h2>
+                {{ item.description }}
+            </p>
+        </div>
+    </div>
+</article>
+{% endfor %}
+{% else %}
+<h4> Sigh! There is nothing in your cart! </h4>
+{% endif %}
+{% endif %}
+{% endblock content %}

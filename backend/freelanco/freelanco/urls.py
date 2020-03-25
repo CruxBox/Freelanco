@@ -8,6 +8,7 @@ from .views import gettingStarted
 urlpatterns = [
     path('admin/', admin.site.urls),
 	path('', TemplateView.as_view(template_name="temp/home.html"),name='home'),
+	path('home/', include('product.urls')),
 	path('accounts/',include('users.urls')),
 	path('accounts/',include('allauth.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
