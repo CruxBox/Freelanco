@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .models import Item, OrderItem, Order
+import logging
+
+logger = logging.getLogger(__name__)
 
 def item_list(request):
 	items = Item.objects.all()
@@ -18,7 +21,7 @@ def item_list(request):
 	return render(request, "services_temp/service_providers.html", context)
 
 def display_cart_items(request):
-	order_objects = Order.objects.filter(user=request.user, ordered = False)
+	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
 	if order_objects.exists():
 		items = order_objects[0].items
 		context = {
@@ -32,30 +35,36 @@ def display_cart_items(request):
 	return render(request, "services_temp/cart.html", context)
 
 def old_orders(request):
-    # This will give a list of orders that are now history
-    order_objects = Order.objects.filter(user=request.user, ordered = True)
-    if order_objects.exists():
-        context={
-            'order_exists':True,
-            'orders':order_objects
-        }
+	# This will give a list of orders that are now history
+	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = True)
+	if order_objects.exists():
+		context={
+			'order_exists':True,
+			'orders':order_objects
+		}
     else:
         context = {
             'order_exists':False
         }
-    return render(request, "base.html", context)
+	return render(request, "base.html", context)
 
 # Add item
 @login_required
 def add_to_cart(request, slug):
+	logger.debug("Reached")
+	
+	print(type(request.user).__name__)
+	print("\n\n\n\n")
+	print(type(request.user.customer_profile).__name__)
+	
 	item = get_object_or_404(Item, slug=slug)
 	orderItem, created = OrderItem.objects.get_or_create(
 		item = item,
-		user = request.user,
+		user = request.user.customer_profile,
 		ordered = False
 	)
 
-	cart = Order.objects.filter(user = request.user, ordered=False)
+	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
 		if cart.items.filter(items__slug = slug).exists():
@@ -67,22 +76,24 @@ def add_to_cart(request, slug):
 #			orderItem.save()
 			cart.items.add(orderItem)
 	else:
-		cart = Order.objects.create( user = request.user )
+		cart = Order.objects.create( user = request.user.customer_profile )
 #		orderItem.quantity = 1
 #		orderItem.save()
 		cart.items.add(orderItem)
+	
+	print("Added to cart!")
 
 # Delete item
 @login_required
 def remove_from_cart(request,slug):
 	item = get_object_or_404(Item, slug=slug)
 
-	cart = Order.objects.filter(user = request.user, ordered=False)
+	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
 		if cart.items.filter(items__slug = slug).exists():
 			orderItem = OrderItem.objects.filter(
-											user = request.user,
+											user = request.user.customer_profile,
 											item = item
 											)[0]
 			cart.items.remove(orderItem)
