@@ -8,8 +8,6 @@ LOCATION_CHOICES=[
     ('Hyd','Hyderabad'),
     ('MAS','Chennai')
 ]
-    
-# Create your models here.
 
 class Address(models.Model):
     address1 = models.CharField("Address line 1", max_length=1024)
