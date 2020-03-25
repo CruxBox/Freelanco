@@ -60,9 +60,6 @@
         <li>
           <a class="log" href="{% url 'users:logout' %}">Logout</a>
         </li>
-        <li>
-            {{ user.username }}
-        </li>
         {% else %}
         <li>
           <a class="log" href="{% url 'users:login' %}">Login</a>
@@ -80,12 +77,9 @@
     <div class="home" id="home">
       <div class="bg"></div>
       <div class="logo">
-       
-        <div >
+        <div>
            <img src="{% static 'css/images/logo.png' %}" style="height: 100px;width: 100px; margin-bottom: 20px;" />
           <h1 class="no-margin-top">Freelanco</h1>
-          
-          
         </div>
       </div>
     </div>
