@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form method="post">
+            s{% csrf_token %}
+            {{ uform.as_p }}
+            {{ pform.as_p }}
+            <input type='submit'>
+        </form>
+    </body>
+</html>

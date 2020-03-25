@@ -21,18 +21,27 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-]
 
+    #custom apps
+    'users',
+    'crispy_forms',
+    'product'
+]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #ALLAUTH SETTINGS
-SITE_ID=1
+SITE_ID=4
 ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
 LOGIN_REDIRECT_URL = '/accounts/email/'
 ACCOUNT_EMAIL_REQUIRED=False
 SOCIALACCOUNT_QUERY_EMAIL=ACCOUNT_EMAIL_REQUIRED
 SOCIALACCOUNT_EMAIL_REQUIRED=ACCOUNT_EMAIL_REQUIRED
 SOCIALACCOUNT_STORE_TOKENS=False
+ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
+
+#DJANGO AUTH BACKEND
+LOGIN_REDIRECT_URL = 'home'
 
 SOCIALACCOUNT_PROVIDERS = {
      'google': {
@@ -83,6 +92,8 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL='users.CustomUser'
+
 # MAKE SURE THIS WORKS AND THEN MOVE AUTH_PASSWORD_VALIDATORS TO PRODUCTION SETTINGS ONLY
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -124,8 +135,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
-STATICFILE_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 VENV_PATH = os.path.dirname(BASE_DIR)
-STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(VENV_PATH, 'media')

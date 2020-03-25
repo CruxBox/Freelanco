@@ -1,13 +1,15 @@
 from django.conf import settings
 from django.db import models
-from users.models FreelancerProfile,CustomerProfile
+from users.models import FreelancerProfile, CustomerProfile
 
 class Item(models.Model):
 	title = models.CharField(max_length=100)
-	serviceCost = models.FloatField()
-	discountedCost = models.FloatField()
+	actual_cost = models.FloatField()
+	discounted_cost = models.FloatField(default = -1)
 	provider = models.ForeignKey(FreelancerProfile, on_delete = models.CASCADE)
-
+	post_date = models.DateField(null=True,blank=True,auto_now_add=True)
+	picture = models.ImageField(default = './default.jpg', upload_to = 'uploads/% Y/% m/% d/')
+	
 	#Category left
 	slug = models.SlugField()
 	description = models.TextField()
@@ -17,7 +19,7 @@ class Item(models.Model):
 class OrderItem(models.Model):
 	item = models.ForeignKey(Item, on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=0)
-	ordered = models.BooleanField(default=false)
+	ordered = models.BooleanField(default=False)
 	user = models.ForeignKey(CustomerProfile,
 								on_delete=models.CASCADE)
 
