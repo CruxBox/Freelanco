@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.utils import timezone
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Item, OrderItem, Order
 import logging
@@ -42,21 +44,16 @@ def old_orders(request):
 			'order_exists':True,
 			'orders':order_objects
 		}
-    else:
-        context = {
-            'order_exists':False
-        }
+	else:
+		context = {
+			'order_exists':False
+		}
 	return render(request, "base.html", context)
 
 # Add item
 @login_required
 def add_to_cart(request, slug):
-	logger.debug("Reached")
-	
-	print(type(request.user).__name__)
-	print("\n\n\n\n")
-	print(type(request.user.customer_profile).__name__)
-	
+
 	item = get_object_or_404(Item, slug=slug)
 	orderItem, created = OrderItem.objects.get_or_create(
 		item = item,
@@ -67,21 +64,15 @@ def add_to_cart(request, slug):
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
-		if cart.items.filter(items__slug = slug).exists():
-#			orderItem.quantity+=1
-#			orderItem.save()
-			messages.info("Already in cart!")
+		if cart.items.filter(item = item).exists():
+			pass
 		else:
-#			orderItem.quantity = 1
-#			orderItem.save()
 			cart.items.add(orderItem)
 	else:
 		cart = Order.objects.create( user = request.user.customer_profile )
-#		orderItem.quantity = 1
-#		orderItem.save()
 		cart.items.add(orderItem)
 	
-	print("Added to cart!")
+	return redirect("item list")
 
 # Delete item
 @login_required
@@ -91,7 +82,7 @@ def remove_from_cart(request,slug):
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
-		if cart.items.filter(items__slug = slug).exists():
+		if cart.items.filter(item_slug = slug).exists():
 			orderItem = OrderItem.objects.filter(
 											user = request.user.customer_profile,
 											item = item
