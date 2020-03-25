@@ -123,6 +123,10 @@ html {
   padding-top: 150px;
 }
 
+.about.no-margin-top{
+  font-family: 'Poppins';
+}
+
 .no-margin-top {
  font-family: 'Lobster',sans-serif;
  color: #111;
