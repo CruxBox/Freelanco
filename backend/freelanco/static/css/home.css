@@ -1,21 +1,26 @@
 @font-face {
   font-family: Pacifico;
-  src: url(./fonts/Pacifico-Regular.ttf);
+  src: url('./fonts/Pacifico-Regular.ttf');
 }
 
 @font-face {
   font-family: Kaushan;
-  src: url(./fonts/KaushanScript-Regular.ttf);
+  src: url('./fonts/KaushanScript-Regular.ttf');
 }
 
 @font-face{ 
   font-family: Abril Fatface ;
-  src: url(./fonts/AbrilFatface-Regular.ttf);
+  src: url('./fonts/AbrilFatface-Regular.ttf');
 }
 
 @font-face{
   font-family: Lobster;
-  src: url(./fonts/Lobster-Regular.ttf);
+  src: url('./fonts/Lobster-Regular.ttf');
+}
+
+@font-face{
+  font-family: Poppins;
+  src: url('./fonts/Poppins-Regular.ttf');
 }
 
 body {
@@ -33,6 +38,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 600px;
+  
 }
 
 .no-margin-top {
@@ -42,7 +48,7 @@ body {
   transform: rotate(-1deg);
   font-size: xx-large;
   font-size: 80px;
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Lobster',cursive;
 }
 
 ul {
@@ -90,8 +96,8 @@ html {
   margin-top: -20px;
 }
 
-.navbar {
-  position: fixed;
+.navigationbar {
+  position: absolute;
   width: 100%;
   font-family: "Poppins";
 }
@@ -101,7 +107,7 @@ html {
   padding-top: 60px;
   text-align: center;
 
-  font-family: "Poppins";
+  font-family: 'Poppins',sans-serif;
 
   height: 900px;
   padding-left: 50px;
@@ -117,13 +123,15 @@ html {
 }
 
 .no-margin-top {
- font-family: 'Lobster', cursive;
+ font-family: 'Lobster',sans-serif;
+ color: #111;
 }
 input[type="text"] {
   width: 300px;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 30px;
+  padding-top: 40px;
   font-size: 16px;
   background-color: white;
   background-image: url("searchicon.png");
