@@ -1,56 +1,52 @@
+{% load static %}
+{% load mathfilters %}
 <!DOCTYPE html>
 <html>
 
 <head>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"
 		id="bootstrap-css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="./cart.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" />
 </head>
 
-<body  style="font-family: 'Poppins',sans-serif;">
+<body style="font-family: 'Poppins',sans-serif;">
 
 
-	<div class="navigationbar" >
+	<div class="navigationbar">
 		<ul>
-		  <li>
-			<a class="active" href="#home">
-			  Freelanco
-			</a>
-		  </li>
-		  <li>
-			<a href="#news">News</a>
-		  </li>
-		  <li>
-			<a href="#contact">Contact</a>
-		  </li>
-		  <li>
-			<a href="#abt">Get Started ?</a>
-		  </li>
-		  <li>
-		  <a href="{% url 'item list' %}">Services</a>
-		  </li>
-		  {% if user.is_authenticated %}
-		  <li>
-			<a class="log" href="{% url 'users:logout' %}">Logout</a>
-		  </li>
-		  {% else %}
-		  <li>
-			<a class="log" href="{% url 'users:login' %}">Login</a>
-		  </li>
-		   <li>
-			<a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
-		  </li>
-		  <li>
-		  <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
-		  </li> 
-		  {% endif %}
+			<li>
+				<a class="active" href="#home">
+					Freelanco
+				</a>
+			</li>
+			<li>
+				<a href="#contact">Contact</a>
+			</li>
+			<li>
+				<a href="{% url 'item list' %}">Services</a>
+			</li>
+			{% if user.is_authenticated %}
+			<li>
+				<a class="log" href="{% url 'users:logout' %}">Logout</a>
+			</li>
+			{% else %}
+			<li>
+				<a class="log" href="{% url 'users:login' %}">Login</a>
+			</li>
+			<li>
+				<a href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+			</li>
+			<li>
+				<a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+			</li>
+			{% endif %}
 		</ul>
-	  </div>
+	</div>
 	<div class="container" style="padding-top: 50px;">
 		{% if items_exist %}
 		<div class="row">
@@ -61,7 +57,7 @@
 							<th>Service</th>
 							<th>Quantity</th>
 							<th class="text-center">Price</th>
-							<th class="text-center">Total</th>
+							<th class="text-center">Discounted Price</th>
 							<th> </th>
 						</tr>
 					</thead>
@@ -70,25 +66,31 @@
 						<tr>
 							<td class="col-md-6">
 								<div class="media">
-									<a class="thumbnail pull-left" href="#"> <img class="media-object" src=""
-											alt="service logo" style="width: 72px; height: 72px;"> </a>
+									<a class="thumbnail pull-left" href="#"> <img class="media-object"
+											src="{{ item.picture }}" alt="img" style="width: 72px; height: 72px;"> </a>
 									<div class="media-body">
 										<h4 class="media-heading"><a href="#">{{ item.title }}</a></h4>
-										<h5 class="media-heading"> by <a href="#">Brand name</a></h5>
+										<h5 class="media-heading"> by <a href="#"> {{ item.provider }} </a></h5>
 										<span>Status: </span><span class="text-warning"><strong> No update,
 												yet.</strong></span>
 									</div>
 								</div>
 							</td>
 							<td class="col-md-1" style="text-align: center">
-								<input type="email" class="form-control" id="exampleInputEmail1" value="2">
+								<input type="email" class="form-control" id="exampleInputEmail1" value="1" disabled>
 							</td>
-							<td class="col-md-1 text-center"><strong>&#8377 4.99</strong></td>
-							<td class="col-md-1 text-center"><strong>&#8377 9.98</strong></td>
+							<td class="col-md-1 text-center"><strong>&#8377 {{ item.actual_cost }}</strong></td>
+							<td class="col-md-1 text-center"><strong>&#8377 {{ item.discounted_cost }} </strong></td>
 							<td class="col-md-1">
-								<button type="button" class="btn btn-danger" style="border-radius: 30px;">
-									<span class="glyphicon glyphicon-remove"></span> Remove
-								</button></td>
+								<form id="remove_item" action="{% url 'remove from cart' slug=item.slug %}"
+									method="POST">
+									{% csrf_token %}
+									<a class="btn btn-danger" href="#"
+										onclick="document.getElementById('remove_item').submit();">
+										<span class=" glyphicon glyphicon-remove"></span> Remove
+									</a>
+								</form>
+							</td>
 						</tr>
 						{% endfor %}
 						<tr>
@@ -99,7 +101,7 @@
 								<h5>Subtotal</h5>
 							</td>
 							<td class="text-right">
-								<h5><strong>&#8377 24.59</strong></h5>
+								<h5><strong>&#8377 {{ sub_total }}</strong></h5>
 							</td>
 						</tr>
 						<tr>
@@ -110,7 +112,7 @@
 								<h5>Taxes</h5>
 							</td>
 							<td class="text-right">
-								<h5><strong>&#8377 0</strong></h5>
+								<h5><strong>&#8377 {{ tax }}</strong></h5>
 							</td>
 						</tr>
 						<tr>
@@ -118,10 +120,10 @@
 							<td>   </td>
 							<td>   </td>
 							<td>
-								<h3>Total</h3>
+								<h3> Total </h3>
 							</td>
 							<td class="text-right">
-								<h3><strong>&#8377 31.53</strong></h3>
+								<h3><strong>&#8377 {{ sub_total | addition:tax }}</strong></h3>
 							</td>
 						</tr>
 						<tr>
@@ -144,10 +146,17 @@
 		</div>
 		{% else %}
 		<div>
-			<p>You have no items in your cart!</p>
-			<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
-				<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-			</a>
+			<<<<<<< HEAD <br><br><br>
+				<h4>You have no items in your cart!</h4>
+				<br>
+				<br>
+				<a class="btn btn-default" href="{% url 'item list' %}">
+					=======
+					<p>You have no items in your cart!</p>
+					<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
+						>>>>>>> bb0d0e3d1e4401cd2ee50f78a8ce1ac5ee88a8cd
+						<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+					</a>
 		</div>
 		{% endif %}
 	</div>
