@@ -34,7 +34,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #ALLAUTH SETTINGS
-SITE_ID=4
+SITE_ID=5
 ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
 LOGIN_REDIRECT_URL = '/accounts/email/'
 ACCOUNT_EMAIL_REQUIRED=False
