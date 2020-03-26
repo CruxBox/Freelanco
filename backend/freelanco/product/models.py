@@ -24,7 +24,7 @@ class OrderItem(models.Model):
 								on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.title
+		return self.item.title
 
 
 class Order(models.Model):

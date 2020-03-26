@@ -26,7 +26,6 @@ def item_list(request):
 def display_cart_items(request):
 
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
-	
 	if order_objects.exists() and len(order_objects[0].items.all()):
 
 		order_items = order_objects[0].items.all()
@@ -34,16 +33,19 @@ def display_cart_items(request):
 		number_of_items = len(items)
 		
 		sub_total = 0
-
+		tax = 0
 		for item in items:
-			sub_total = item.discounted_cost
+			if item.discounted_cost!=-1:
+				sub_total += item.discounted_cost
+			else:
+				sub_total += item.actual_cost
 
 		context = {
 			'cart_items': items,
 			'items_exist': True,
 			'number_of_items': number_of_items,
 			'sub_total': sub_total,
-			'tax':0
+			'tax': tax
 		}
 	else:
 		context = {
@@ -78,7 +80,6 @@ def add_to_cart(request, slug):
 		user = request.user.customer_profile,
 		ordered = False
 	)
-
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
