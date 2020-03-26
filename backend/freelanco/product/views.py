@@ -22,7 +22,9 @@ def item_list(request):
 		}
 	return render(request, "services_temp/service_providers.html", context)
 
+@login_required
 def display_cart_items(request):
+
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
 	if order_objects.exists():
 		items = order_objects[0].items
@@ -36,6 +38,7 @@ def display_cart_items(request):
 		}
 	return render(request, "services_temp/cart.html", context)
 
+@login_required
 def old_orders(request):
 	# This will give a list of orders that are now history
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = True)
