@@ -17,7 +17,7 @@ class Item(models.Model):
 		return self.title
 
 class OrderItem(models.Model):
-	item = models.ForeignKey(Item, on_delete=models.CASCADE)
+	item = models.ForeignKey(Item, on_delete=models.CASCADE,related_name = "order_item")
 	quantity = models.IntegerField(default=0)
 	ordered = models.BooleanField(default=False)
 	user = models.ForeignKey(CustomerProfile,

@@ -26,15 +26,30 @@ def item_list(request):
 def display_cart_items(request):
 
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
-	if order_objects.exists():
-		items = order_objects[0].items
+	
+	if order_objects.exists() and len(order_objects[0].items.all()):
+
+		order_items = order_objects[0].items.all()
+		items = Item.objects.filter(order_item__in = order_items)
+		number_of_items = len(items)
+		
+		sub_total = 0
+
+		for item in items:
+			sub_total = item.discounted_cost
+
 		context = {
 			'cart_items': items,
-			'items_exist': True
+			'items_exist': True,
+			'number_of_items': number_of_items,
+			'sub_total': sub_total,
+			'tax':0
 		}
 	else:
 		context = {
-			'items_exist': False
+			'items_exist': False,
+			'sub_total':0,
+			'tax':0
 		}
 	return render(request, "services_temp/cart.html", context)
 
@@ -85,16 +100,17 @@ def remove_from_cart(request,slug):
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
-		if cart.items.filter(item_slug = slug).exists():
-			orderItem = OrderItem.objects.filter(
-											user = request.user.customer_profile,
-											item = item
-											)[0]
-			cart.items.remove(orderItem)
-		else:
-			messages.info("This item wasn't present in your cart.")
+		# if cart.items.filter(item_slug = slug).exists():
+		orderItem = OrderItem.objects.filter(
+										user = request.user.customer_profile,
+										item = item
+										)[0]
+		cart.items.remove(orderItem)
+		# else:
+			# messages.info("This item wasn't present in your cart.")
 	else:
 		messages.info("You don't have an ongoing order.")
+	return redirect("display cart items")
 
 # Item detail view
 def detail_view(request, slug):
