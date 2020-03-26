@@ -67,7 +67,8 @@
 							<td class="col-md-6">
 								<div class="media">
 									<a class="thumbnail pull-left" href="#"> <img class="media-object"
-											src="{{ item.picture }}" alt="img" style="width: 72px; height: 72px;"> </a>
+											src="{{ item.picture.url }}" alt="img" style="width: 72px; height: 72px;">
+									</a>
 									<div class="media-body">
 										<h4 class="media-heading"><a href="#">{{ item.title }}</a></h4>
 										<h5 class="media-heading"> by <a href="#"> {{ item.provider }} </a></h5>
@@ -146,17 +147,13 @@
 		</div>
 		{% else %}
 		<div>
-			<<<<<<< HEAD <br><br><br>
-				<h4>You have no items in your cart!</h4>
-				<br>
-				<br>
-				<a class="btn btn-default" href="{% url 'item list' %}">
-					=======
-					<p>You have no items in your cart!</p>
-					<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
-						>>>>>>> bb0d0e3d1e4401cd2ee50f78a8ce1ac5ee88a8cd
-						<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-					</a>
+			<br>
+			<h4>You have no items in your cart!</h4>
+			<br>
+			<br>
+			<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
+				<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+			</a>
 		</div>
 		{% endif %}
 	</div>
