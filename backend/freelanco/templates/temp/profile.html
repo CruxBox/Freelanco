@@ -1,317 +1,199 @@
 {% load static %}
-{% load i18n %}
-{% load account socialaccount %}
-{% load socialaccount %}
-{% include 'material/includes/material_css.html' %}
-{% include 'material/includes/material_js.html' %}
-{% load material_form %}
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>
+		Profile
+	</title>
+	    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
         <link
       href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
       rel="stylesheet"
     />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
     />
-
-
-    <title>Document</title>
-  </head>
-
-  <body>
-    <div></div>
-
-    <div class="container mt-5">
-      <form method="post">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="profile-img">
-              <img
-                class="rounded-circle"
-                alt="100x100"
-                src={{ user.socialaccount_set.all.0.get_avatar_url }}
-                data-holder-rendered="true"
-                style="width: 200px; height: 200px;overflow:hidden;"
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="profile-head">
-              <h5 clas="name_">
-                {{ user.username }}
-              </h5>
-              <hr />
-            </div>
-          </div>
-          <div class="col-md-2">
-            <a
-              href=""
-              class="btn btn-outline-dark btn-rounded mb-4"
-              data-toggle="modal"
-              data-target="#form"
-              >Edit profile
-            </a>
-          </div>
-        </div>
-        <div class="row ml-1">
-          <div class="col-md-4">
-            <div class="profile-work">
-              <p>fb/xyz</p>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="tab-content profile-tab" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="home"
-                role="tabpanel"
-                aria-labelledby="home-tab"
-              >
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>First Name</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{ user.first_name }}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Last Name</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{ user.last_name }}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Email</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{ user.email }}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Phone</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>123 456 7890</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Location</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{ user.CustomerProfile.location }}</p>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="profile"
-                role="tabpanel"
-                aria-labelledby="profile-tab"
-              >
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Experience</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Expert</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Hourly Rate</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>10$/hr</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Total Projects</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>230</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>English Level</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>Expert</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Availability</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>6 months</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label>Your Bio</label><br />
-                    <p>Your detail description</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
+    <style >* {
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+      }
+  label {
+    font-family: "Poppins", sans-serif;
+        font-size: 15px;
+}
+html {
+    background-image: none !important;
+}</style>
+</head>
+<body style={"backgroung-image:"None";}">
+<div class="navigationbar">
+      <ul>
+        <li>
+          <a class="active" href="#home">
+            Freelanco
+          </a>
+        </li>
+        <li>
+          <a href="#news">News</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+        <li>
+          <a href="#abt">Services</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a class="log" href="{% url 'users:logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="log" href="{% url 'users:login' %}">Login</a>
+        </li>
+         <li>
+          <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+        </li>
+        <li>
+        <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+        </li> 
+        {% endif %}
+      </ul>
     </div>
-
-    <div
-      class="modal fade"
-      id="form"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header border-bottom-0">
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+    <br>
+    <br>
+  <div class="container z-depth-3">
+    <div class="col l4 s12 m8 offset-m2 offset-l4">
+      <div class="card-panel grey lighten-5 z-depth-1">
+        <div class="row valign-wrapper">
+          <div class="col l2 left">
+            <img src="https://picsum.photos/1000/1000" alt="" class="circle responsive-img materialboxed z-depth-2" style="max-width:125px;max-height: 125px">
           </div>
-          <form>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="email1">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                />
-              </div>
-              <div class="form-group">
-                <label for="email1">Name</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Name"
-                />
-              </div>
-              <div class="form-group">
-                <label for="email1">Phone Number</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter Numberl"
-                />
-              </div>
-              <div class="form-group">
-                <label for="email1">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter adddress"
-                />
-              </div>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" />
-                <label class="custom-file-label" for="customFile"
-                  >Choose file</label
-                >
-              </div>
-            </div>
-            <div
-              class="modal-footer border-top-0 d-flex justify-content-center"
-            >
-              <button type="submit" class="btn btn-outline-dark">Submit</button>
-            </div>
-          </form>
+          <div class="col s10 right">
+            <span class="black-text">
+                <div class="row">
+                	<div class="col l6 ">
+                	<h5>Personal Details</h5>
+                	</div>
+                	<div class="col l6 push-l4">
+                	<a class="waves-effect waves-green btn .right-align black" href="{% url "users:profile_edit_details" %}"><i class="material-icons left">edit</i>Edit</a>
+                </div>
+                </div>
+                	<div class="divider"></div>
+                	<div class="section">
+                		<div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>User Name</label>
+                	</div>
+                	<div class="col l6 m6 ">
+                		{{user.username}}
+                	</div>
+                </div>
+            
+                <div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>Email</label>
+                	</div>
+                	<div class="col l6 m6">
+                		{{user.email}}
+                	</div>
+                </div>
+                <div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>First Name</label>
+                	</div>
+                	<div class="col l6 m6">
+                		{{user.first_name}}
+                	</div>
+                </div>
+                <div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>Last Name</label>
+                	</div>
+                	<div class="col l6 m6 ">
+                		{{user.last_name}}
+                	</div>
+                </div>
+                <div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>Extra Field</label>
+                	</div>
+                	<div class="col l6 m6 ">
+                		Extra Attribute
+                	</div>
+                </div>
+                </div>
+                 <div class="row">
+                	<div class="col l6 ">
+                	<h5>Address Details</h5>
+                	</div>
+                	<div class="col l6 push-l4">
+                	<a class="waves-effect waves-green btn .right-align black" href={% url "users:profile_edit_address"%}><i class="material-icons left">edit</i>Edit</a>
+                </div>
+                </div>
+                	<div class="divider"></div>
+                	<div class="section">
+                		<div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>Line 1</label>
+                	</div>
+                	<div class="col l6 m6 ">
+                		{{user.customer_profile.address.address1}}
+                	</div>
+                </div>
+            
+                <div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>Line 2</label>
+                	</div>
+                	<div class="col l6 m6 ">
+                		{{user.customer_profile.address.address2}}
+                	</div>
+                </div>
+                <div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>Pin Code</label>
+                	</div>
+                	<div class="col l6 m6 ">
+                		{{user.customer_profile.address.pin_code}}
+                	</div>
+                </div>
+                <div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>City</label>
+                	</div>
+                	<div class="col l6 m6 ">
+                		{{user.customer_profile.address.city}}
+                	</div>
+                </div>
+                <div class="row">
+                	<div class="col l6 m6 push-m2 push-l2">
+                		<label>State</label>
+                	</div>
+                	<div class="col l6 m6 ">
+                		{{user.customer_profile.address.state}}
+                	</div>
+                </div>
+                </div>
+              </span>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <style>
-      * {
-        font-family: "Poppins", sans-serif;
-      }
-      .profile-work p {
-        font-size: 12px;
-        color: #818182;
-        font-weight: 600;
-        margin-top: 10%;
-      }
-
-      .profile-work a {
-        color: #495057;
-        font-weight: 600;
-        font-size: 14px;
-      }
-
-      .profile-tab label {
-        font-weight: 600;
-      }
-
-      .profile-tab p {
-        font-weight: 600;
-        color: #0062cc;
-      }
-    </style>
-
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-
-<div class="container">
-
-
-<form method="POST">
-    {% csrf_token %}
-    {% form form=form %}{% endform %}
-    {% form form=forml %}{% endform %}
-    <button type="submit" name="_submit" class="btn">Submit</button>
-</form>
-
-
-</div>
-
-
-
-  </body>
+<script>
+	  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.materialboxed');
+    var instances = M.Materialbox.init(elems, options);
+  });
+</script>
 </html>

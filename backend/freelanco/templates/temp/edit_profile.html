@@ -1,0 +1,19 @@
+{% load material_form %}
+<html>
+    <head>
+        {% include 'material/includes/material_css.html' %}
+{% include 'material/includes/material_js.html' %}
+    </head>
+    <body>
+        <div class="col l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% form form=form %}{% endform %}
+            <button type="submit" name="_submit" class="btn">Submit</button>
+        </form>
+        </div>
+        </div>
+    </body>
+</html>

@@ -9,12 +9,10 @@ class CustomUserCreationForm(UserCreationForm):
         model=CustomUser
         fields=('username','email','is_freelancer')
 
-
 class CustomUserChangeForm(UserChangeForm):
-
     class Meta:
         model=CustomUser
-        fields=('username','email','last_name','first_name')
+        fields=('email','first_name','last_name')
 
 
 class CustomerProfileForm(forms.ModelForm):
