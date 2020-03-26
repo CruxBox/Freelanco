@@ -38,8 +38,8 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
-
-<style>
+<!--
+  <style>
 #services 
  {
   max-width:100%;
@@ -63,16 +63,55 @@
 }
 a:hover 
 {
-  color: black;
+  color: white;
   font-weight: bold;
 }
 a{
-	color: black;
+	color:black;
 	text-decoration: none;
 }
 figcaption{font-size: 14px;}
-a:link {color: #0060b6;}
-a:active {color: black;}
+a:link {color: white;}
+a:active {color: white;}
+</style>
+ 
+-->
+<style>
+#services 
+ {
+  max-width:100%;
+  margin:10px auto;
+  padding-top: 20px
+  border:0px solid white;
+  text-align:center;
+  background-color: white;
+  font-family: 'Poppins';
+}
+#services figure 
+{
+  display:inline-block;
+  max-width:100%;
+  margin: 20px;
+}
+#services img 
+{
+  display:block;
+  margin: auto;`
+}
+#services a:hover 
+{
+  color: white;
+  font-weight: bold;
+}
+#services a{
+	color:black;
+	text-decoration: none;
+}
+#services figcaption{font-size: 14px;}
+a:link {color: white;}
+a:active {color: white;}
+a:hover{color: white;}
+a{color: white;}
 </style>
         
   
@@ -151,7 +190,39 @@ a:active {color: black;}
 
       </div>
 
-      <div id="services">
+      <div id="services" style="#services 
+      {
+       max-width:100%;
+       margin:10px auto;
+       padding-top: 20px
+       border:0px solid white;
+       text-align:center;
+       background-color: white;
+       font-family: 'Poppins';
+     }
+     #services figure 
+     {
+       display:inline-block;
+       max-width:100%;
+       margin: 20px;
+     }
+     #services img 
+     {
+       display:block;
+       margin: auto;`
+     }
+     a:hover 
+     {
+       color: white;
+       font-weight: bold;
+     }
+     a{
+       color: black;
+       text-decoration: none;
+     }
+     figcaption{font-size: 14px;}
+     a:link {color: white;}
+     a:active {color: white;}">
         <a class="link" href="#">
         <figure>
             <img src ="{% static "assets/img/salon.png"%}" height="70px" width="70px">
@@ -177,7 +248,7 @@ a:active {color: black;}
         </a>
         <a  href="#">
         <figure>
-            <img src ="{% static "assets/img/Plumber.svg"%}" height="70px" width="70px">
+            <img src ="{% static "assets/img/plumber.svg"%}" height="70px" width="70px">
             <figcaption>Electrician Plumber</figcaption>
         </figure>
         </a>
@@ -345,9 +416,15 @@ a:active {color: black;}
     
       
 
-  <div style='background-color: black;color: white;'>
+      <div style= "
+      background-color: black;
+      color: white;
+      a{
+        color: black;
+        text-decoration: none;
+      }">
     <footer class="page-footer black" >
-      <div class="container">
+      <div class="container" style="">
         <div class="row">
           <div class="col l6 s12">
             <h5 class="green-text" style="font-family:'Lobster',cursive;">Freelanco</h5>
@@ -356,33 +433,59 @@ a:active {color: black;}
   
           </div>
           
-          <div class="col l3 s12">
+          <div class="col l3 s12 " style="align-items: center;">
             <h5 style="font-family: 'Poppins'" class="white-text">Reach Us</h5>
             <div style="display: block;">
-              <i class="fa fa-map-marker"></i>
+             
               <p style="color: white;"><span> Aviato.inc HeadQuarters</span> California, USA</p>
+              <i class="fa fa-map-marker" style="float: inline-end;"></i>
           </div>
         
 
-          <div style="color: white; display:;">
+          <div style="color: white; display:none;">
           
           <p style="color: white;">  021-5531-4224
             
-            <i class="fa fa-phone">
+          <i class="fa fa-phone" style="float: right;">
             </i>
           </p>
+        </br>
              
             
           </div>
         </br>
           <div>
-              <i class="fa fa-envelope"></i>
+             
               <p><a href="#"> help@freelanco.com</a></p>
+              <i class="fa fa-envelope" style="float: inline-end ;"></i>
           </div>
           </div>
           <div class="col l3 s12">
             <h1 style="font-family:'Lobster'">Freelanco</h5>
-            <p class="menu">
+            <p class="menu" class="style" style="color: white; 
+            a:hover 
+            {
+              color: white;
+              font-weight: bold;
+            }
+            a{
+              color: white;
+              text-decoration: none;
+            }
+            a:active{
+              color: white;
+              text-decoration: none;
+            }
+            a:any-link{
+              color: white;
+              text-decoration: none;
+            }
+            a:visited{
+              color: white;
+              text-decoration: none;
+            }
+            
+            ">
               <a href="#"> Home</a> |
               <a href="#"> About</a> |
               <a href="#"> Services</a> |
