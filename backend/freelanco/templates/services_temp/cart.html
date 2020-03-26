@@ -6,10 +6,13 @@
 		id="bootstrap-css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
 
-<body>
+<body  style="font-family: 'Poppins',sans-serif;">
 	<div class="container">
 		{% if items_exist %}
 		<div class="row">
@@ -45,7 +48,7 @@
 							<td class="col-md-1 text-center"><strong>&#8377 4.99</strong></td>
 							<td class="col-md-1 text-center"><strong>&#8377 9.98</strong></td>
 							<td class="col-md-1">
-								<button type="button" class="btn btn-danger">
+								<button type="button" class="btn btn-danger" style="border-radius: 30px;">
 									<span class="glyphicon glyphicon-remove"></span> Remove
 								</button></td>
 						</tr>
@@ -88,12 +91,12 @@
 							<td>   </td>
 							<td>   </td>
 							<td>
-								<a class="btn btn-default" href="{% url 'item list' %}">
+								<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
 									<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
 								</a>
 							</td>
 							<td>
-								<button type="button" class="btn btn-success">
+								<button type="button" class="btn btn-success" style="border-radius: 30px;">
 									Checkout <span class="glyphicon glyphicon-play"></span>
 								</button></td>
 						</tr>
@@ -104,12 +107,15 @@
 		{% else %}
 		<div>
 			<p>You have no items in your cart!</p>
-			<a class="btn btn-default" href="{% url 'item list' %}">
+			<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
 				<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
 			</a>
 		</div>
 		{% endif %}
 	</div>
+
+
+
 </body>
 
 </html>
