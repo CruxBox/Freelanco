@@ -27,7 +27,7 @@
 	<!-- navbar    initiates -->
 	<nav class="navbar navbar-expand-lg navbar-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand text-white" href="#">FreeLanco</a>
+			<a class="navbar-brand text-white" href="#">Freelanco</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse"
 				aria-controls="nvbCollapse">
 				<span class="navbar-toggler-icon"></span>
@@ -50,21 +50,22 @@
 					<li class="nav-item active pl-1">
 						<a class="nav-link" href="#"><i class="fa fa-home fa-fw mr-1"></i>Home</a>
 					</li>
-					<li class="nav-item  pl-1">
-						<a class="nav-link" href="#"><i class="fa fa-th-list fa-fw mr-1"></i>Services</a>
+					{% if user.is_authenticated %}
+					<li class="nav-item pl-1">
+						<a class="nav-link" href="{% url 'users:logout' %}"><i
+								class="fa fa-sign-in fa-fw mr-1"></i>Logout</a>
+					</li>
+					{% else %}
+					<li class="nav-item pl-1">
+						<a class="nav-link" href="{% url 'users:login' %}"><i
+								class="fa fa-user-plus fa-fw mr-1"></i>Login</a>
 					</li>
 					<li class="nav-item pl-1">
-						<a class="nav-link" href="#"><i class="fa fa-info-circle fa-fw mr-1"></i>About</a>
+						<a class="nav-link btn-white waves-effect waves-light " href="{% url 'display cart items' %}"
+							style="float: right">
+							<i class="material-icons left ">shopping_cart</i> Cart</a>
 					</li>
-					<li class="nav-item pl-1">
-						<a class="nav-link" href="#"><i class="fa fa-phone fa-fw fa-rotate-180 mr-1"></i>Contact</a>
-					</li>
-					<li class="nav-item pl-1">
-						<a class="nav-link" href="#"><i class="fa fa-user-plus fa-fw mr-1"></i>Login</a>
-					</li>
-					<li class="nav-item pl-1">
-						<a class="nav-link" href="#"><i class="fa fa-sign-in fa-fw mr-1"></i>Logout</a>
-					</li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -353,17 +354,14 @@
 			<p class="cart_item_price grey-text "> About: {{ item.description }} </p>
 		</div>
 
-		{% if user.is_authenticated %}
 		<div class="col s3 ">
 			<form id="add_to_cart_form" action="{% url 'add to cart' slug=item.slug %}" method="POST">
 				{% csrf_token %}
 				<a class="btn black waves-effect waves-light " href="#"
-					onclick="document.getElementById('add_to_cart_form'	).submit();" style="float:right ">
+					onclick="document.getElementById('add_to_cart_form').submit();" style="float:right ">
 					<i class="material-icons left ">shopping_cart</i> Add</a>
 			</form>
 		</div>
-		{% endif %}
-
 	</div>
 	</div>
 	{% endfor %}
@@ -381,28 +379,26 @@
 		<footer class="footer clearfix">
 			<div class="footer-left col-md-4 col-sm-6">
 				<p class="about">
-					<span> About the company</span> With millions of videos across every genre of adult entertainment,
-					Pornhub is a one-stop shop the lusty kinks of individuals and couples across the world. It hosts the
-					most popular porn stars of all
-					time and dominates the online market for smut
+					<span> About the company</span> We are a team of college students working on this project like it's
+					our full time job. Any amount would help support and
+					continue development on this project and is greatly appreciated.
 				</p>
 				<div class="icons">
 					<a href="#"><i class="fa fa-facebook"></i></a>
 					<a href="#"><i class="fa fa-twitter"></i></a>
 					<a href="#"><i class="fa fa-linkedin"></i></a>
-					<a href="#"><i class="fa fa-google-plus"></i></a>
 					<a href="#"><i class="fa fa-instagram"></i></a>
 				</div>
 			</div>
 			<div class="footer-center col-md-4 col-sm-6">
 				<div>
 					<i class="fa fa-map-marker"></i>
-					<p><span> gali ka naam aur number</span> sehr, Desh</p>
+					<p><span> We will update this! </span> Chennai, India</p>
 				</div>
 				<div>
 					<i class="fa fa-phone"></i>
 					<p>
-						(+00) xxxx xxx xxx
+						(+91) 9962614916
 					</p>
 				</div>
 				<div>
@@ -411,17 +407,17 @@
 				</div>
 			</div>
 			<div class="footer-right col-md-4 col-sm-6">
-				<h2> Company<span> logo</span></h2>
+				<h2> Free<span> lanco</span></h2>
 				<p class="menu">
 					<a href="#"> Home</a> |
 					<a href="#"> About</a> |
-					<a href="#"> Services</a> |
+					<a href="{% url 'item list' %}"> Services</a> |
 					<a href="#"> Portfolio</a> |
 					<a href="#"> News</a> |
 					<a href="#"> Contact</a>
 				</p>
 				<p class="name">
-					FREELANCO &copy; 2016
+					Freelanco &copy; 2020
 				</p>
 			</div>
 		</footer>
