@@ -544,3 +544,53 @@ iframe {
     padding-right: 15px;
   }
 }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li a.log {
+  text-align: right;
+}
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a.active {
+  font-family: "Kaushan";
+  transform: rotate(-2deg);
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.centre-h4 {
+  margin-top: 0;
+  font-size: 40;
+  font-family: 'Abril Fatface', cursive;
+  font-size: 30px;
+  color: black;
+  font-weight: 600;
+  margin-top: -20px;
+}
+
+.navigationbar {
+  position: absolute;
+  width: 100%;
+  font-family: "Poppins";
+}

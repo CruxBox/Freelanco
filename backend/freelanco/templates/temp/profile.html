@@ -21,7 +21,9 @@
     <link
       href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
       rel="stylesheet"
+
     />
+     <link rel="stylesheet" type="text/css" href="{% static "css/home.css"%}" />
     <style >* {
         font-family: "Poppins", sans-serif;
         font-size: 15px;
@@ -34,7 +36,8 @@ html {
     background-image: none !important;
 }</style>
 </head>
-<body style={"backgroung-image:"None";}">
+<body style={"background-image:"None";}">
+
 <div class="navigationbar">
       <ul>
         <li>
@@ -68,9 +71,9 @@ html {
         {% endif %}
       </ul>
     </div>
-    <br>
-    <br>
-  <div class="container z-depth-3">
+  </br>
+  </br>
+  <div class="container z-depth-3" >
     <div class="col l4 s12 m8 offset-m2 offset-l4">
       <div class="card-panel grey lighten-5 z-depth-1">
         <div class="row valign-wrapper">
@@ -84,7 +87,7 @@ html {
                 	<h5>Personal Details</h5>
                 	</div>
                 	<div class="col l6 push-l4">
-                	<a class="waves-effect waves-green btn .right-align black" href="{% url "users:profile_edit_details" %}"><i class="material-icons left">edit</i>Edit</a>
+                	<a class="waves-effect waves-green btn .right-align green" href="{% url "users:profile_edit_details" %}" style="border-radius: 25px;"><i class="material-icons left">edit</i>Edit</a>
                 </div>
                 </div>
                 	<div class="divider"></div>
@@ -136,7 +139,7 @@ html {
                 	<h5>Address Details</h5>
                 	</div>
                 	<div class="col l6 push-l4">
-                	<a class="waves-effect waves-green btn .right-align black" href={% url "users:profile_edit_address"%}><i class="material-icons left">edit</i>Edit</a>
+                	<a class="waves-effect waves-green btn .right-align  green" href={% url "users:profile_edit_address"%} style="border-radius: 30px;"><i class="material-icons left">edit</i>Edit</a>
                 </div>
                 </div>
                 	<div class="divider"></div>
