@@ -101,7 +101,7 @@
           <form class="login100-form validate-form" method="post" action="{% url 'users:customer_signup' %}">
           {%  csrf_token %}
             <span class="login100-form-title p-b-60">
-              Sign Up
+             {{user_type}}<br> Sign Up
             </span>
             {% if user_exists %}
             <div class="text-center p-t-10 p-b-25">
@@ -182,7 +182,6 @@
               <a href="#" class="login100-social-item bg2">
                 <i class="fa fa-twitter"></i>
               </a> -->
-
               <a href="{% provider_login_url 'google' %}" class="login100-social-item bg3">
                 <i class="fa fa-google"></i>
               </a>
