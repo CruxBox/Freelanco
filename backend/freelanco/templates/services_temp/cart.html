@@ -9,11 +9,49 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"> 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
+  <link rel="stylesheet" type="text/css" href="./cart.css" />
 </head>
 
 <body  style="font-family: 'Poppins',sans-serif;">
-	<div class="container">
+
+
+	<div class="navigationbar" >
+		<ul>
+		  <li>
+			<a class="active" href="#home">
+			  Freelanco
+			</a>
+		  </li>
+		  <li>
+			<a href="#news">News</a>
+		  </li>
+		  <li>
+			<a href="#contact">Contact</a>
+		  </li>
+		  <li>
+			<a href="#abt">Get Started ?</a>
+		  </li>
+		  <li>
+		  <a href="{% url 'item list' %}">Services</a>
+		  </li>
+		  {% if user.is_authenticated %}
+		  <li>
+			<a class="log" href="{% url 'users:logout' %}">Logout</a>
+		  </li>
+		  {% else %}
+		  <li>
+			<a class="log" href="{% url 'users:login' %}">Login</a>
+		  </li>
+		   <li>
+			<a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+		  </li>
+		  <li>
+		  <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+		  </li> 
+		  {% endif %}
+		</ul>
+	  </div>
+	<div class="container" style="padding-top: 50px;">
 		{% if items_exist %}
 		<div class="row">
 			<div class="col-sm-12 col-md-10 col-md-offset-1">

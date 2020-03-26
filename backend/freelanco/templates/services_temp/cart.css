@@ -1,0 +1,111 @@
+
+  
+ 
+  .no-margin-top {
+    margin-top: 0;
+    padding-top: 0px;
+    margin-bottom: 5px;
+    transform: rotate(-1deg);
+    font-size: xx-large;
+    font-size: 80px;
+    font-family: 'Lobster',cursive;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+  }
+  
+  li a.log {
+    text-align: right;
+  }
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  li a.active {
+    font-family: "Poppins";
+    
+  }
+  
+  li a:hover {
+    background-color: #111;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  .centre-h4 {
+    margin-top: 0;
+    font-size: 40;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 30px;
+    color: black;
+    font-weight: 600;
+    margin-top: -20px;
+  }
+  
+  .navigationbar {
+    position: absolute;
+    width: 100%;
+    font-family: "Poppins";
+  }
+  .about {
+    background-image: url("./images/ava.jpg");
+    background-repeat: no-repeat;
+    padding-top: 60px;
+    text-align: center;
+  
+    font-family: 'Poppins',sans-serif;
+  
+    height: 900px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+  }
+  
+  .about-tag {
+    padding-left: 30px;
+    padding-top: 150px;
+  }
+  
+  .about.no-margin-top{
+    font-family: 'Poppins';
+  }
+  
+  .no-margin-top {
+   font-family: 'Lobster',sans-serif;
+   color: #111;
+  }
+  input[type="text"] {
+    width: 300px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    padding-top: 40px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url("searchicon.png");
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    /* -webkit-transition: width 0.1s ease-in-out;
+    transition: width 0.4s ease-in-out; */ */
+  }
+  /* 
+  input[type=text]:focus {
+    width: 65%; */
+  
