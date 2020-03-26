@@ -1,3 +1,4 @@
+{% load static %}
 {% load mathfilters %}
 <!DOCTYPE html>
 <html>
@@ -6,13 +7,47 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"
 		id="bootstrap-css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" />
 </head>
 
-<body>
-	<div class="container">
+<body style="font-family: 'Poppins',sans-serif;">
+
+
+	<div class="navigationbar">
+		<ul>
+			<li>
+				<a class="active" href="#home">
+					Freelanco
+				</a>
+			</li>
+			<li>
+				<a href="#contact">Contact</a>
+			</li>
+			<li>
+				<a href="{% url 'item list' %}">Services</a>
+			</li>
+			{% if user.is_authenticated %}
+			<li>
+				<a class="log" href="{% url 'users:logout' %}">Logout</a>
+			</li>
+			{% else %}
+			<li>
+				<a class="log" href="{% url 'users:login' %}">Login</a>
+			</li>
+			<li>
+				<a href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+			</li>
+			<li>
+				<a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+			</li>
+			{% endif %}
+		</ul>
+	</div>
+	<div class="container" style="padding-top: 50px;">
 		{% if items_exist %}
 		<div class="row">
 			<div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -96,12 +131,12 @@
 							<td>   </td>
 							<td>   </td>
 							<td>
-								<a class="btn btn-default" href="{% url 'item list' %}">
+								<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
 									<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
 								</a>
 							</td>
 							<td>
-								<button type="button" class="btn btn-success">
+								<button type="button" class="btn btn-success" style="border-radius: 30px;">
 									Checkout <span class="glyphicon glyphicon-play"></span>
 								</button></td>
 						</tr>
@@ -111,16 +146,23 @@
 		</div>
 		{% else %}
 		<div>
-			<br><br><br>
-			<h4>You have no items in your cart!</h4>
-			<br>
-			<br>
-			<a class="btn btn-default" href="{% url 'item list' %}">
-				<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-			</a>
+			<<<<<<< HEAD <br><br><br>
+				<h4>You have no items in your cart!</h4>
+				<br>
+				<br>
+				<a class="btn btn-default" href="{% url 'item list' %}">
+					=======
+					<p>You have no items in your cart!</p>
+					<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
+						>>>>>>> bb0d0e3d1e4401cd2ee50f78a8ce1ac5ee88a8cd
+						<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+					</a>
 		</div>
 		{% endif %}
 	</div>
+
+
+
 </body>
 
 </html>
