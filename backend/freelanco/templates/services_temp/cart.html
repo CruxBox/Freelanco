@@ -83,9 +83,14 @@
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.actual_cost }}</strong></td>
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.discounted_cost }} </strong></td>
 							<td class="col-md-1">
-								<a class="btn btn-danger" href="{% url 'remove from cart' slug=item.slug %}">
-									<span class=" glyphicon glyphicon-remove"></span> Remove
-								</a>
+								<form id="remove_item" action="{% url 'remove from cart' slug=item.slug %}"
+									method="POST">
+									{% csrf_token %}
+									<a class="btn btn-danger" href="#"
+										onclick="document.getElementById('remove_item').submit();">
+										<span class=" glyphicon glyphicon-remove"></span> Remove
+									</a>
+								</form>
 							</td>
 						</tr>
 						{% endfor %}
