@@ -45,4 +45,4 @@ class EditAddress(forms.ModelForm):
 
     class Meta:
         model=Address
-        fields='__all__'
+        fields=('name','address1','address2','pin_code','city','state')
