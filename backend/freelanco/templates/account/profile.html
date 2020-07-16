@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>
+		Profile
+  </title>
+  
+	<!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/main.css' %}"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="{% static "css/home.css"%}" />
+
+  <style >*
+  {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+  }
+
+  label 
+  {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+  }
+
+  html 
+  {
+    background-image: none !important;
+  }
+  </style>
+</head>
+
+<body style={"background-image:"None";}">
+<div class="navigationbar">
+  <ul>
+    <li>
+      <a class="active" href="{% url 'home' %}">
+        Freelanco
+      </a>
+    </li>
+    <li>
+      <a href="#news">News</a>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
+    <li>
+      <a href="{% url 'item list' %}">Services</a>
+    </li>
+    {% if user.is_authenticated %}
+    <li>
+      <a class="log" href="{% url 'users:logout' %}">Logout</a>
+    </li>
+    {% else %}
+    <li>
+      <a class="log" href="{% url 'users:login' %}">Login</a>
+    </li>
+    <li>
+      <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+    </li>
+    <li>
+      <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+    </li> 
+    {% endif %}
+  </ul>
+</div>
+</br>
+</br>
+<div class="container z-depth-3" >
+  <div class="col l4 s12 m8 offset-m2 offset-l4">
+    <div class="card-panel grey lighten-5 z-depth-1">
+      <div class="row valign-wrapper">
+        <div class="col l2 left">
+          <img src="https://picsum.photos/1000/1000" alt="" class="circle responsive-img materialboxed z-depth-2" style="max-width:125px;max-height: 125px">
+        </div>
+        <div class="col s10 right">
+          <span class="black-text">
+            <div class="row">
+              <div class="col l6 ">
+                <h5>Personal Details</h5>
+              </div>
+              <div class="col l6 push-l4">
+                <a class="waves-effect waves-green btn .right-align green" href="{% url "users:profile_edit_details" %}" style="border-radius: 25px;"><i class="material-icons left">edit</i>Edit</a>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <div class="row">
+                <div class="col l6 m6 push-m2 push-l2">
+                	<label>User Name</label>
+                </div>
+                <div class="col l6 m6 ">
+                	{{profile.user.username}}
+                </div>
+              </div>
+              <div class="row">
+              	<div class="col l6 m6 push-m2 push-l2">
+              		<label>Email</label>
+              	</div>
+              	<div class="col l6 m6">
+              		{{user.email}}
+              	</div>
+              </div>
+              <div class="row">
+                <div class="col l6 m6 push-m2 push-l2">
+              		<label>First Name</label>
+              	</div>
+              	<div class="col l6 m6">
+              		{{profile.user.first_name}}
+              	</div>
+              </div>
+              <div class="row">
+              	<div class="col l6 m6 push-m2 push-l2">
+              		<label>Last Name</label>
+              	</div>
+              	<div class="col l6 m6 ">
+              		{{profile.user.last_name}}
+              	</div>
+              </div>
+              <div class="row">
+                <div class="col l6 m6 push-m2 push-l2">
+              		<label>Extra Field</label>
+              	</div>
+              	<div class="col l6 m6 ">
+              		Extra Attribute
+              	</div>
+              </div>
+              {% for address in addresses %}
+              <div>
+                <div class="divider"></div>
+                <br>
+                <br>
+                <div class="row">
+              	  <div class="col l6 ">
+                    {% if address.name is None %}
+                    <h6>Address {{ forloop.counter }}</h6>
+                    {% else %}
+                    <h6>{{ address.name }} Address</h6>
+                    {% endif %}
+                  </div>
+                	<div class="col l6 push-l1">
+              	    <a class="waves-effect waves-green btn .right-align  green" href={% url "users:profile_edit_address" address.id%} style="border-radius: 30px;"><i class="material-icons left">edit</i>Edit</a>
+                    <div class="col l6 push-l1">
+                      <form action={% url "users:profile_delete_address" address.id %} method="POST">
+                        {% csrf_token %}
+                        <a class="waves-effect waves-green btn .right-align  green"  onclick="this.parentNode.submit()" style="border-radius: 30px;"><i class="material-icons left">delete</i>Delete</a>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+              	  <div class="row">
+              	    <div class="col l6 m6 push-m2 push-l2">
+              		    <label>Line 1</label>
+              	    </div>
+              	    <div class="col l6 m6 ">
+              		    {{address.address1}}
+                    </div>
+                  </div>           
+                  <div class="row">
+              	    <div class="col l6 m6 push-m2 push-l2">
+              	  	  <label>Line 2</label>
+              	    </div>
+              	    <div class="col l6 m6 ">
+              		    {{address.address2}}
+              	    </div>
+                  </div>
+                  <div class="row">
+              	    <div class="col l6 m6 push-m2 push-l2">
+              		    <label>Pin Code</label>
+              	    </div>
+              	    <div class="col l6 m6 ">
+              		    {{address.pin_code}}
+              	    </div>
+                  </div>
+                  <div class="row">
+                	  <div class="col l6 m6 push-m2 push-l2">
+                	    <label>City</label>
+                    </div>
+              	    <div class="col l6 m6 ">
+              		    {{address.city}}
+              	    </div>
+                  </div>
+                  <div class="row">
+              	    <div class="col l6 m6 push-m2 push-l2">
+              		    <label>State</label>
+              	    </div>
+                	  <div class="col l6 m6 ">
+                	    {{address.state}}
+              	    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              <a class="waves-effect waves-green btn .left-align green" href="{% url "users:profile_add_address" %}" style="border-radius: 25px;"><i class="material-icons left">add</i>Add address</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+	  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.materialboxed');
+    var instances = M.Materialbox.init(elems, options);
+  });
+</script>
+</html>

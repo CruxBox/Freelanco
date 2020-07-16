@@ -1,7 +1,6 @@
 {% load static %}
 {% load i18n %}
 {% load account socialaccount %}
-{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,58 +59,20 @@
     <!--===============================================================================================-->
   </head>
   <body>
-    <div class="navigationbar">
-      <ul>
-        <li>
-          <a class="active" href="{% url "home" %}">
-            Freelanco
-          </a>
-        </li>
-        <li>
-          <a href="#news">News</a>
-        </li>
-        <li>
-          <a href="#contact">Contact</a>
-        </li>
-        <li>
-          <a href="#abt">Services</a>
-        </li>
-        {% if user.is_authenticated %}
-        <li>
-          <a class="log" href="{% url 'users:logout'%}">Logout</a>
-        </li>
-        {% else %}
-        <li>
-          <a class="log" href="{% url 'users:login'%}">Login</a>
-        </li>
-         <li>
-          <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
-        </li>
-        <li>
-        <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
-        </li>
-        {% endif %}
-      </ul>
-    </div>
-  <div>
-   <div class="limiter">
+    <div class="limiter">
       <div class="container-login100" style="box-shadow:10px">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-          <form class="login100-form validate-form" method="post" action="{% url 'users:login' %}">
+          <form class="login100-form validate-form" action="{% url 'account_login' %}">
             <span class="login100-form-title p-b-49">
               Login
             </span>
-              {% if not_exist %}
-            <div class="text-center p-t-10 p-b-31">
-            Credentials are incorrect or Account does not exist
-            </div>
-            {% endif %}
-            {% csrf_token %}
+
             <div
               class="wrap-input100 validate-input m-b-23"
               data-validate="Username is required"
             >
               <span class="label-input100">Username</span>
+              {{form.as_p}}
               <input
                 class="input100"
                 type="text"
@@ -129,7 +90,7 @@
               <input
                 class="input100"
                 type="password"
-                name="password"
+                name="pass"
                 placeholder="Type your password"
               />
               <span class="focus-input100" data-symbol="&#xf190;"></span>
@@ -152,7 +113,7 @@
 
             <div class="txt1 text-center p-t-54 p-b-20">
               <span>
-                Or Login Using
+                Or Sign Up Using
               </span>
             </div>
 
@@ -165,7 +126,7 @@
                 <i class="fa fa-twitter"></i>
               </a> -->
 
-              <a href="{% provider_login_url 'google' %}" class="login100-social-item bg3">
+              <a href="#" class="login100-social-item bg3">
                 <i class="fa fa-google"></i>
               </a>
             </div>
@@ -175,8 +136,6 @@
     </div>
 
     <div id="dropDownSelect1"></div>
-  </div>
-   
 
     <!--===============================================================================================-->
     <script src="{% static "vendor/jquery/jquery-3.2.1.min.js"%}"></script>

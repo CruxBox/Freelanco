@@ -75,7 +75,7 @@
           <a href="#contact">Contact</a>
         </li>
         <li>
-          <a href="#abt">Services</a>
+          <a href="{% url 'item list' %}">Services</a>
         </li>
         {% if user.is_authenticated %}
         <li>
@@ -98,11 +98,20 @@
     <div class="limiter">
       <div class="container-login100" style="box-shadow:10px">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-30 p-b-54">
+        {% if user_type == "Customer" %}
           <form class="login100-form validate-form" method="post" action="{% url 'users:customer_signup' %}">
+        {% else %}
+        <form class="login100-form validate-form" method="post" action="{% url 'users:freelancer_signup' %}">
+        {% endif %}
           {%  csrf_token %}
             <span class="login100-form-title p-b-60">
              {{user_type}}<br> Sign Up
             </span>
+            {% if pwd_error %}
+            <div class="text-center p-t-10 p-b-25">
+            Password do not match
+            </div>
+            {% endif %}
             {% if user_exists %}
             <div class="text-center p-t-10 p-b-25">
             Username already Exists
