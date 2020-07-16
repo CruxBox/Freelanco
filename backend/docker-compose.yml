@@ -1,0 +1,11 @@
+version: '3'
+services:
+ web:
+  build:
+   context: .
+  command: bash -c "cd freelanco && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+  container_name: freelanco_web
+  volumes:
+   - .:/freelanco
+  ports:
+   - "8000:8000"
