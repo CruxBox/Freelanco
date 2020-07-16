@@ -1,21 +1,19 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static "assets/bootstrap/css/bootstrap.min.css"%}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>header_footers</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-    <link rel="stylesheet" href="{% static"assets/fonts/ionicons.min.css"%}">
-    <link rel="stylesheet" href="{% static "assets/css/Footer-Dark.css"%}">
-    <link rel="stylesheet" href="{% static "assets/css/styles.css"%}">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body>
+<body style="font-family: Poppins, sans-serif;">
     <nav class="navbar navbar-light navbar-expand-md" style="background-color: #000000;color: rgb(252,253,255);">
         <div class="container-fluid"><a class="navbar-brand" href="#" style="color: rgba(255,255,255,0.9);font-family: 'Kaushan Script', cursive;">Freelanco</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
@@ -27,10 +25,8 @@
                     <li class="nav-item" role="presentation"></li>
                 </ul><a href="#" style="color: rgb(251,251,251);">Services</a></div><a href="#" style="color: rgb(255,255,255);padding-right: 10px;">Login</a><a href="#" style="color: rgb(255,255,255);">Sign Up</a></div>
     </nav>
-
-    {% block content %}
-    {% endblock %}
-
+    <p>Paragraph</p>
+    <div style="height: 500px;"></div>
     <div class="footer-dark" style="color: rgb(254,255,255);background-color: rgb(0,0,0);">
         <footer>
             <div class="container">
@@ -62,11 +58,8 @@
             </div>
         </footer>
     </div>
-     <script src="{% static "assets/js/jquery.min.js"%}"></script>
-    <script src="{% static "assets/bootstrap/js/bootstrap.min.js"%}"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
-
-
-
