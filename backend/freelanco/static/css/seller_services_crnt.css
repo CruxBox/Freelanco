@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900&display=swap");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+} /*
+.container{
+    margin-right: 150px;
+    margin-left: 150px;
+    margin-top: 50px;
+}*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+.container {
+  max-width: 1140px;
+  margin-right: 150px;
+  margin-left: 150px;
+  margin-top: 30px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.box {
+  transition: box-shadow 0.3s;
+  border: 0px solid #ccc;
+  background: #fff;
+  float: left;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(33, 33, 33, 0.2);
+}
+.box:hover {
+  box-shadow: 0 0 20px #76f16a;
+}
+.about-me .about .img {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  width: 300px;
+  height: 300px;
+  margin-bottom: -10px;
+  height: 210px;
+}
+.about-me .about .img img {
+  width: 100%;
+  display: block;
+  border-bottom: 4px;
+  border-color: black;
+}
+
+.about-me .about .text {
+  display: inline-block;
+  position: relative;
+  flex: 0 0 66.66%;
+  max-width: 66.66%;
+  padding-left: 90px;
+  top: 0px;
+  height: 210px;
+}
+.about-me .about .text span {
+  font-size: 15px;
+  font-weight: 700;
+  border-bottom: 20px;
+  color: black;
+}
+.about-me .about .text p {
+  font-size: 15px;
+  font-weight: 700;
+  color: black;
+}
+.about-me .about .text .info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.about-me .about .text .info .list label {
+  padding-right: 10px;
+  color: #000000;
+  font-weight: 400;
+  font-size: 15px;
+}
+.about-me .about .text .info .list p {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #838383;
+  margin: 0 0 10px;
+}
+.about-me .about .text .row {
+  padding-top: 0px;
+}
+.about-me .about .text .row .button {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+.about-me .about .text .row .button a {
+  border-radius: 20px;
+  color: #ffffff;
+  padding: 8px 18px;
+  text-decoration: none;
+  font-size: 12px;
+
+  font-weight: 600;
+  transition: all 0.4s ease;
+  background-color: black;
+  box-shadow: 0px 10px 15px #e8e8e8;
+}
+.about-me .about .text .row .button a:hover {
+  background-color: #4caf50;
+  color: white;
+}
+.about-me .about .text .row .button1 {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+.about-me .about .text .row .button1 a {
+  border-radius: 20px;
+  color: #ffffff;
+  padding: 8px 18px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  background-color: black;
+  box-shadow: 0px 10px 15px #e8e8e8;
+}
+.about-me .about .text .row .button1 a:hover {
+  background-color: #ff0000;
+  color: white;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+}
+
+.my-float {
+  margin-top: 22px;
+}
