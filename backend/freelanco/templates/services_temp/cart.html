@@ -4,16 +4,18 @@
 <html>
 
 <head>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"
-		id="bootstrap-css">
+	{% comment %} <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"
+		id="bootstrap-css"> {% endcomment %}
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen,projection" />
+    
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
 		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" />
+	{% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" /> {% endcomment %}
 	
  	<link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
 
@@ -23,12 +25,42 @@
     <link rel="stylesheet" href="{% static "assets/fonts/fontawesome5-overrides.min.css"%}">
     <link rel="stylesheet" href="{% static "css/Footer-Dark.css"%}">
     <link rel="stylesheet" href="{%static "css/styles.css"%}">
+	
+
+	
 
 </head>
 
 <body style="font-family: 'Poppins',sans-serif;">
 
+		 <nav class="navbar navbar-light navbar-expand-md navigation-clean-search" style="background-color: rgb(0,0,0);">
+        <div class="container"><a class="navbar-brand" href="#" style="font-family: 'Kaushan Script', cursive;background-color: #000000;border-color: #ffffff;filter: contrast(95%);color: rgb(255,255,255);">Freelanco</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color: rgb(255,255,255);">Link 1</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color: rgb(255,255,255);">Link 2</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color: rgb(255,255,255);">Link 3</a></li>
+					{% if user.is_authenticated %}
+					 <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'users:logout' %}" style="color: rgb(255,255,255);">Logout </a></li>
+       				 {% comment %} <li class="nav-item" role="presentation" > <a  href="{% url 'users:logout' %}">Logout</a> </li> {% endcomment %}
+        			 {% comment %} <li class="nav-item" role="presentation"> <a href="{% url 'users:profile_view' %}">Profile</a></li> {% endcomment %}
+					 <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'users:profile_view' %}" style="color: rgb(255,255,255);">Profile </a></li>
+       				 {% else %}
+        			<li class="nav-item" role="presentation"><a  href="{% url 'users:login' %}">Login</a></li>
+         <li class="nav-item" role="presentation">
+          <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+        </li>
+        <li class="nav-item" role="presentation">
+        <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+        </li> 
+        {% endif %}
+                </ul>
+                
+        </div>
+    </nav>
 
+{% comment %} 
 	 <div class="navigationbar">
       <ul>
         <li>
@@ -67,9 +99,9 @@
         </li> 
         {% endif %}
       </ul>
-    </div>
+    </div> {% endcomment %}
 	
-	<div class="container" style="padding-top: 50px;">
+	<div class="container" style="padding-top: 50px; padding-bottom : 50px">
 		{% if items_exist %}
 		<div class="row">
 			<div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -173,7 +205,7 @@
 			</div>
 		</div>
 		{% else %}
-		<div class="emptycart">
+		<div class="emptycart" style="font-size:5px">
 			<br>
 			<img src="{% static "images/emptycart1.png"  %}">
 			<h3>Your cart is empty</h3>
@@ -181,8 +213,8 @@
 			<h4>Looks like you haven't made</h4>
 			<h4>your menu yet :(</h4>
 			<br>
-			<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px; margin: 0 50%; position: relative; left: -92px;">
-				<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+			<a class="btn btn-light action-button" role="button" href="{% url 'item list' %}" style="border-radius: 30px; margin: 0 50%; position: relative; left: -52px;  background-color: rgb(0,255,133);color: rgb(0,0,0);font-size: 10px; padding-bottom:5px">
+				<i class="fa fa-shopping-cart"></i> Continue Shopping
 			</a>
 		</div>
 		{% endif %}
