@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from users.decorators import only_freelancer
 from .models import Item, OrderItem, Order
 import logging
 
@@ -145,3 +146,44 @@ def list_services(request):
 
 # Place order - Need to work on this
 # Add notifications feature in this feature
+
+@login_required
+@only_freelancer
+def edit_item(request, slug):
+    if request.method=='POST':
+        form=ItemEditForm(request.POST, instance=Item.objects.filter(slug = slug)[0])
+        #print(form)
+        if form.is_valid():
+            form.save()
+            #TODO: right redirect
+            return HttpResponseRedirect(reverse("item list"))
+    else:
+        form3=ItemEditForm(instance=Item.objects.filter(slug = slug)[0])
+        context={"form":form3}
+        # TODO: render right template
+        return render(request,'account/edit_profile.html',context)
+
+@login_required
+@only_freelancer
+def add_item(request):
+    if request.method=='POST':
+        form=ItemCreationForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit = False)
+            item.provider = request.user.freelancer_profile
+            item.save();
+            return HttpResponseRedirect(reverse("item list"))
+    else:
+        form3=ItemCreationForm()
+        context={"form":form3}
+        #TODO: render right template
+        return render(request,'account/edit_profile.html',context)
+
+@login_required
+@only_freelancer
+def delete_item(request,slug):
+    item=Item.objects.get(slug = slug)
+    if request.method=='POST':
+        item.delete()
+        #TODO: reverse to right template
+        return HttpResponseRedirect(reverse("item list"))

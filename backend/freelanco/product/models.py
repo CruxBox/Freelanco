@@ -9,8 +9,20 @@ class Item(models.Model):
 	provider = models.ForeignKey(FreelancerProfile, on_delete = models.CASCADE,related_name="items")
 	post_date = models.DateField(null=True,blank=True,auto_now_add=True)
 	picture = models.ImageField(default = 'items/default.jpg', upload_to = 'items/uploads/% Y/% m/% d/')
-	
-	#Category left
+
+	CATEGORY_LIST =[
+		('MASSAGE', 'Massage'),
+		('SALON', 'Salon'),
+		('AC', 'AC Repair'),
+		('CLEANING', 'Cleaning'),
+		('ELECTRICIAN', 'Electrician'),
+		('PLUMBER', 'Plumber'),
+		('FITNESS', 'Fitness'),
+	]
+	category = models.CharField(max_length = 255,
+		choices = CATEGORY_LIST,
+		default = None
+		)
 	slug = models.SlugField()
 	description = models.TextField()
 	def __str__(self):
