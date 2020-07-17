@@ -66,13 +66,13 @@
 						<tr>
 							<td class="col-md-6">
 								<div class="media">
-									<a class="thumbnail pull-left" href="#"> <img class="media-object"
-											src="{{ item.picture.url }}" alt="img" style="width: 72px; height: 72px;">
+									<img class="media-object" style="float: left; width: 25%;margin-right: 22px;"
+											src="{{ item.picture.url }}" alt="img" style="width: 75px; height: 75px; ">
 									</a>
 									<div class="media-body">
 										<h4 class="media-heading"><a href="#">{{ item.title }}</a></h4>
 										<h5 class="media-heading"> by <a href="#"> {{ item.provider }} </a></h5>
-										<span>Status: </span><span class="text-warning"><strong> No update,
+										<span>Status: </span><span class="text-warning" ><strong> No update,
 												yet.</strong></span>
 									</div>
 								</div>
@@ -80,6 +80,11 @@
 							<td class="col-md-1" style="text-align: center">
 								<input type="email" class="form-control" id="exampleInputEmail1" value="1" disabled>
 							</td>
+
+
+
+
+					
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.actual_cost }}</strong></td>
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.discounted_cost }} </strong></td>
 							<td class="col-md-1">
@@ -146,12 +151,15 @@
 			</div>
 		</div>
 		{% else %}
-		<div>
+		<div class="emptycart">
 			<br>
-			<h4>You have no items in your cart!</h4>
+			<img src="{% static "images/emptycart1.png"  %}">
+			<h3>Your cart is empty</h3>
 			<br>
+			<h4>Looks like you haven't made</h4>
+			<h4>your menu yet :(</h4>
 			<br>
-			<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
+			<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px; margin: 0 50%; position: relative; left: -92px;">
 				<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
 			</a>
 		</div>
