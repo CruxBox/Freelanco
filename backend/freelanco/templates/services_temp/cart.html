@@ -4,50 +4,104 @@
 <html>
 
 <head>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"
-		id="bootstrap-css">
+	{% comment %} <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"
+		id="bootstrap-css"> {% endcomment %}
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen,projection" />
+    
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
 		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" />
+	{% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" /> {% endcomment %}
+	
+ 	<link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
+
+	 <link rel="stylesheet" href="{% static "assets/fonts/fontawesome-all.min.css"%}">
+    <link rel="stylesheet" href="{% static "assets/fonts/font-awesome.min.css"%}">
+    <link rel="stylesheet" href="{% static "assets/fonts/ionicons.min.css"%}">
+    <link rel="stylesheet" href="{% static "assets/fonts/fontawesome5-overrides.min.css"%}">
+    <link rel="stylesheet" href="{% static "css/Footer-Dark.css"%}">
+    <link rel="stylesheet" href="{%static "css/styles.css"%}">
+	
+
+	
+
 </head>
 
 <body style="font-family: 'Poppins',sans-serif;">
 
+		 <nav class="navbar navbar-light navbar-expand-md navigation-clean-search" style="background-color: rgb(0,0,0);">
+        <div class="container"><a class="navbar-brand" href="#" style="font-family: 'Kaushan Script', cursive;background-color: #000000;border-color: #ffffff;filter: contrast(95%);color: rgb(255,255,255);">Freelanco</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" style="color: rgb(255,255,255);">Link 1</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color: rgb(255,255,255);">Link 2</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color: rgb(255,255,255);">Link 3</a></li>
+					{% if user.is_authenticated %}
+					 <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'users:logout' %}" style="color: rgb(255,255,255);">Logout </a></li>
+       				 {% comment %} <li class="nav-item" role="presentation" > <a  href="{% url 'users:logout' %}">Logout</a> </li> {% endcomment %}
+        			 {% comment %} <li class="nav-item" role="presentation"> <a href="{% url 'users:profile_view' %}">Profile</a></li> {% endcomment %}
+					 <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'users:profile_view' %}" style="color: rgb(255,255,255);">Profile </a></li>
+       				 {% else %}
+        			<li class="nav-item" role="presentation"><a  href="{% url 'users:login' %}">Login</a></li>
+         <li class="nav-item" role="presentation">
+          <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+        </li>
+        <li class="nav-item" role="presentation">
+        <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+        </li> 
+        {% endif %}
+                </ul>
+                
+        </div>
+    </nav>
 
-	<div class="navigationbar">
-		<ul>
-			<li>
-				<a class="active" href="#home">
-					Freelanco
-				</a>
-			</li>
-			<li>
-				<a href="#contact">Contact</a>
-			</li>
-			<li>
-				<a href="{% url 'item list' %}">Services</a>
-			</li>
-			{% if user.is_authenticated %}
-			<li>
-				<a class="log" href="{% url 'users:logout' %}">Logout</a>
-			</li>
-			{% else %}
-			<li>
-				<a class="log" href="{% url 'users:login' %}">Login</a>
-			</li>
-			<li>
-				<a href="{% url 'users:customer_signup' %}">Signup as a customer</a>
-			</li>
-			<li>
-				<a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
-			</li>
-			{% endif %}
-		</ul>
-	</div>
-	<div class="container" style="padding-top: 50px;">
+{% comment %} 
+	 <div class="navigationbar">
+      <ul>
+        <li>
+          <a class="active" href="#home" style="font-family:'Kaushan Script', cursive;">
+            Freelanco
+          </a>
+        </li>
+        <li>
+          <a href="#news">News</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+        <li>
+          <a href="#abt">Get Started ?</a>
+        </li>
+        <li>
+        <a href="{% url 'item list' %}">Services</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a class="log" href="{% url 'users:logout' %}">Logout</a>
+        </li>
+         <li>
+          <a class="log" href="{% url 'users:profile_view' %}">Profile</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="log" href="{% url 'users:login' %}">Login</a>
+        </li>
+         <li>
+          <a  href="{% url 'users:customer_signup' %}">Signup as a customer</a>
+        </li>
+        <li>
+        <a href="{% url 'users:freelancer_signup' %}">Signup as a freelancer</a>
+        </li> 
+        {% endif %}
+      </ul>
+    </div> {% endcomment %}
+	
+	<div class="container" style="padding-top: 50px; padding-bottom : 50px">
 		{% if items_exist %}
 		<div class="row">
 			<div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -66,13 +120,13 @@
 						<tr>
 							<td class="col-md-6">
 								<div class="media">
-									<a class="thumbnail pull-left" href="#"> <img class="media-object"
-											src="{{ item.picture.url }}" alt="img" style="width: 72px; height: 72px;">
+									<img class="media-object" style="float: left; width: 25%;margin-right: 22px;"
+											src="{{ item.picture.url }}" alt="img" style="width: 75px; height: 75px; ">
 									</a>
 									<div class="media-body">
 										<h4 class="media-heading"><a href="#">{{ item.title }}</a></h4>
 										<h5 class="media-heading"> by <a href="#"> {{ item.provider }} </a></h5>
-										<span>Status: </span><span class="text-warning"><strong> No update,
+										<span>Status: </span><span class="text-warning" ><strong> No update,
 												yet.</strong></span>
 									</div>
 								</div>
@@ -80,6 +134,11 @@
 							<td class="col-md-1" style="text-align: center">
 								<input type="email" class="form-control" id="exampleInputEmail1" value="1" disabled>
 							</td>
+
+
+
+
+					
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.actual_cost }}</strong></td>
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.discounted_cost }} </strong></td>
 							<td class="col-md-1">
@@ -146,19 +205,54 @@
 			</div>
 		</div>
 		{% else %}
-		<div>
+		<div class="emptycart" style="font-size:5px">
 			<br>
-			<h4>You have no items in your cart!</h4>
+			<img src="{% static "images/emptycart1.png"  %}">
+			<h3>Your cart is empty</h3>
 			<br>
+			<h4>Looks like you haven't made</h4>
+			<h4>your menu yet :(</h4>
 			<br>
-			<a class="btn btn-default" href="{% url 'item list' %}" style="border-radius: 30px;">
-				<span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+			<a class="btn btn-light action-button" role="button" href="{% url 'item list' %}" style="border-radius: 30px; margin: 0 50%; position: relative; left: -52px;  background-color: rgb(0,255,133);color: rgb(0,0,0);font-size: 10px; padding-bottom:5px">
+				<i class="fa fa-shopping-cart"></i> Continue Shopping
 			</a>
 		</div>
 		{% endif %}
 	</div>
 
-
+<div class="footer-dark" style="color: rgb(254,255,255);background-color: rgb(0,0,0);">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#" style="color: rgb(255,255,255);border-color: rgb(249,249,249);">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">House Decor</a></li>
+                            <li><a href="#">Wellness</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3 style="font-family: 'Kaushan Script', cursive;">Freelanco</h3>
+                        <p>We believe in bridging the gap between Customers and&nbsp; Service Providers</p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">Freelanco © 2020</p>
+            </div>
+        </footer>
+    </div>
+    <script src="{% static "assets/js/jquery.min.js"%}"></script>
+    <script src="{% static "assets/js/bootstrap.min.js"%}"></script>
 
 </body>
 

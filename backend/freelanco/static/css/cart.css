@@ -108,4 +108,24 @@
   /* 
   input[type=text]:focus {
     width: 65%; */
-  
+  .container .emptycart h3
+  {
+    text-align: center;
+    
+   font-weight: bold;
+  }
+  .container .emptycart h4
+  {
+    text-align: center;
+  }
+  .container .emptycart img{
+    
+    height: 250px;
+    width: 350px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    position: relative;
+   margin-top: 70px;
+  }
+
