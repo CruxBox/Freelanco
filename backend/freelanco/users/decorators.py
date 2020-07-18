@@ -1,11 +1,13 @@
 from functools import wraps
 from django.core.exceptions import PermissionDenied
 import functools
+"""
 from pycallgraph import PyCallGraph
 from pycallgraph.output import GraphvizOutput
 from pycallgraph import Config, GlobbingFilter
 import os
 DEST_DIR = "call_graphs/"
+"""
 
 def only_customer(func):
     @wraps(func)
@@ -24,7 +26,7 @@ def only_freelancer(func):
         else:
             return func(request,*args,**kwargs)
     return inner_func
-
+"""
 def call_graph(output=None, config=None):
     def inner(func):
         @functools.wraps(func)
@@ -61,4 +63,4 @@ def call_graph(output=None, config=None):
                 return ret
         exec_func.already_called = False
         return exec_func
-    return inner
+    return inner"""

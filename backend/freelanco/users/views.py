@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import *
-from .decorators import only_customer,call_graph
+from .decorators import only_customer
 from allauth.account.forms import SignupForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
