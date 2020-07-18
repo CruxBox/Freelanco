@@ -84,7 +84,10 @@ def freelancer_signup(request):
 
 @login_required
 def view_customer_profile(request):
-    profile=request.user.customer_profile
+    if request.user.is_freelancer:
+        profile=request.user.freelancer_profile
+    else:
+        profile=request.user.customer_profile
     address=profile.addresses.all()
     context={"profile":profile,"addresses":address}
     return render(request,"account/profile.html",context)
@@ -140,14 +143,20 @@ def add_customer_address(request):
         if form.is_valid():
             address=form.save(commit=False)
             name=address.name
-            adds=Address.objects.filter(name=name,customer=request.user.customer_profile.id)
+            if request.user.is_freelancer:
+                adds=Address.objects.filter(name=name,customer=request.user.freelancer_profile.id)
+            else:
+                adds=Address.objects.filter(name=name,customer=request.user.customer_profile.id)
             if adds:
                 address.name=""
                 form3=EditAddress(instance=address)
                 context={"form":form3,"messages":["Address name already exists"]}
                 return render(request,'account/edit_profile.html',context)
             address.save()
-            request.user.customer_profile.addresses.add(address)
+            if request.user.is_freelancer:
+                request.user.freelancer_profile.addresses.add(address)
+            else:
+                request.user.customer_profile.addresses.add(address)
         return HttpResponseRedirect(reverse("users:profile_view"))
     else:
         form3=EditAddress()

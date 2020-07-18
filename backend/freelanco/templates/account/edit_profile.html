@@ -6,14 +6,16 @@
 
     </head>
     <body>
-    <div class="row">
+<div class="row">
         <div class="col l6 offset-l3">
         <div class="card-panel white lighten-5 z-depth-1 center-align">
-        <form method="POST">
+        <div data-tap-disabled="true">
+<form method="POST">
             {% csrf_token %}
             {% form form=form %}{% endform %}
             <button class="btn waves-effect waves-green green" type="submit" name="_submit" class="btn" style="border-radius: 25px;">Submit</button>
         </form>
+</div>
         </div>
         </div>
         </div>

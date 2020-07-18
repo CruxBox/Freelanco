@@ -5,7 +5,8 @@ from .views import (
 	remove_from_cart,
 	add_to_cart,
 	old_orders,
-	detail_view
+	detail_view,
+	list_services
 )
 
 urlpatterns = [
@@ -14,5 +15,6 @@ urlpatterns = [
 	path('add_to_cart/<slug>', add_to_cart, name='add to cart'),
 	path('remove_from_cart/<slug>', remove_from_cart, name='remove from cart'),
 	path('old_orders/', old_orders, name='old orders'),
-	path('show_cart/', display_cart_items, name='display cart items')
+	path('show_cart/', display_cart_items, name='display cart items'),
+	path('my_services/',list_services,name='list_services')
 ]

@@ -127,6 +127,21 @@ def detail_view(request, slug):
 
 	return render(request, 'base.html', context)
 
+def list_services(request):
+	print(request.user)
+	freelancer=request.user.freelancer_profile
+	items=freelancer.items.all()
+	print(items)
+	context={
+		'items':items
+	}
+	return render(request,'services_temp/seller_services_list.html',context)
+
+
+
+
+
+
 
 # Place order - Need to work on this
 # Add notifications feature in this feature

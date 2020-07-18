@@ -6,7 +6,7 @@ class Item(models.Model):
 	title = models.CharField(max_length=100)
 	actual_cost = models.FloatField()
 	discounted_cost = models.FloatField(default = -1)
-	provider = models.ForeignKey(FreelancerProfile, on_delete = models.CASCADE)
+	provider = models.ForeignKey(FreelancerProfile, on_delete = models.CASCADE,related_name="items")
 	post_date = models.DateField(null=True,blank=True,auto_now_add=True)
 	picture = models.ImageField(default = 'items/default.jpg', upload_to = 'items/uploads/% Y/% m/% d/')
 	
@@ -39,4 +39,4 @@ class Order(models.Model):
 	ordered = models.BooleanField(default=False)
 
 	def __str__(self):
-		return self.user.user.username+" order"
+		return self.user.user.username+"order"
