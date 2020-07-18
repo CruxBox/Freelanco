@@ -45,7 +45,6 @@ class EditAddress(forms.ModelForm):
     LOCATION_CHOICES=(
     ('Hyd','Hyderabad'),
     ('MAS','Chennai'),
-    ('Bom','Mumbai')
     )
 
     class Meta:
