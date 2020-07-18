@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
-from .views import gettingStarted
+from .views import gettingStarted,display404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +14,8 @@ urlpatterns = [
 	## For testing 
 	path('servicelist', TemplateView.as_view(template_name="services_temp/seller_services_list.html")),
 	path('servicecurr', TemplateView.as_view(template_name="services_temp/seller_services_current.html")),
+	path('notfound',display404)
+ 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
