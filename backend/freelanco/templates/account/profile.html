@@ -80,10 +80,12 @@
     <div class="card-panel grey lighten-5 z-depth-1">
       
       <div class="row valign-wrapper">
+      {%if user.is_freelancer%}
         <div class="col l0" style="width: 190px;position: absolute;top: 204px;left: 215px;">
           <a class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:22px; background-color:black;">my services</a>
           <a class="waves-effect waves btn"style="border-radius: 25px;background-color:black;">current orders</a>
         </div>
+        {%endif%}
         <div class="col s10 right">
           <span class="black-text">
             
