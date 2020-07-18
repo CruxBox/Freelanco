@@ -24,7 +24,7 @@ class OrderItem(models.Model):
 								on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.title
+		return self.item.title
 
 
 class Order(models.Model):
@@ -39,4 +39,4 @@ class Order(models.Model):
 	ordered = models.BooleanField(default=False)
 
 	def __str__(self):
-		return self.user.username
+		return self.user.user.username+" order"

@@ -71,8 +71,8 @@ def old_orders(request):
 # Add item
 @login_required
 def add_to_cart(request, slug):
-
 	item = get_object_or_404(Item, slug=slug)
+	print(item.title)
 	orderItem, created = OrderItem.objects.get_or_create(
 		item = item,
 		user = request.user.customer_profile,
@@ -80,12 +80,16 @@ def add_to_cart(request, slug):
 	)
 
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
+	#print(cart.exists)
+	#print(cart.items)
 	if cart.exists():
 		cart = cart[0]
 		if cart.items.filter(item = item).exists():
 			pass
+
 		else:
 			cart.items.add(orderItem)
+
 	else:
 		cart = Order.objects.create( user = request.user.customer_profile )
 		cart.items.add(orderItem)
