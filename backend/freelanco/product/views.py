@@ -4,7 +4,9 @@ from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from users.decorators import *
 from .models import Item, OrderItem, Order
+from .forms import *
 import logging
 
 logger = logging.getLogger(__name__)
@@ -23,6 +25,7 @@ def item_list(request):
 	return render(request, "services_temp/service_providers.html", context)
 
 @login_required
+@only_customer
 def display_cart_items(request):
 
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
@@ -54,6 +57,7 @@ def display_cart_items(request):
 	return render(request, "services_temp/cart.html", context)
 
 @login_required
+@only_customer
 def old_orders(request):
 	# This will give a list of orders that are now history
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = True)
@@ -70,8 +74,9 @@ def old_orders(request):
 
 # Add item
 @login_required
-def add_to_cart(request, slug):
-	item = get_object_or_404(Item, slug=slug)
+@only_customer
+def add_to_cart(request, pk):
+	item = get_object_or_404(Item, pk=pk)
 	print(item.title)
 	orderItem, created = OrderItem.objects.get_or_create(
 		item = item,
@@ -98,13 +103,13 @@ def add_to_cart(request, slug):
 
 # Delete item
 @login_required
-def remove_from_cart(request,slug):
-	item = get_object_or_404(Item, slug=slug)
+@only_customer
+def remove_from_cart(request,pk):
+	item = get_object_or_404(Item, pk=pk)
 
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
-		# if cart.items.filter(item_slug = slug).exists():
 		orderItem = OrderItem.objects.filter(
 										user = request.user.customer_profile,
 										item = item
@@ -117,8 +122,8 @@ def remove_from_cart(request,slug):
 	return redirect("display cart items")
 
 # Item detail view
-def detail_view(request, slug):
-	item = get_object_or_404(Item, slug = slug)
+def detail_view(request, pk):
+	item = get_object_or_404(Item, pk = pk)
 
 	context = {
 		'item': item,
@@ -145,3 +150,44 @@ def list_services(request):
 
 # Place order - Need to work on this
 # Add notifications feature in this feature
+
+@login_required
+@only_freelancer
+def edit_item(request, pk):
+    if request.method=='POST':
+        form=ItemEditForm(request.POST, instance=Item.objects.filter(pk = pk)[0])
+        #print(form)
+        if form.is_valid():
+            form.save()
+            #TODO: right redirect
+            return HttpResponseRedirect(reverse("item list"))
+    else:
+        form3=ItemEditForm(instance=Item.objects.filter(pk = pk)[0])
+        context={"form":form3}
+        # TODO: render right template
+        return render(request,'account/add_item.html',context)
+
+@login_required
+@only_freelancer
+def add_item(request):
+    if request.method=='POST':
+        form=ItemEditForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit = False)
+            item.provider = request.user.freelancer_profile
+            item.save();
+            return HttpResponseRedirect(reverse("item list"))
+    else:
+        form3=ItemEditForm()
+        context={"form":form3}
+        #TODO: render right template
+        return render(request,'account/add_item.html',context)
+
+@login_required
+@only_freelancer
+def delete_item(request, pk):
+    item=Item.objects.get(pk = pk)
+    if request.method=='POST':
+        item.delete()
+        #TODO: reverse to right template
+        return HttpResponseRedirect(reverse("item list"))

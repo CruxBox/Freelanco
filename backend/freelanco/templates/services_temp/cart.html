@@ -142,7 +142,7 @@
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.actual_cost }}</strong></td>
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.discounted_cost }} </strong></td>
 							<td class="col-md-1">
-								<form id="remove_item" action="{% url 'remove from cart' slug=item.slug %}"
+								<form id="remove_item" action="{% url 'remove from cart' pk=item.pk %}"
 									method="POST">
 									{% csrf_token %}
 									<a class="btn btn-danger" href="#"
