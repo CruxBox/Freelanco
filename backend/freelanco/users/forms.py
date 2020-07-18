@@ -42,6 +42,11 @@ class EditCustomerProfileForm(forms.ModelForm):
         fields=('location','image',)
 
 class EditAddress(forms.ModelForm):
+    LOCATION_CHOICES=(
+    ('Hyd','Hyderabad'),
+    ('MAS','Chennai'),
+    ('Bom','Mumbai')
+    )
 
     class Meta:
         model=Address

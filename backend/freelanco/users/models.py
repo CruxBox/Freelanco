@@ -5,10 +5,11 @@ from django.db.models.signals import post_save
 from allauth.account.signals import user_signed_up
 from django.contrib.contenttypes.fields import GenericForeignKey
 
-LOCATION_CHOICES=[
+LOCATION_CHOICES=(
     ('Hyd','Hyderabad'),
-    ('MAS','Chennai')
-]
+    ('MAS','Chennai'),
+    ('Bom','Mumbai')
+)
 
 
 class CustomUser(AbstractUser):
@@ -48,7 +49,7 @@ class Address(models.Model):
     address1 = models.CharField("Address line 1", max_length=1024)
     address2 = models.CharField("Address line 2", max_length=1024, blank=True, null=True)
     pin_code = models.CharField("PIN", max_length=6, blank=True, null=True)
-    city = models.CharField("City", max_length=20, blank=True, null=True)
+    city = models.CharField("City", max_length=20, blank=True, null=True,choices=LOCATION_CHOICES)
     state=models.CharField("State",max_length=20, blank=True, null=True)
     customer=models.ForeignKey(CustomerProfile,on_delete=models.CASCADE,related_name='addresses',null=True,blank=True)
     freelancer=models.ForeignKey(FreelancerProfile,on_delete=models.CASCADE,related_name='addresses',null=True,blank=True)

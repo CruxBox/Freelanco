@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import *
-from .decorators import only_customer
+from .decorators import only_customer,call_graph
 from allauth.account.forms import SignupForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -9,10 +9,12 @@ from django.urls import reverse
 from .models import *
 # Create your views here.
 
+
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
 
 def user_login(request):
     if request.method=="POST":
@@ -34,11 +36,12 @@ def customer_signup(request):
         username=request.POST['username']
         password1=request.POST['password1']
         password2=request.POST['password2']
+        email=request.POST['email']
         if password1!=password2:
             context["pwd_error"]=True
             return render(request,"account/signup.html",context)
         if not CustomUser.objects.filter(username=username).exists():
-            user=CustomUser.objects.create_user(username, password=password1)
+            user=CustomUser.objects.create_user(username, password=password1,email=email)
             user.is_freelancer=False
             user.save()
             cust_profile=CustomerProfile(user=user)
@@ -58,10 +61,12 @@ def freelancer_signup(request):
         username=request.POST['username']
         password1=request.POST['password1']
         password2=request.POST['password2']
+        email=request.POST['email']
         if password1!=password2:
             context["pwd_error"]=True
+            return render(request,"account/signup.html",context)
         if not CustomUser.objects.filter(username=username).exists():
-            user=CustomUser.objects.create_user(username, password=password1)
+            user=CustomUser.objects.create_user(username, password=password1,email=email)
             user.is_freelancer=True
             user.save()
             print("OLOLOL")
