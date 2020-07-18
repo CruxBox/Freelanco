@@ -23,7 +23,6 @@ class Item(models.Model):
 		choices = CATEGORY_LIST,
 		default = None
 		)
-	slug = models.SlugField()
 	description = models.TextField()
 	def __str__(self):
 		return self.title
