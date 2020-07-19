@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from users.decorators import *
 from .models import Item, OrderItem, Order
@@ -12,7 +13,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 def item_list(request):
-	items = Item.objects.all()
+	name_filter=request.GET.get('search', '')
+	if name_filter:
+		items=Item.objects.filter(Q(title__icontains=name_filter) | Q(description__icontains=name_filter))
+	else:
+		items=Item.objects.all()
 	if items.exists():
 		context = {
 			'items': items,

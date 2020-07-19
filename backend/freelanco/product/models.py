@@ -18,6 +18,7 @@ class Item(models.Model):
 		('ELECTRICIAN', 'Electrician'),
 		('PLUMBER', 'Plumber'),
 		('FITNESS', 'Fitness'),
+		('MISCELLANEOUS','Misc')
 	]
 	category = models.CharField(max_length = 255,
 		choices = CATEGORY_LIST,
