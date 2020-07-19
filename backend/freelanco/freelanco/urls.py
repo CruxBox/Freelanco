@@ -11,9 +11,6 @@ urlpatterns = [
 	path('home/', include('product.urls')),
 	path('accounts/',include('users.urls')),
 	path('accounts/',include('allauth.urls')),
-	## For testing 
-	path('servicelist', TemplateView.as_view(template_name="services_temp/seller_services_list.html")),
-	path('servicecurr', TemplateView.as_view(template_name="services_temp/seller_services_current.html")),
 	path('notfound',display404)
  
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

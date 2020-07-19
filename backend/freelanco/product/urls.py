@@ -1,15 +1,5 @@
 from django.urls import path
-from .views import (
-	display_cart_items,
-	item_list,
-	remove_from_cart,
-	add_to_cart,
-	old_orders,
-	detail_view,
-	list_services,
-	add_item,
-	edit_item
-)
+from .views import *
 
 urlpatterns = [
 	path('',item_list, name='item list'),
@@ -18,7 +8,11 @@ urlpatterns = [
 	path('remove_from_cart/<int:pk>', remove_from_cart, name='remove from cart'),
 	path('old_orders/', old_orders, name='old orders'),
 	path('show_cart/', display_cart_items, name='display cart items'),
-	path('my_services/',list_services,name='list_services'),
+	path('my_services/',list_services,name='service_list'),
+	path('current_orders/', current_requested_orders, name = 'service_curr'),
 	path('add_item', add_item, name='add new item'),
-	path('edit_item', edit_item, name='edit item')
+	path('edit_item/<int:pk>/', edit_item, name='edit item'),
+	path('place_order', place_order, name='place order'),
+	path('acceptorder/<int:pk>', accept_order_item, name='accept order'),
+	path('rejectorder/<int:pk>', reject_order_item, name='reject order')
 ]

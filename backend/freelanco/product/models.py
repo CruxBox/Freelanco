@@ -28,14 +28,29 @@ class Item(models.Model):
 		return self.title
 
 class OrderItem(models.Model):
-	item = models.ForeignKey(Item, on_delete=models.CASCADE,related_name = "order_item")
+	item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name = 'in_order')
 	quantity = models.IntegerField(default=0)
 	ordered = models.BooleanField(default=False)
 	user = models.ForeignKey(CustomerProfile,
 								on_delete=models.CASCADE)
+	accepted = models.IntegerField(default = 3)
+		# 0 for pending approval
+		# 1 for accepted
+		# 2 for rejected
+	status = models.IntegerField(default = 2)
+		# 0 for ongoing
+		# 1 for done
+		# 2 not started
 
 	def __str__(self):
 		return self.item.title
+
+	def setAccepted(self, x):
+		accepted = x
+	def setStatus(self, x):
+		status = x
+	def setOrdered(self, x):
+		ordered = x
 
 
 class Order(models.Model):
@@ -48,6 +63,8 @@ class Order(models.Model):
 	# Order time
 	ordered_date = models.DateTimeField(null=True, blank = True)
 	ordered = models.BooleanField(default=False)
+	def setOrdered(self, x):
+		ordered = x
 
 	def __str__(self):
 		return self.user.user.username+"order"
