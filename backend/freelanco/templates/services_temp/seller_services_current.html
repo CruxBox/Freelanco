@@ -18,6 +18,7 @@
     <div class="container">
       <section class="about-me" id="about">
         <div class="container">
+          {% for item in orders %}
           <!--Start card-->
           <div class="box">
             <div class="row">
@@ -27,27 +28,28 @@
                     <img src="{% static "images/temp.jpg" %}">
                   </div>
                   <div class="text">
-                    <span>Massage</span>
-                    <p>$100</p>
-
+                    <span>{{ item.item.title }}</span>
+                    
+                    {% if item.item.discounted_cost == -1%}
+                    <p>&#8377 {{ item.item.actual_cost }}</p>
+                    {% else %}
+                    <p>&#8377 {{ item.item.discounted_cost }}</p>
+                    {% endif %}
                     <div class="info">
                       <div class="list">
                         <label>Posted Date:</label>
-                        <p>26th nov 2000</p>
-                        <br />
-                        <label>Offered by:</label>
-                        <p>Freelancer</p>
+                        <p>{{ item.item.post_date }}</p>
                         <br />
                         <label><strong>Status:</strong></label>
-                        <p>loading</p>
+                        <p> Pending your approval </p>
                       </div>
                     </div>
                     <div class="row">
                       <div class="button">
-                        <a href="">Accept</a>
+                        <a href="{% url 'accept order' pk=item.pk %}">Accept</a>
                       </div>
                       <div class="button1">
-                        <a href="">Reject</a>
+                        <a href="{% url 'reject order' pk=item.pk %}">Reject</a>
                       </div>
                     </div>
                   </div>
@@ -56,78 +58,7 @@
             </div>
           </div>
           <!--end card-->
-          <div class="box">
-            <div class="row">
-              <div class="about">
-                <div class="row">
-                  <div class="img">
-                    <img src="{% static "images/temp.jpg" %}">
-                  </div>
-                  <div class="text">
-                    <span>Massage</span>
-                    <p>$100</p>
-
-                    <div class="info">
-                      <div class="list">
-                        <label>Posted Date:</label>
-                        <p>26th nov 2000</p>
-                        <br />
-                        <label>Offered by:</label>
-                        <p>Freelancer</p>
-                        <br />
-                        <label><strong>Status:</strong></label>
-                        <p>loading</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="button">
-                        <a href="">Accept</a>
-                      </div>
-                      <div class="button1">
-                        <a href="">Reject</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="box">
-            <div class="row">
-              <div class="about">
-                <div class="row">
-                  <div class="img">
-                    <img src="{% static "images/temp.jpg" %}">
-                  </div>
-                  <div class="text">
-                    <span>Massage</span>
-                    <p>$100</p>
-
-                    <div class="info">
-                      <div class="list">
-                        <label>Posted Date:</label>
-                        <p>26th nov 2000</p>
-                        <br />
-                        <label>Offered by:</label>
-                        <p>Freelancer</p>
-                        <br />
-                        <label><strong>Status:</strong></label>
-                        <p>loading</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="button">
-                        <a href="">Accept</a>
-                      </div>
-                      <div class="button1">
-                        <a href="">Reject</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </section>
     </div>

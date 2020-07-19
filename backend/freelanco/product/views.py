@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from users.decorators import *
+from datetime import datetime
 from .models import Item, OrderItem, Order
 from .forms import *
 import logging
@@ -34,11 +35,11 @@ def item_list(request):
 def display_cart_items(request):
 
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
-	
+	print(order_objects)
 	if order_objects.exists() and len(order_objects[0].items.all()):
 
 		order_items = order_objects[0].items.all()
-		items = Item.objects.filter(order_item__in = order_items)
+		items = Item.objects.filter(orderitem__in = order_items)
 		number_of_items = len(items)
 		
 		sub_total = 0
@@ -103,7 +104,7 @@ def add_to_cart(request, pk):
 	else:
 		cart = Order.objects.create( user = request.user.customer_profile )
 		cart.items.add(orderItem)
-	
+
 	return redirect("item list")
 
 # Delete item
@@ -137,6 +138,9 @@ def detail_view(request, pk):
 
 	return render(request, 'base.html', context)
 
+
+@login_required
+@only_freelancer
 def list_services(request):
 	print(request.user)
 	freelancer=request.user.freelancer_profile
@@ -147,14 +151,109 @@ def list_services(request):
 	}
 	return render(request,'services_temp/seller_services_list.html',context)
 
-
-
-
-
-
-
 # Place order - Need to work on this
 # Add notifications feature in this feature
+
+
+@login_required
+@only_customer
+def place_order(request):
+	cust = request.user.customer_profile
+	order = Order.objects.filter(user = cust, ordered = False)[0]
+	order.setOrdered(True)
+	orderItems = order.items.all()
+	for orderItem in orderItems:
+		#TODO: notify all providers
+		# orderItem.accepted = 0
+		orderItem.setAccepted(0)
+		orderItem.save()
+
+	order.ordered = True
+	order.ordered_date = datetime.now()
+	order.save()
+	return HttpResponseRedirect(reverse("item list"))
+
+@login_required
+@only_freelancer
+def show_completed_orders(request):
+	provider = request.user.freelancer_profile
+	items_provided = provider.items.all();
+	ret_list = []
+	for item in items_provided:
+		orderItem = item.orderitem.all()
+		print(orderItem)
+		orderItem = orderItem[0]
+		if orderItem.status == 1:
+			ret_list += orderItem
+
+	context = {'orders' : ret_list}
+	return render(request, 'services_temp/seller_services_current.html', context)
+
+
+@login_required
+@only_freelancer
+def current_requested_orders(request):
+	provider = request.user.freelancer_profile
+	items_provided = provider.items.all();
+	# print(items_provided)
+	ret_list = []
+	for item in items_provided:
+		orderItem = item.in_order.all()
+		if orderItem.exists() == False:
+			continue
+		print(orderItem)
+		# orderItem = orderItem[0]
+		if orderItem[0].accepted == 0:
+			ret_list += orderItem
+
+	print(ret_list)
+	context = {'orders' : ret_list}
+	return render(request, 'services_temp/seller_services_current.html', context)
+
+
+@login_required
+@only_freelancer
+def accept_order_item(request, pk):
+	provider = request.user.freelancer_profile
+	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem.accepted = 1;
+	orderItem.status = 2;
+	orderItem.save()
+	return HttpResponseRedirect(reverse("service_curr"))
+
+@login_required
+@only_freelancer
+def reject_order_item(request, pk):
+	provider = request.user.freelancer_profile
+	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem.accepted = 2;
+	orderItem.status = 2;
+	orderItem.save()
+
+	return HttpResponseRedirect(reverse("service_curr"))
+
+@login_required
+@only_freelancer
+def start_order_item(request, pk):
+	provider = request.user.freelancer_profile
+	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem.accepted = 1;
+	orderItem.status = 0;
+	orderItem.save()
+
+	return HttpResponseRedirect(reverse("service_curr"))
+
+
+@login_required
+@only_freelancer
+def finished_order_item(request, pk):
+	provider = request.user.freelancer_profile
+	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem.accepted = 1;
+	orderItem.status = 2;
+	orderItem.save()
+
+	return HttpResponseRedirect(reverse("service_curr"))
 
 @login_required
 @only_freelancer
@@ -164,12 +263,10 @@ def edit_item(request, pk):
         #print(form)
         if form.is_valid():
             form.save()
-            #TODO: right redirect
-            return HttpResponseRedirect(reverse("item list"))
+            return HttpResponseRedirect(reverse("service_list"))
     else:
         form3=ItemEditForm(instance=Item.objects.filter(pk = pk)[0])
         context={"form":form3}
-        # TODO: render right template
         return render(request,'account/add_item.html',context)
 
 @login_required
@@ -181,11 +278,10 @@ def add_item(request):
             item = form.save(commit = False)
             item.provider = request.user.freelancer_profile
             item.save();
-            return HttpResponseRedirect(reverse("item list"))
+            return HttpResponseRedirect(reverse("service_list"))
     else:
         form3=ItemEditForm()
         context={"form":form3}
-        #TODO: render right template
         return render(request,'account/add_item.html',context)
 
 @login_required
@@ -194,5 +290,4 @@ def delete_item(request, pk):
     item=Item.objects.get(pk = pk)
     if request.method=='POST':
         item.delete()
-        #TODO: reverse to right template
-        return HttpResponseRedirect(reverse("item list"))
+        return HttpResponseRedirect(reverse("service_list"))
