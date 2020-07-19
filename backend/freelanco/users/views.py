@@ -100,18 +100,27 @@ def view_freelancer_profile(request):
     return render(request,"account/profile.html",context)
 
 @login_required
-@only_customer
 def edit_customer_profile(request):
     if request.method=='POST':
-        form=CustomUserChangeForm(request.POST,instance=request.user)
-        if form.is_valid():
-            form.save()
+        form_user=CustomUserChangeForm(request.POST,instance=request.user)
+        if request.user.is_freelancer:
+            form_profile=CustomerProfileForm(request.POST,instance=request.user.freelancer_profile)
+        else:
+            form_profile=CustomerProfileForm(request.POST,instance=request.user.customer_profile)
+        if form_user.is_valid() and form_profile.is_valid():
+            form_user.save()
+            form_profile.save()
             return HttpResponseRedirect(reverse("users:profile_view"))
 
 
     else:
-        form2=CustomUserChangeForm(instance=request.user)
-        context={"form":form2}
+        form_user=CustomUserChangeForm(instance=request.user)
+        if request.user.is_freelancer:
+            form_profile=CustomerProfileForm(instance=request.user.freelancer_profile)
+        else:
+            form_profile=CustomerProfileForm(instance=request.user.customer_profile)
+        context={"form":form_user,
+        "form_profile":form_profile}
         #context={"form_profile":form1,"form_user":form2,"form_address":form3}
         return render(request,'account/edit_profile.html',context)
 

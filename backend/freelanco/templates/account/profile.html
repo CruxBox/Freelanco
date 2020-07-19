@@ -82,8 +82,9 @@
       <div class="row valign-wrapper">
       {%if user.is_freelancer%}
         <div class="col l0" style="width: 190px;position: absolute;top: 204px;left: 215px;">
-          <a class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:22px; background-color:black;">my services</a>
-          <a class="waves-effect waves btn"style="border-radius: 25px;background-color:black;">current orders</a>
+          <a href="{% url "service_list" %}" class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:12px; background-color:black;">my services</a>
+          <a href="{% url "service_curr" %}" class="waves-effect waves btn"style="border-radius: 25px;background-color:black;margin-bottom:12px;">current orders</a>
+          <a href="{% url "service_done" %}" class="waves-effect waves btn"style="border-radius: 25px;background-color:black; margin-bottom:12px;">completedorders</a>
         </div>
         {%endif%}
         <div class="col s10 right">
@@ -133,10 +134,9 @@
               </div>
               <div class="row">
                 <div class="col l6 m6 push-m2 push-l2">
-              		<label>Extra Field</label>
+              		<label>Phone Number</label>
               	</div>
-              	<div class="col l6 m6 ">
-              		Extra Attribute
+              	<div class="col l6 m6 "> 
               	</div>
               </div>
               {% for address in addresses %}

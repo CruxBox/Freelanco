@@ -164,8 +164,7 @@ def place_order(request):
 	orderItems = order.items.all()
 	for orderItem in orderItems:
 		#TODO: notify all providers
-		# orderItem.accepted = 0
-		orderItem.setAccepted(0)
+		orderItem.accepted = 0
 		orderItem.save()
 
 	order.ordered = True
@@ -180,10 +179,11 @@ def show_completed_orders(request):
 	items_provided = provider.items.all();
 	ret_list = []
 	for item in items_provided:
-		orderItem = item.orderitem.all()
-		print(orderItem)
-		orderItem = orderItem[0]
-		if orderItem.status == 1:
+		orderItem = item.orderitem_set.all()
+		if orderItem.exists() == False:
+			continue
+		print(orderItem[0].status)
+		if orderItem[0].status == 2:
 			ret_list += orderItem
 
 	context = {'orders' : ret_list}
@@ -198,11 +198,12 @@ def current_requested_orders(request):
 	# print(items_provided)
 	ret_list = []
 	for item in items_provided:
-		orderItem = item.orderitem.all()
+		orderItem = item.orderitem_set.all()
 		if orderItem.exists() == False:
 			continue
-		print(orderItem)
-		# orderItem = orderItem[0]
+		print(orderItem,"lol")
+		#orderItem = orderItem[0]
+		print(orderItem[0].accepted)
 		if orderItem[0].accepted == 0:
 			ret_list += orderItem
 

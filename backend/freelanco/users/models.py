@@ -43,7 +43,6 @@ class FreelancerProfile(models.Model):
     def __str__(self):
         return f"Freelancer-{self.user.username}"
 
-
 class Address(models.Model):
     name=models.CharField("Name", max_length=100,blank=True,null=True)
     address1 = models.CharField("Address line 1", max_length=1024)

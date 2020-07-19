@@ -13,6 +13,9 @@
 <form method="POST">
             {% csrf_token %}
             {% form form=form %}{% endform %}
+            {% if form_profile %}
+            {% form form=form_profile%}{% endform %}
+            {% endif %}
             <button class="btn waves-effect waves-green green" type="submit" name="_submit" class="btn" style="border-radius: 25px;">Submit</button>
         </form>
 </div>
