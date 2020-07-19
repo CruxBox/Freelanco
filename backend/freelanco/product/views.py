@@ -193,7 +193,7 @@ def current_requested_orders(request):
 	# print(items_provided)
 	ret_list = []
 	for item in items_provided:
-		orderItem = item.in_order.all()
+		orderItem = item.orderitem.all()
 		if orderItem.exists() == False:
 			continue
 		print(orderItem)
