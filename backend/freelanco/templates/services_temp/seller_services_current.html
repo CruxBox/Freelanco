@@ -44,6 +44,7 @@
                         <p> Pending your approval </p>
                       </div>
                     </div>
+                    {% if item.accepted == 0 %}
                     <div class="row">
                       <div class="button">
                         <a href="{% url 'accept order' pk=item.pk %}">Accept</a>
@@ -52,7 +53,21 @@
                         <a href="{% url 'reject order' pk=item.pk %}">Reject</a>
                       </div>
                     </div>
-                  </div>
+                  {% else %}
+                  {% if item.status == 2 %}
+                  <div class="row">
+                      <div class="button">
+                        <a href="{% url 'start order' pk=item.pk %}">Start</a>
+                      </div>
+                    </div>
+                  {% else %}
+                  <div class="row">
+                      <div class="button1">
+                        <a href="{% url 'finish order' pk=item.pk %}">Finish</a>
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% endif %}
                 </div>
               </div>
             </div>
