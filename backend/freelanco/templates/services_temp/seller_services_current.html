@@ -20,7 +20,7 @@
       <section class="about-me" id="about">
         <div class="container">
           <!--Start card-->
-          <div class="box">
+          <div class="box" style="width: 100%;">
             <div class="row">
               <div class="about">
                 <div class="row">
@@ -30,6 +30,20 @@
                   <div class="text">
                     <span>{{ item.item.title }}</span>
                     
+                  <button id="myBtn">Customer Details</button> 
+                    <div id="myModal" class="modal">
+                      <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h1 style="color: #4CAF50;padding-bottom:6px;">Customer Details</h1>
+                        <h3 style="color: black;">Namename name</h3>
+                        
+                        <h4 style="color: #6c6d70 ;font-weight: 500">Address line 1</h4>
+                        <h4 style="color: #6c6d70;font-weight: 500">Address line 1</h4>
+                        <h4 style="color: #6c6d70;font-weight: 500">Address line 1</h4>
+                        <h4 style="color: #6c6d70;font-weight: 500">Address line 1</h4>
+                        <h4 style="color: #6c6d70;font-weight: 500">Address line 1</h4>
+                        </div>
+                    </div>
                     {% if item.item.discounted_cost == -1%}
                     <p>&#8377 {{ item.item.actual_cost }}</p>
                     {% else %}
@@ -85,5 +99,25 @@
       </section>
       {% endfor %}
     </div>
+    
+
+
+<script>
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
   </body>
 </html>
