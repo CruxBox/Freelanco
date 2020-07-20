@@ -134,18 +134,20 @@ html {
 input[type="text"] {
   width: 300px;
   box-sizing: border-box;
-  border: 2px solid #ccc;
+  border: 2px solid black;
   border-radius: 30px;
   padding-top: 40px;
   font-size: 16px;
+  font-style: normal;
   background-color: white;
   background-image: url("searchicon.png");
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
+  
   /* -webkit-transition: width 0.1s ease-in-out;
-  transition: width 0.4s ease-in-out; */ */
+  transition: width 0.4s ease-in-out; */ 
 }
-/* 
-input[type=text]:focus {
-  width: 65%; */
+
+/* input[type=text]:focus {
+  color: black; */

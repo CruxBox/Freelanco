@@ -56,8 +56,9 @@
         </div>
     </nav>
 
-    <div class="container" style="height:1000px">
-      <section class="about-me" id="about">
+    <div class="container" style="min-height:100%">
+    <div style="overflow:auto;padding-bottom:50px">
+    <section class="about-me" id="about">
         <div class="container">
           <!--Start card-->
           {% for item in items %}
@@ -106,6 +107,9 @@
           {% endfor %}
         </div>
       </section>
+    
+    </div>
+      
     </div>
         <a href="{% url 'add new item' %}" class="float">
       <i class="fa fa-plus my-float"></i>
