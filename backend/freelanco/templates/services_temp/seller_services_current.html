@@ -16,20 +16,34 @@
   </head>
   <body>
     <div class="container">
+    {% for item in orders %}
       <section class="about-me" id="about">
         <div class="container">
-          {% for item in orders %}
           <!--Start card-->
-          <div class="box">
+          <div class="box" style="width: 100%;">
             <div class="row">
               <div class="about">
                 <div class="row">
                   <div class="img">
-                    <img src="{% static "images/temp.jpg" %}">
+                    <img src="{% static "images/temp.jpg" %}" style="position: relative;">
                   </div>
                   <div class="text">
                     <span>{{ item.item.title }}</span>
                     
+                  <button id="myBtn">Customer Details</button> 
+                    <div id="myModal" class="modal">
+                      <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h1 style="color: #4CAF50;padding-bottom:6px;">Customer Details</h1>
+                        <h3 style="color: black;">Namename name</h3>
+                        
+                        <h4 style="color: #6c6d70 ;font-weight: 500">Address line 1</h4>
+                        <h4 style="color: #6c6d70;font-weight: 500">Address line 1</h4>
+                        <h4 style="color: #6c6d70;font-weight: 500">Address line 1</h4>
+                        <h4 style="color: #6c6d70;font-weight: 500">Address line 1</h4>
+                        <h4 style="color: #6c6d70;font-weight: 500">Address line 1</h4>
+                        </div>
+                    </div>
                     {% if item.item.discounted_cost == -1%}
                     <p>&#8377 {{ item.item.actual_cost }}</p>
                     {% else %}
@@ -38,12 +52,21 @@
                     <div class="info">
                       <div class="list">
                         <label>Posted Date:</label>
-                        <p>{{ item.item.post_date }}</p>
+                        <p>{{ item.order_set.first.start_date }}</p>
                         <br />
                         <label><strong>Status:</strong></label>
-                        <p> Pending your approval </p>
+                        {% if item.accepted == 0 %}
+                        <p style="color: indigo "> Pending your approval </p>
+                        {% elif item.status == 0 %}
+                        <p style="color:orange"> Service is ongoing </p>
+                        {% elif item.status == 2 %}
+                        <p style="color:green"> You have accepted the service and can start soon </p>
+                        {% else %}
+                        <p style="color:orange"> Service is ongoing </p>
+                        {% endif %}
                       </div>
                     </div>
+                    {% if item.accepted == 0 %}
                     <div class="row">
                       <div class="button">
                         <a href="{% url 'accept order' pk=item.pk %}">Accept</a>
@@ -52,15 +75,49 @@
                         <a href="{% url 'reject order' pk=item.pk %}">Reject</a>
                       </div>
                     </div>
-                  </div>
+                  {% else %}
+                  {% if item.status == 2 %}
+                  <div class="row">
+                      <div class="button">
+                        <a href="{% url 'start order' pk=item.pk %}">Start</a>
+                      </div>
+                    </div>
+                  {% else %}
+                  <div class="row">
+                      <div class="button1">
+                        <a href="{% url 'finish order' pk=item.pk %}">Finish</a>
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% endif %}
                 </div>
               </div>
             </div>
           </div>
           <!--end card-->
-          {% endfor %}
         </div>
       </section>
+      {% endfor %}
     </div>
+    
+
+
+<script>
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
   </body>
 </html>

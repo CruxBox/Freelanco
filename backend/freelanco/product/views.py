@@ -10,8 +10,13 @@ from datetime import datetime
 from .models import Item, OrderItem, Order
 from .forms import *
 import logging
+from itertools import chain
 
 logger = logging.getLogger(__name__)
+
+
+enum_acc=["Pending Approval","Accepted","Rejected"]
+enum_stat=["Ongoing","Done","Not Started"]
 
 def item_list(request):
 	name_filter=request.GET.get('search', '')
@@ -45,7 +50,10 @@ def display_cart_items(request):
 		sub_total = 0
 
 		for item in items:
-			sub_total = item.discounted_cost
+			if item.discounted_cost !=-1:
+				sub_total += item.discounted_cost
+			else:
+				sub_total += item.actual_cost 
 
 		context = {
 			'cart_items': items,
@@ -160,7 +168,6 @@ def list_services(request):
 def place_order(request):
 	cust = request.user.customer_profile
 	order = Order.objects.filter(user = cust, ordered = False)[0]
-	order.setOrdered(True)
 	orderItems = order.items.all()
 	for orderItem in orderItems:
 		#TODO: notify all providers
@@ -174,7 +181,7 @@ def place_order(request):
 
 @login_required
 @only_freelancer
-def show_completed_orders(request):
+def show_completed_orders_freelancer(request):
 	provider = request.user.freelancer_profile
 	items_provided = provider.items.all();
 	ret_list = []
@@ -182,12 +189,12 @@ def show_completed_orders(request):
 		orderItem = item.orderitem_set.all()
 		if orderItem.exists() == False:
 			continue
-		print(orderItem[0].status)
-		if orderItem[0].status == 2:
+		# if accepted and done, if rejected
+		if (orderItem[0].status == 1 and orderItem[0].accepted == 1) or (orderItem[0].accepted == 2):
 			ret_list += orderItem
 
 	context = {'orders' : ret_list}
-	return render(request, 'services_temp/seller_services_current.html', context)
+	return render(request, 'services_temp/seller_services_done.html', context)
 
 
 @login_required
@@ -201,10 +208,9 @@ def current_requested_orders(request):
 		orderItem = item.orderitem_set.all()
 		if orderItem.exists() == False:
 			continue
-		print(orderItem,"lol")
-		#orderItem = orderItem[0]
-		print(orderItem[0].accepted)
 		if orderItem[0].accepted == 0:
+			ret_list += orderItem
+		if orderItem[0].accepted == 1 and orderItem[0].status != 1:
 			ret_list += orderItem
 
 	print(ret_list)
@@ -236,12 +242,11 @@ def reject_order_item(request, pk):
 @login_required
 @only_freelancer
 def start_order_item(request, pk):
+	# after
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk).first()
-	orderItem.accepted = 1;
 	orderItem.status = 0;
 	orderItem.save()
-
 	return HttpResponseRedirect(reverse("service_curr"))
 
 
@@ -250,10 +255,8 @@ def start_order_item(request, pk):
 def finished_order_item(request, pk):
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk).first()
-	orderItem.accepted = 1;
-	orderItem.status = 2;
+	orderItem.status = 1;
 	orderItem.save()
-
 	return HttpResponseRedirect(reverse("service_curr"))
 
 @login_required
@@ -292,3 +295,28 @@ def delete_item(request, pk):
     if request.method=='POST':
         item.delete()
         return HttpResponseRedirect(reverse("service_list"))
+
+
+@login_required
+@only_customer
+def show_completed_orders_customer(request):
+	# rejected, (accepted and completed)
+	cust = request.user.customer_profile
+	finishedOrderItems = cust.orderitem_set.filter(accepted = 1, status = 1)
+	rejectedOrderItems = cust.orderitem_set.filter(accepted = 2)
+	retList = list(chain(finishedOrderItems, rejectedOrderItems))
+	print(retList)
+	# TODO: put retList in context and send in right template
+	return HttpResponseRedirect(reverse("item list"))
+
+@login_required
+@only_customer
+def show_ongoing_orders_customer(request):
+	#pending approval, (accepted and ongoing)
+	cust = request.user.customer_profile
+	ongoingOrderItems = cust.orderitem_set.filter(accepted = 1, status = 0)
+	pendingApprovalOrderItems = cust.orderitem_set.filter(accepted = 0)
+	retList = list(chain(ongoingOrderItems, pendingApprovalOrderItems))
+	print(retList)
+	# TODO: put retList in context and send in right template
+	return HttpResponseRedirect(reverse("item list"))

@@ -72,7 +72,7 @@
                   <div class="text">
                     <span>{{item.title}}</span>
                     <br />
-                    {% if item.actual_cost != item.discounted_cost %}
+                    {% if item.discounted_cost != -1 %}
              <small> Actual Cost: {{ item.actual_cost }}</small>
              <br>
              <small> Discounted Cost: {{ item.discounted_cost }}</small>
