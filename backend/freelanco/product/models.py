@@ -46,13 +46,6 @@ class OrderItem(models.Model):
 	def __str__(self):
 		return self.item.title
 
-	def setAccepted(self, x):
-		accepted = x
-	def setStatus(self, x):
-		status = x
-	def setOrdered(self, x):
-		ordered = x
-
 
 class Order(models.Model):
 	user = models.ForeignKey(CustomerProfile,
@@ -64,8 +57,6 @@ class Order(models.Model):
 	# Order time
 	ordered_date = models.DateTimeField(null=True, blank = True)
 	ordered = models.BooleanField(default=False)
-	def setOrdered(self, x):
-		ordered = x
 
 	def __str__(self):
 		return self.user.user.username+"order"

@@ -135,7 +135,11 @@
 								<input type="email" class="form-control" id="exampleInputEmail1" value="1" disabled>
 							</td>
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.actual_cost }}</strong></td>
+							{% if item.discounted_cost != -1 %}
 							<td class="col-md-1 text-center"><strong>&#8377 {{ item.discounted_cost }} </strong></td>
+							{% else %}
+							<td class="col-md-1 text-center"><strong> N/A </strong></td>
+							{% endif %}
 							<td class="col-md-1">
 								<form id="remove_item" action="{% url 'remove from cart' pk=item.pk %}"
 									method="POST">
