@@ -80,13 +80,17 @@
     <div class="card-panel grey lighten-5 z-depth-1">
       
       <div class="row valign-wrapper">
-      {%if user.is_freelancer%}
         <div class="col l0" style="width: 190px;position: absolute;top: 204px;left: 215px;">
-          <a href="{% url "service_list" %}" class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:12px; background-color:black;">my services</a>
-          <a href="{% url "service_curr" %}" class="waves-effect waves btn"style="border-radius: 25px;background-color:black;margin-bottom:12px;">current orders</a>
-          <a href="{% url "service_done" %}" class="waves-effect waves btn"style="border-radius: 25px;background-color:black; margin-bottom:12px;">completedorders</a>
+        {%if user.is_freelancer%}
+        <a href="{% url "service_list" %}" class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:12px; background-color:black;">my services</a>
+          <a href="{% url "service_curr" %}" class="waves-effect waves btn"style="border-radius: 30px;background-color:black;margin-bottom:12px;">current orders</a>
+          <a href="{% url "service_done" %}" class="waves-effect waves btn"style="border-radius: 30px;background-color:black; margin-bottom:12px;">completed orders</a>
+          {% else %}
+          <a href="{% url "service_list" %}" class="waves-effect waves btn"style="border-radius: 30px; margin-bottom:12px; background-color:black; line-height: 1em;">Ongoing Services</a>
+          <a href="{% url "service_list" %}" class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:12px; background-color:black;">Completed Services</a>
+       {%endif%}
         </div>
-        {%endif%}
+        
         <div class="col s10 right">
           <span class="black-text">
             

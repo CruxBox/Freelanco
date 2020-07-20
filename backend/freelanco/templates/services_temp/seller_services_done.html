@@ -16,7 +16,7 @@
   </head>
   <body>
     <div class="container">
-    {% for item in orders %}
+     {% for item in orders %}
       <section class="about-me" id="about">
         <div class="container">
           <!--Start card-->
@@ -41,41 +41,13 @@
                         <p>{{ item.order_set.first.start_date }}</p>
                         <br />
                         <label><strong>Status:</strong></label>
-                        {% if item.accepted == 0 %}
-                        <p style="color: indigo "> Pending your approval </p>
-                        {% elif item.status == 0 %}
-                        <p style="color:orange"> Service is ongoing </p>
-                        {% elif item.status == 2 %}
-                        <p style="color:green"> You have accepted the service and can start soon </p>
+                        {%if item.accepted == 1 %}
+                        <p style="color:green"> You have accepted and finished this order successfully </p>
                         {% else %}
-                        <p style="color:orange"> Service is ongoing </p>
+                        <p style="color:red"> You had rejected this order </p>
                         {% endif %}
                       </div>
                     </div>
-                    {% if item.accepted == 0 %}
-                    <div class="row">
-                      <div class="button">
-                        <a href="{% url 'accept order' pk=item.pk %}">Accept</a>
-                      </div>
-                      <div class="button1">
-                        <a href="{% url 'reject order' pk=item.pk %}">Reject</a>
-                      </div>
-                    </div>
-                  {% else %}
-                  {% if item.status == 2 %}
-                  <div class="row">
-                      <div class="button">
-                        <a href="{% url 'start order' pk=item.pk %}">Start</a>
-                      </div>
-                    </div>
-                  {% else %}
-                  <div class="row">
-                      <div class="button1">
-                        <a href="{% url 'finish order' pk=item.pk %}">Finish</a>
-                      </div>
-                    </div>
-                  {% endif %}
-                  {% endif %}
                 </div>
               </div>
             </div>

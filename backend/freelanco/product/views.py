@@ -14,6 +14,10 @@ from itertools import chain
 
 logger = logging.getLogger(__name__)
 
+
+enum_acc=["Pending Approval","Accepted","Rejected"]
+enum_stat=["Ongoing","Done","Not Started"]
+
 def item_list(request):
 	name_filter=request.GET.get('search', '')
 	if name_filter:
@@ -190,7 +194,7 @@ def show_completed_orders_freelancer(request):
 			ret_list += orderItem
 
 	context = {'orders' : ret_list}
-	return render(request, 'services_temp/seller_services_current.html', context)
+	return render(request, 'services_temp/seller_services_done.html', context)
 
 
 @login_required
