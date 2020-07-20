@@ -171,15 +171,9 @@ a{color: white;}
       <h1 class="welcoming-tag">What are you Searching For ?</h1>
      
         <div style="float: right;">
-        </br>
-          <form>
-            <input type="text" name="search" placeholder="Location." />
-          </form>
-        </br>
-      
-          <form>
-            <input type="text" name="search" placeholder="Search.." />
-            
+        </br>     
+          <form method="GET" action="{% url "item list"%}">
+            <input type="text" name="search" placeholder="Search..." /> 
           </form>
         </div>
      
@@ -219,36 +213,36 @@ a{color: white;}
      #services figcaption{font-size: 14px;}
      a:link {color: white;}
      a:active {color: white;}">
-        <a class="link" href="#">
+        <a class="link" href="{% url "item list"%}?search=salon">
         <figure>
             <img src ="{% static "assets/img/salon.png"%}" height="70px" width="70px">
             <figcaption>Salon at Home</figcaption>
         </figure>
         </a>
-        <a  href="#">
+        <a  href="{% url "item list"%}?search=massage">
         <figure>
             <img src ="{% static "assets/img/massage1.png"%}" height="70px" width="70px">
             <figcaption>Massage at Home</figcaption>
         </figure>
         </a>
-        <a  href="#"><figure>
+        <a  href="{% url "item list"%}?search=repair"><figure>
             <img src ="{% static "assets/img/ac.svg"%}" height="70px" width="70px">
             <figcaption>Electronic Repair</figcaption>
         </figure>
         </a>
-        <a  href="#">
+        <a  href="{% url "item list"%}?search=clean">
         <figure>
             <img src ="{% static "assets/img/cleaning.svg"%}" height="70px" width="70px">
             <figcaption>Cleaning</figcaption>
         </figure>
         </a>
-        <a  href="#">
+        <a  href="{% url "item list"%}?search=plumber">
         <figure>
             <img src ="{% static "assets/img/plumber.svg"%}" height="70px" width="70px">
-            <figcaption>Electrician Plumber</figcaption>
+            <figcaption>Plumber</figcaption>
         </figure>
         </a>
-        <a  href="#">
+        <a  href="{% url "item list"%}?search=fit">
         <figure>
             <img src ="{% static "assets/img/heart.svg"%}" height="70px" width="70px">
             <figcaption>Fitness and Yoga</figcaption>
@@ -501,15 +495,11 @@ a{color: white;}
     
       <!--  Scripts-->
       <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>    
       <script src="{% static "assets/footer/js/materialize.js"%}"></script>
       <script src="{% static "assets/footer/js/init.js"%}"></script>
-    
-
-
-    
-<script src="{% static "assets/carousel/carousel/js/jquery-3.3.1.min.js"%}"></script>
+    <script src="{% static "assets/carousel/carousel/js/jquery-3.3.1.min.js"%}"></script>
 <script src="{% static "assets/carousel/carousel/js/jquery-migrate-3.0.0.min.js"%}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="{% static 'assets/carousel/carousel/js/jquery.backstretch.min.js'%}"></script>
     <script src="{% static 'assets/carousel/carousel/js/wow.min.js'%}"></script>
