@@ -7,6 +7,3 @@ def gettingStarted(request):
 ##for testing
 def display404(request):
     return render(request,"notfound.html",{})
-
-def displayOrderHist(request):
-    return render(request,"order_history.html")

@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
-from .views import gettingStarted,display404,displayOrderHist
+from .views import gettingStarted,display404
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -12,9 +12,6 @@ urlpatterns = [
 	path('accounts/',include('users.urls')),
 	path('accounts/',include('allauth.urls')),
 	path('notfound',display404),
-	
-  ##For Testing
-	path('order_hist',displayOrderHist)
  
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
