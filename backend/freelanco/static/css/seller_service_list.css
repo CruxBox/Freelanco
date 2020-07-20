@@ -25,7 +25,7 @@ body {
   flex-wrap: wrap;
 
   padding-left: 20px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .text-uppercase {
@@ -36,9 +36,10 @@ body {
   transition: box-shadow 0.3s;
   border: 0px solid #ccc;
   background: #fff;
-  float: left;
   margin-top: 20px;
   box-shadow: 0 0 10px rgba(33, 33, 33, 0.2);
+  width: 60%;
+  margin-left: 100px;
 }
 .box:hover {
   box-shadow: 0 0 20px #76f16a;

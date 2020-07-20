@@ -110,7 +110,7 @@ html {
 
   font-family: 'Poppins',sans-serif;
 
-  height: 900px;
+  height: 780px;
   padding-left: 50px;
   padding-right: 50px;
   font-size: 18px;
@@ -143,9 +143,16 @@ input[type="text"] {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
+  outline: none;
   /* -webkit-transition: width 0.1s ease-in-out;
   transition: width 0.4s ease-in-out; */ */
 }
-/* 
+
+
+
+
 input[type=text]:focus {
-  width: 65%; */
+  outline: none !important;
+  border: 2px solid #ccc;
+  box-shadow: 0 0 10px rgb(32, 30, 30);
+}
