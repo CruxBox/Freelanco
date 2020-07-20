@@ -10,6 +10,7 @@ from datetime import datetime
 from .models import Item, OrderItem, Order
 from .forms import *
 import logging
+from itertools import chain
 
 logger = logging.getLogger(__name__)
 
@@ -290,3 +291,28 @@ def delete_item(request, pk):
     if request.method=='POST':
         item.delete()
         return HttpResponseRedirect(reverse("service_list"))
+
+
+@login_required
+@only_customer
+def show_completed_orders_customer(request):
+	# rejected, (accepted and completed)
+	cust = request.user.customer_profile
+	finishedOrderItems = cust.orderitem_set.filter(accepted = 1, status = 1)
+	rejectedOrderItems = cust.orderitem_set.filter(accepted = 2)
+	retList = list(chain(finishedOrderItems, rejectedOrderItems))
+	print(retList)
+	# TODO: put retList in context and send in right template
+	return HttpResponseRedirect(reverse("item list"))
+
+@login_required
+@only_customer
+def show_ongoing_orders_customer(request):
+	#pending approval, (accepted and ongoing)
+	cust = request.user.customer_profile
+	ongoingOrderItems = cust.orderitem_set.filter(accepted = 1, status = 0)
+	pendingApprovalOrderItems = cust.orderitem_set.filter(accepted = 0)
+	retList = list(chain(ongoingOrderItems, pendingApprovalOrderItems))
+	print(retList)
+	# TODO: put retList in context and send in right template
+	return HttpResponseRedirect(reverse("item list"))

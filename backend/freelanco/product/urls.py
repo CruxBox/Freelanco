@@ -18,4 +18,6 @@ urlpatterns = [
 	path('reject_order/<int:pk>', reject_order_item, name='reject order'),
 	path('start_order/<int:pk>', start_order_item, name = 'start order'),
 	path('finished_order/<int:pk>', finished_order_item, name = 'finish order'),
+	path('completed_order_users/', show_completed_orders_customer, name = 'user completed orders'),
+	path('ongoing_order_users/', show_ongoing_orders_customer, name = 'user ongoing orders'),
 ]
