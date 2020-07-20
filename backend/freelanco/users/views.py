@@ -17,6 +17,14 @@ def user_logout(request):
 
 
 def user_login(request):
+    """
+    User Login
+    Common login function for customer and freelancer
+
+    **Template:**
+
+    :template:`account/log1.html`
+    """
     if request.method=="POST":
         username=request.POST['username']
         password=request.POST['password']
@@ -31,6 +39,16 @@ def user_login(request):
 
 
 def customer_signup(request):
+    """
+    Customer Signup.
+
+    ``Customer Profile``
+        An instance of :model:`users.CustomerProfile` is created.
+
+    **Template:**
+
+    :template:`account/signup.html`
+    """
     context={"user_type":"Customer","user_exists":False,"pwd_error":False}
     if request.method=='POST':
         username=request.POST['username']
@@ -56,6 +74,16 @@ def customer_signup(request):
         return render(request,"account/signup.html",context)
 
 def freelancer_signup(request):
+    """
+    Customer Signup.
+
+    ``Freelancer Profile``
+        An instance of :model:`users.FreelancerProfile` is created.
+
+    **Template:**
+
+    :template:`account/signup.html`
+    """
     context={"user_type":"Freelancer","user_exists":False}
     if request.method=='POST':
         username=request.POST['username']
@@ -84,6 +112,15 @@ def freelancer_signup(request):
 
 @login_required
 def view_customer_profile(request):
+    """
+    View Profile
+
+    Common View for Freelancer and Customer.
+
+    **Template:**
+
+    :template:`account/profile.html`
+    """
     if request.user.is_freelancer:
         profile=request.user.freelancer_profile
     else:
@@ -101,6 +138,15 @@ def view_freelancer_profile(request):
 
 @login_required
 def edit_customer_profile(request):
+    """
+    Edit Profile
+
+    Common View to edit Freelancer and Customer profile.
+
+    **Template:**
+
+    :template:`account/edit_profile.html`
+    """
     if request.method=='POST':
         form_user=CustomUserChangeForm(request.POST,instance=request.user)
         if request.user.is_freelancer:
@@ -126,6 +172,15 @@ def edit_customer_profile(request):
 
 @login_required
 def edit_customer_address(request,pk):
+    """
+    Edit Address
+
+    Common View to edit Freelancer and Customer addresses.
+
+    **Template:**
+
+    :template:`account/edit_profile.html`
+    """
     if request.method=='POST':
         form=EditAddress(request.POST,instance=request.user.customer_profile.addresses.get(pk=pk))
         #print(form)
@@ -147,6 +202,15 @@ def edit_customer_address(request,pk):
 
 @login_required
 def add_customer_address(request):
+    """
+    Add Address
+
+    Common View to add Freelancer and Customer addresses.
+
+    **Template:**
+
+    :template:`account/edit_profile.html`
+    """
     if request.method=='POST':
         form=EditAddress(request.POST)
         if form.is_valid():
@@ -174,6 +238,11 @@ def add_customer_address(request):
 
 @login_required
 def delete_customer_address(request,pk):
+    """
+    Delete Address
+
+    Common View to delete Freelancer and Customer address.
+    """
     address=Address.objects.get(pk=pk)
     if request.method=='POST':
         address.delete()

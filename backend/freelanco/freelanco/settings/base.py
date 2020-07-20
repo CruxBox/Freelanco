@@ -25,10 +25,12 @@ INSTALLED_APPS = [
     #custom apps
     'users',
     'crispy_forms',
-  
     'product',
     'material',
-	'mathfilters'
+	'mathfilters',
+
+    #For Documentation
+    'django.contrib.admindocs'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
