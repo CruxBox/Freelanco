@@ -55,6 +55,7 @@
                 
         </div>
     </nav>
+    <div class="foot" style="min-height: calc(100vh - 210.3px);">
     <div class="container" style="overflow:auto; padding-bottom:50px">
     {% for item in items %}
       <section class="about-me" id="about">
@@ -108,10 +109,11 @@
       </section>
       {% endfor %}
     </div>
+    
         <a href="{% url 'add new item' %}" class="float">
       <i class="fa fa-plus my-float"></i>
     </a>
-
+    </div>
     
 <div class="footer-dark" style="color: rgb(254,255,255);background-color: rgb(0,0,0);">
         <footer>
