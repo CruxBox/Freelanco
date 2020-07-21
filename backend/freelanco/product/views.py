@@ -92,7 +92,7 @@ def old_orders(request):
 def add_to_cart(request, pk):
 	item = get_object_or_404(Item, pk=pk)
 	print(item.title)
-	orderItem, created = OrderItem.objects.get_or_create(
+	orderItem = OrderItem.objects.create(
 		item = item,
 		user = request.user.customer_profile,
 		ordered = False
