@@ -184,7 +184,7 @@ def place_order(request):
 @login_required
 def show_completed_orders_freelancer(request):
 	provider = request.user.freelancer_profile
-	items_provided = provider.items.all();
+	items_provided = provider.items.all()
 	ret_list = []
 	for item in items_provided:
 		orderItem = item.orderitem_set.all()
@@ -202,7 +202,7 @@ def show_completed_orders_freelancer(request):
 @login_required
 def current_requested_orders(request):
 	provider = request.user.freelancer_profile
-	items_provided = provider.items.all();
+	items_provided = provider.items.all()
 	# print(items_provided)
 	ret_list = []
 	for item in items_provided:
@@ -224,8 +224,8 @@ def current_requested_orders(request):
 def accept_order_item(request, pk):
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk).first()
-	orderItem.accepted = 1;
-	orderItem.status = 2;
+	orderItem.accepted = 1
+	orderItem.status = 2
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
 
@@ -234,8 +234,8 @@ def accept_order_item(request, pk):
 def reject_order_item(request, pk):
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk).first()
-	orderItem.accepted = 2;
-	orderItem.status = 2;
+	orderItem.accepted = 2
+	orderItem.status = 2
 	orderItem.save()
 
 	return HttpResponseRedirect(reverse("service_curr"))
@@ -245,8 +245,8 @@ def reject_order_item(request, pk):
 def start_order_item(request, pk):
 	# after
 	provider = request.user.freelancer_profile
-	orderItem = OrderItem.objects.filter(pk=pk)[0]
-	orderItem.status = 0;
+	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem.status = 0
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
 
@@ -255,8 +255,8 @@ def start_order_item(request, pk):
 @login_required
 def finished_order_item(request, pk):
 	provider = request.user.freelancer_profile
-	orderItem = OrderItem.objects.filter(pk=pk)[0]
-	orderItem.status = 1;
+	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem.status = 1
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
 
@@ -264,7 +264,7 @@ def finished_order_item(request, pk):
 @login_required
 def edit_item(request, pk):
     if request.method=='POST':
-        form=ItemEditForm(request.POST, instance=Item.objects.filter(pk = pk)[0])
+        form=ItemEditForm(request.POST,request.FILES,instance=Item.objects.filter(pk = pk)[0])
         #print(form)
         if form.is_valid():
             form.save()
@@ -278,11 +278,11 @@ def edit_item(request, pk):
 @login_required
 def add_item(request):
     if request.method=='POST':
-        form=ItemEditForm(request.POST)
+        form=ItemEditForm(request.POST,request.FILES)
         if form.is_valid():
             item = form.save(commit = False)
             item.provider = request.user.freelancer_profile
-            item.save();
+            item.save()
             return HttpResponseRedirect(reverse("service_list"))
     else:
         form3=ItemEditForm()

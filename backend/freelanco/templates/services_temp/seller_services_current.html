@@ -25,7 +25,7 @@
               <div class="about">
                 <div class="row">
                   <div class="img">
-                    <img src="{% static "images/temp.jpg" %}" style="position: relative;">
+                    <img src="{{item.item.picture.url}}" style="position: relative;">
                   </div>
                   <div class="text">
                     <span>{{ item.item.title }}</span>
@@ -37,6 +37,7 @@
                         <h1 style="color: #4CAF50;padding-bottom:6px;">Customer Details</h1>
                         <h4 style="color: #6c6d70;">{{item.user.user.first_name}} {{item.user.user.last_name}}</h3>
                         <h4 style="color: #6c6d70;"><a href="mailto:{{item.user.user.email}}">{{item.user.user.email}}</a></h3>
+                        <h4 style="color: #6c6d70;">{{item.item.provider.phone}}</h3>
                         <h3 style="color: #4CAF50 ;">Address ({{item.user.addresses.first.name}})</h3>
                         <h4 style="color: #6c6d70;font-weight: 500">{{item.user.addresses.first.address1}}</h4>
                         <h4 style="color: #6c6d70;font-weight: 500">{{item.user.addresses.first.address2}}</h4>

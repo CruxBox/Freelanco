@@ -55,7 +55,8 @@
                 
         </div>
     </nav>
-    <div class="container" style="height:1000px">
+    <div class="foot" style="min-height: calc(100vh - 210.3px);">
+    <div class="container" style="overflow:auto; padding-bottom:50px">
     {% for item in items %}
       <section class="about-me" id="about">
         <div class="container">
@@ -65,7 +66,8 @@
               <div class="about">
                 <div class="row">
                   <div class="img">
-                    <img src="{% static "images/temp.jpg" %}">
+                    {% comment %} <img src="{% static "images/temp.jpg" %}"> {% endcomment %}
+                    <img src="{{item.picture.url}}"style="height:150px;width:200px">
                   </div>
                   <div class="text">
                     <span>{{item.title}}</span>
@@ -107,10 +109,11 @@
       </section>
       {% endfor %}
     </div>
+    
         <a href="{% url 'add new item' %}" class="float">
       <i class="fa fa-plus my-float"></i>
     </a>
-
+    </div>
     
 <div class="footer-dark" style="color: rgb(254,255,255);background-color: rgb(0,0,0);">
         <footer>

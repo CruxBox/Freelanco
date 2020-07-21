@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+
 from users.models import FreelancerProfile, CustomerProfile
 
 class Item(models.Model):
@@ -8,7 +9,7 @@ class Item(models.Model):
 	discounted_cost = models.FloatField(default = -1)
 	provider = models.ForeignKey(FreelancerProfile, on_delete = models.CASCADE,related_name="items")
 	post_date = models.DateField(null=True,blank=True,auto_now_add=True)
-	picture = models.ImageField(default = 'items/default.jpg', upload_to = 'items/uploads/% Y/% m/% d/')
+	picture = models.ImageField(default = 'items/default.jpg', upload_to = 'items/uploads')
 
 	CATEGORY_LIST =[
 		('MASSAGE', 'Massage'),
@@ -24,6 +25,7 @@ class Item(models.Model):
 		choices = CATEGORY_LIST,
 		default = None
 		)
+
 	description = models.TextField()
 	def __str__(self):
 		return self.title
@@ -45,6 +47,7 @@ class OrderItem(models.Model):
 
 	def __str__(self):
 		return self.item.title
+
 
 
 class Order(models.Model):
