@@ -29,6 +29,7 @@ class CustomerProfile(models.Model):
     location=models.TextField(choices=LOCATION_CHOICES,max_length=None,default='Hyd')
     #address=models.OneToOneField(to=Address,on_delete=models.CASCADE,null=True,related_name="customer_address")
     image=models.ImageField(upload_to='profile_image',blank=True,default="icon.png")
+    phone=models.CharField(max_length=15,null=True,blank=True)
 
     #should add additional fields
     def __str__(self):
@@ -46,6 +47,7 @@ class FreelancerProfile(models.Model):
     """
     user=models.OneToOneField(to=CustomUser,on_delete=models.CASCADE,null=False,related_name="freelancer_profile")
     location=models.TextField(choices=LOCATION_CHOICES,max_length=None,default='Hyd')
+    phone=models.CharField(max_length=15,null=True,blank=True)
 
    #add additional fields
     def __str__(self):

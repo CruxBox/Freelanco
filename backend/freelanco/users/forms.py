@@ -19,13 +19,13 @@ class CustomUserChangeForm(forms.ModelForm):
 class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model=CustomerProfile
-        fields=('location',)
+        fields=('location','phone',)
 
 class FreelancerProfileForm(forms.ModelForm):
 
     class Meta:
         models=FreelancerProfile
-        fields=('location',)
+        fields=('location','phone',)
 
 
 class SignupForm(forms.Form):
