@@ -131,7 +131,11 @@ a{color: white;}
           <a href="#contact">Contact</a>
         </li>
         <li>
-          <a href="#abt">Get Started ?</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'item list' %}">Get Started?</a>
+          {% else %}
+          <a href="{% url 'users:login' %}">Get Started?</a>
+          {% endif %}
         </li>
         <li>
         <a href="{% url 'item list' %}">Services</a>
