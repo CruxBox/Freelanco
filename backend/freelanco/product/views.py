@@ -96,7 +96,9 @@ def add_to_cart(request, pk):
 		ordered = False,
 		accepted = 3
 	)
-
+	print(orderItem)
+	print(orderItem.accepted)
+	print(orderItem.status)
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
@@ -148,8 +150,8 @@ def detail_view(request, pk):
 	return render(request, 'base.html', context)
 
 
-@only_freelancer
 @login_required
+@only_freelancer
 def list_services(request):
 	print(request.user)
 	freelancer=request.user.freelancer_profile
@@ -164,8 +166,8 @@ def list_services(request):
 # Add notifications feature in this feature
 
 
-@only_customer
 @login_required
+@only_customer
 def place_order(request):
 	cust = request.user.customer_profile
 	order = Order.objects.filter(user = cust, ordered = False)[0]
@@ -180,88 +182,82 @@ def place_order(request):
 	order.save()
 	return HttpResponseRedirect(reverse("item list"))
 
-@only_freelancer
 @login_required
+@only_freelancer
 def show_completed_orders_freelancer(request):
 	provider = request.user.freelancer_profile
 	items_provided = provider.items.all()
 	ret_list = []
 	for item in items_provided:
-		orderItem = item.orderitem_set.all()
-		if orderItem.exists() == False:
-			continue
 		# if accepted and done, if rejected
-		if (orderItem[0].status == 1 and orderItem[0].accepted == 1) or (orderItem[0].accepted == 2):
-			ret_list += orderItem
+		acceptedAndDone = OrderItem.objects.filter(item = item, accepted = 1, status = 1)
+		rejected = OrderItem.objects.filter(item = item, accepted = 2)
+		ret_list = chain(ret_list, acceptedAndDone, rejected)
 
 	context = {'orders' : ret_list}
 	return render(request, 'services_temp/seller_services_done.html', context)
 
 
-@only_freelancer
 @login_required
+@only_freelancer
 def current_requested_orders(request):
 	provider = request.user.freelancer_profile
 	items_provided = provider.items.all()
-	# print(items_provided)
+	#accepted=1,status!=1 and accepted = 0
 	ret_list = []
 	for item in items_provided:
-		orderItem = item.orderitem_set.all()
-		if orderItem.exists() == False:
-			continue
-		if orderItem[0].accepted == 0:
-			ret_list += orderItem
-		if orderItem[0].accepted == 1 and orderItem[0].status != 1:
-			ret_list += orderItem
+		acceptedAndOngoing = OrderItem.objects.filter(item = item, accepted = 1).exclude(status = 1)
+		notAccepted = OrderItem.objects.filter(item = item, accepted = 0)
+		ret_list = chain(ret_list, notAccepted, acceptedAndOngoing)
 
-	print(ret_list)
+	# print(ret_list)
 	context = {'orders' : ret_list}
 	return render(request, 'services_temp/seller_services_current.html', context)
 
 
-@only_freelancer
 @login_required
+@only_freelancer
 def accept_order_item(request, pk):
 	provider = request.user.freelancer_profile
-	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.accepted = 1
 	orderItem.status = 2
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
 
-@only_freelancer
 @login_required
+@only_freelancer
 def reject_order_item(request, pk):
 	provider = request.user.freelancer_profile
-	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.accepted = 2
 	orderItem.status = 2
 	orderItem.save()
 
 	return HttpResponseRedirect(reverse("service_curr"))
 
-@only_freelancer
 @login_required
+@only_freelancer
 def start_order_item(request, pk):
 	# after
 	provider = request.user.freelancer_profile
-	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.status = 0
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
 
 
-@only_freelancer
 @login_required
+@only_freelancer
 def finished_order_item(request, pk):
 	provider = request.user.freelancer_profile
-	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.status = 1
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
 
-@only_freelancer
 @login_required
+@only_freelancer
 def edit_item(request, pk):
     if request.method=='POST':
         form=ItemEditForm(request.POST,request.FILES,instance=Item.objects.filter(pk = pk)[0])
@@ -274,8 +270,8 @@ def edit_item(request, pk):
         context={"form":form3}
         return render(request,'account/add_item.html',context)
 
-@only_freelancer
 @login_required
+@only_freelancer
 def add_item(request):
     if request.method=='POST':
         form=ItemEditForm(request.POST,request.FILES)
@@ -289,8 +285,8 @@ def add_item(request):
         context={"form":form3}
         return render(request,'account/add_item.html',context)
 
-@only_freelancer
 @login_required
+@only_freelancer
 def delete_item(request, pk):
     item=Item.objects.get(pk = pk)
     if request.method=='POST':
@@ -298,8 +294,8 @@ def delete_item(request, pk):
         return HttpResponseRedirect(reverse("service_list"))
 
 
-@only_customer
 @login_required
+@only_customer
 def show_completed_orders_customer(request):
 	# rejected, (accepted and completed)
 	cust = request.user.customer_profile
@@ -312,14 +308,15 @@ def show_completed_orders_customer(request):
 	}
 	return render(request,'services_temp/order_history.html',context)
 
-@only_customer
 @login_required
+@only_customer
 def show_ongoing_orders_customer(request):
 	#pending approval, (accepted and ongoing)
 	cust = request.user.customer_profile
 	ongoingOrderItems = cust.orderitem_set.filter(accepted = 1, status = 0)
 	pendingApprovalOrderItems = cust.orderitem_set.filter(accepted = 0)
-	retList = chain(ongoingOrderItems, pendingApprovalOrderItems)
+	notStartOrderItems = cust.orderitem_set.filter(accepted = 1, status = 2)
+	retList = chain(ongoingOrderItems, pendingApprovalOrderItems, notStartOrderItems)
 	print(retList)
 	context={
 		"items":retList
