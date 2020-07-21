@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{% static "css/Footer-Dark.css"%}">
     <link rel="stylesheet" href="{% static "css/header_footer_main.css"%}">
 </head>
-<body>
+<body style="font-family:Poppins;">
   
   <nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color: black; color:white; text-decoration: none;">
     <a class="navbar-brand" href="#" style="font-family: 'Kaushan Script', cursive;background-color: black; color:white; text-decoration: none;">Freelanco</a>
@@ -52,17 +52,17 @@
   
 
 
-  <div class=" main-box container col-xl-6 col-lg-8 col-sm-10">
+  <div class=" main-box container col-xl-6 col-lg-8 col-sm-10" style="background-color:white">
     <div class="container head-label">
-      <h1 style="color:rgb(255, 255, 255);">Placed and Ongoing Orders</h1>
+      <h1 style="color:black;">Placed and Ongoing Orders</h1>
     </div>
 
     <div class="main2 flex-column">
      {% for item in items %}
       <div class="order">
-          <div class="past_order ">
+          <div class="past_order " style="padding:10px;margin:5px" >
               <div class="order_img">
-                <img src="hilm_sun.jpg" alt="">
+                <img src="{{item.item.picture.url}}" alt=""style="margin-left:40px">
               </div>
 
               <div class="info">
@@ -102,7 +102,7 @@
 
           <div class=" functionality  flex-column flex-sm-row">
            <!--<a href="{% url "add to cart" pk=item.pk %}" >REORDER</a>--> 
-            <a href="#" >REVIEW</a>
+            <a href="#"  style="background-color:rgb(0,255,128);color:black;font-weight:normal">Review</a>
             <a data-toggle="modal" data-target="#exampleModal{{ item.id }}">Freelancer Details</a> 
           </div>
 
