@@ -55,7 +55,7 @@
                 
         </div>
     </nav>
-    <div class="container" style="overflow:auto;padding-bottom:50px">
+    <div class="container" style="overflow:auto; padding-bottom:50px">
     {% for item in items %}
       <section class="about-me" id="about">
         <div class="container">
@@ -65,7 +65,8 @@
               <div class="about">
                 <div class="row">
                   <div class="img">
-                    <img src="{% static "images/temp.jpg" %}">
+                    {% comment %} <img src="{% static "images/temp.jpg" %}"> {% endcomment %}
+                    <img src="{{item.picture.url}}"style="height:150px;width:200px">
                   </div>
                   <div class="text">
                     <span>{{item.title}}</span>
