@@ -114,3 +114,6 @@ venv.bak/
 
 # credentials
 secret_credentials/
+
+backend/freelanco/product/migrations/
+backend/freelanco/users/migrations/
