@@ -35,8 +35,8 @@ def item_list(request):
 		}
 	return render(request, "services_temp/service_providers.html", context)
 
-@login_required
 @only_customer
+@login_required
 def display_cart_items(request):
 
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
@@ -70,8 +70,8 @@ def display_cart_items(request):
 		}
 	return render(request, "services_temp/cart.html", context)
 
-@login_required
 @only_customer
+@login_required
 def old_orders(request):
 	# This will give a list of orders that are now history
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = True)
@@ -87,12 +87,12 @@ def old_orders(request):
 	return render(request, "base.html", context)
 
 # Add item
-@login_required
 @only_customer
+@login_required
 def add_to_cart(request, pk):
 	item = get_object_or_404(Item, pk=pk)
 	print(item.title)
-	orderItem, created = OrderItem.objects.get_or_create(
+	orderItem = OrderItem.objects.create(
 		item = item,
 		user = request.user.customer_profile,
 		ordered = False
@@ -113,11 +113,11 @@ def add_to_cart(request, pk):
 		cart = Order.objects.create( user = request.user.customer_profile )
 		cart.items.add(orderItem)
 
-	return redirect("item list")
+	return redirect(request.META.get('HTTP_REFERER'))
 
 # Delete item
-@login_required
 @only_customer
+@login_required
 def remove_from_cart(request,pk):
 	item = get_object_or_404(Item, pk=pk)
 
@@ -147,8 +147,8 @@ def detail_view(request, pk):
 	return render(request, 'base.html', context)
 
 
-@login_required
 @only_freelancer
+@login_required
 def list_services(request):
 	print(request.user)
 	freelancer=request.user.freelancer_profile
@@ -163,8 +163,8 @@ def list_services(request):
 # Add notifications feature in this feature
 
 
-@login_required
 @only_customer
+@login_required
 def place_order(request):
 	cust = request.user.customer_profile
 	order = Order.objects.filter(user = cust, ordered = False)[0]
@@ -179,8 +179,8 @@ def place_order(request):
 	order.save()
 	return HttpResponseRedirect(reverse("item list"))
 
-@login_required
 @only_freelancer
+@login_required
 def show_completed_orders_freelancer(request):
 	provider = request.user.freelancer_profile
 	items_provided = provider.items.all();
@@ -197,8 +197,8 @@ def show_completed_orders_freelancer(request):
 	return render(request, 'services_temp/seller_services_done.html', context)
 
 
-@login_required
 @only_freelancer
+@login_required
 def current_requested_orders(request):
 	provider = request.user.freelancer_profile
 	items_provided = provider.items.all();
@@ -218,8 +218,8 @@ def current_requested_orders(request):
 	return render(request, 'services_temp/seller_services_current.html', context)
 
 
-@login_required
 @only_freelancer
+@login_required
 def accept_order_item(request, pk):
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk).first()
@@ -228,8 +228,8 @@ def accept_order_item(request, pk):
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
 
-@login_required
 @only_freelancer
+@login_required
 def reject_order_item(request, pk):
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk).first()
@@ -239,8 +239,8 @@ def reject_order_item(request, pk):
 
 	return HttpResponseRedirect(reverse("service_curr"))
 
-@login_required
 @only_freelancer
+@login_required
 def start_order_item(request, pk):
 	# after
 	provider = request.user.freelancer_profile
@@ -250,8 +250,8 @@ def start_order_item(request, pk):
 	return HttpResponseRedirect(reverse("service_curr"))
 
 
-@login_required
 @only_freelancer
+@login_required
 def finished_order_item(request, pk):
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk).first()
@@ -259,8 +259,8 @@ def finished_order_item(request, pk):
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
 
-@login_required
 @only_freelancer
+@login_required
 def edit_item(request, pk):
     if request.method=='POST':
         form=ItemEditForm(request.POST, instance=Item.objects.filter(pk = pk)[0])
@@ -273,8 +273,8 @@ def edit_item(request, pk):
         context={"form":form3}
         return render(request,'account/add_item.html',context)
 
-@login_required
 @only_freelancer
+@login_required
 def add_item(request):
     if request.method=='POST':
         form=ItemEditForm(request.POST)
@@ -288,8 +288,8 @@ def add_item(request):
         context={"form":form3}
         return render(request,'account/add_item.html',context)
 
-@login_required
 @only_freelancer
+@login_required
 def delete_item(request, pk):
     item=Item.objects.get(pk = pk)
     if request.method=='POST':
@@ -297,26 +297,30 @@ def delete_item(request, pk):
         return HttpResponseRedirect(reverse("service_list"))
 
 
-@login_required
 @only_customer
+@login_required
 def show_completed_orders_customer(request):
 	# rejected, (accepted and completed)
 	cust = request.user.customer_profile
 	finishedOrderItems = cust.orderitem_set.filter(accepted = 1, status = 1)
 	rejectedOrderItems = cust.orderitem_set.filter(accepted = 2)
-	retList = list(chain(finishedOrderItems, rejectedOrderItems))
+	retList = chain(finishedOrderItems, rejectedOrderItems)
 	print(retList)
-	# TODO: put retList in context and send in right template
-	return HttpResponseRedirect(reverse("item list"))
+	context={
+		"items":retList
+	}
+	return render(request,'services_temp/order_history.html',context)
 
-@login_required
 @only_customer
+@login_required
 def show_ongoing_orders_customer(request):
 	#pending approval, (accepted and ongoing)
 	cust = request.user.customer_profile
 	ongoingOrderItems = cust.orderitem_set.filter(accepted = 1, status = 0)
 	pendingApprovalOrderItems = cust.orderitem_set.filter(accepted = 0)
-	retList = list(chain(ongoingOrderItems, pendingApprovalOrderItems))
+	retList = chain(ongoingOrderItems, pendingApprovalOrderItems)
 	print(retList)
-	# TODO: put retList in context and send in right template
-	return HttpResponseRedirect(reverse("item list"))
+	context={
+		"items":retList
+	}
+	return render(request,'services_temp/order_ongoing.html',context)

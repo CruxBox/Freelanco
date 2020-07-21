@@ -87,7 +87,8 @@ a:active {color: white;}
 {
   display:inline-block;
   max-width:100%;
-  margin: 20px;
+  margin: 30px;
+  
 }
 #services img 
 {
@@ -96,7 +97,7 @@ a:active {color: white;}
 }
 #services a:hover 
 {
-  color: white;
+  color: black;
   font-weight: bold;
 }
 #services a{
@@ -257,44 +258,44 @@ a{color: white;}
           <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
               <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-          <img src="{% static "assets/carousel/carousel/img/recommended/1.jpg" %}" class="img-fluid mx-auto d-block" alt="img1">
-          <p>Salon at Home for Women</p>
+          <a href="{% url "item list"%}?search=salon"><img src="{% static "assets/carousel/carousel/img/recommended/1.jpg" %}" class="img-fluid mx-auto d-block" alt="img1">
+          </a><p>Salon at Home for Women</p>
           
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/recommended/2.jpg"%}" class="img-fluid mx-auto d-block" alt="img2">
+          <a href="{% url "item list"%}?search=AC"><img src="{% static "assets/carousel/carousel/img/recommended/2.jpg"%}" class="img-fluid mx-auto d-block" alt="img2"></a>
           <p>AC Service and Repair</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/recommended/3.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>Massage for Men</p>
+          <a href="{% url "item list"%}?search=massage"><img src="{% static "assets/carousel/carousel/img/recommended/3.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
+          </a><p>Massage for Women</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/recommended/4.jpg"%}" class="img-fluid mx-auto d-block" alt="img4">
-          <p>Massage for Women</p>
+          <a href="{% url "item list"%}?search=massage"><img src="{% static "assets/carousel/carousel/img/recommended/4.jpg"%}" class="img-fluid mx-auto d-block" alt="img4">
+          </a><p>Massage for Men</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/recommended/5.jpg"%}" class="img-fluid mx-auto d-block" alt="img5">
-          <p>Makeup and Hairstyling</p>
+          <a href="{% url "item list"%}?search=makeup"><img src="{% static "assets/carousel/carousel/img/recommended/5.jpg"%}" class="img-fluid mx-auto d-block" alt="img5">
+          </a><p>Makeup and Hairstyling</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/recommended/6.jpg"%}" class="img-fluid mx-auto d-block" alt="img6">
-          <p>Full Home Deep Cleaning</p>
+          <a href="{% url "item list"%}?search=clean"><img src="{% static "assets/carousel/carousel/img/recommended/6.jpg"%}" class="img-fluid mx-auto d-block" alt="img6">
+          </a><p>Full Home Deep Cleaning</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/recommended/7.jpg"%}" class="img-fluid mx-auto d-block" alt="img7">
-          <p>Chartered Accountant</p>
+          <a href="{% url "item list"%}?search=chartered"><img src="{% static "assets/carousel/carousel/img/recommended/7.jpg"%}" class="img-fluid mx-auto d-block" alt="img7">
+          </a><p>Chartered Accountant</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{%static "assets/carousel/carousel/img/recommended/8.jpg"%}" class="img-fluid mx-auto d-block" alt="img8">
-          <p>Kitchen Deep Cleaning</p>
+          <a href="{% url "item list"%}?search=clean"><img src="{%static "assets/carousel/carousel/img/recommended/8.jpg"%}" class="img-fluid mx-auto d-block" alt="img8">
+          </a><p>Kitchen Deep Cleaning</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/recommended/9.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>Carpet Cleaning</p>
+          <a href="{% url "item list"%}?search=clean"><img src="{% static "assets/carousel/carousel/img/recommended/9.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
+          </a><p>Carpet Cleaning</p>
         </div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/recommended/10.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>Pest Control</p>
+          <a href="{% url "item list"%}?search=pest"><img src="{% static "assets/carousel/carousel/img/recommended/10.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
+          </a><p>Pest Control</p>
         </div>
           </div>
           <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
@@ -311,48 +312,48 @@ a{color: white;}
           <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
               <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-          <img src="{% static "assets/carousel/carousel/img/shifting/1.png"%}" class="img-fluid mx-auto d-block" alt="img1">
-          <p>Packers & Movers</p>
+          <a href="{% url "item list"%}?search=pack"><img src="{% static "assets/carousel/carousel/img/shifting/1.png"%}" class="img-fluid mx-auto d-block" alt="img1">
+          </a><p>Packers & Movers</p>
           
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/2.jpg"%}" class="img-fluid mx-auto d-block" alt="img2">
-          <p>Carpenters</p>
+          <a href="{% url "item list"%}?search=carpenter"><img src="{% static "assets/carousel/carousel/img/shifting/2.jpg"%}" class="img-fluid mx-auto d-block" alt="img2">
+          </a><p>Carpenters</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/3.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>AC service and Repair</p>
+          <a href="{% url "item list"%}?search=AC"><img src="{% static "assets/carousel/carousel/img/shifting/3.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
+          </a><p>AC service and Repair</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/4.jpg"%}" class="img-fluid mx-auto d-block" alt="img4">
-          <p>Pest Control</p>
+          <a href="{% url "item list"%}?search=pest"><img src="{% static "assets/carousel/carousel/img/shifting/4.jpg"%}" class="img-fluid mx-auto d-block" alt="img4">
+          </a><p>Pest Control</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/5.jpg"%}" class="img-fluid mx-auto d-block" alt="img5">
-          <p>Sofa Cleaning</p>
+          <a href="{% url "item list"%}?search=sofa"><img src="{% static "assets/carousel/carousel/img/shifting/5.jpg"%}" class="img-fluid mx-auto d-block" alt="img5">
+          </a><p>Sofa Cleaning</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/6.jpg"%}" class="img-fluid mx-auto d-block" alt="img6">
-          <p>Bathroom Deep Cleaning</p>
+          <a href="{% url "item list"%}?search=clean"><img src="{% static "assets/carousel/carousel/img/shifting/6.jpg"%}" class="img-fluid mx-auto d-block" alt="img6">
+          </a><p>Bathroom Deep Cleaning</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/7.jpg"%}" class="img-fluid mx-auto d-block" alt="img7">
-          <p>Kitchen Deep Cleaning</p>
+          <a href="{% url "item list"%}?search=clean"><img src="{% static "assets/carousel/carousel/img/shifting/7.jpg"%}" class="img-fluid mx-auto d-block" alt="img7">
+          </a><p>Kitchen Deep Cleaning</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/8.jpg"%}" class="img-fluid mx-auto d-block" alt="img8">
-          <p>Full Home Deep Cleaning</p>
+          <a href="{% url "item list"%}?search=clean"><img src="{% static "assets/carousel/carousel/img/shifting/8.jpg"%}" class="img-fluid mx-auto d-block" alt="img8">
+          </a><p>Full Home Deep Cleaning</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/9.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>Carpet Cleaning</p>
+          <a href="{% url "item list"%}?search=clean"><img src="{% static "assets/carousel/carousel/img/shifting/9.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
+          </a><p>Carpet Cleaning</p>
         </div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/10.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>Electricians</p>
+          <a href="{% url "item list"%}?search=electric"><img src="{% static "assets/carousel/carousel/img/shifting/10.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
+          </a><p>Electricians</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/shifting/11.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>Plumbers</p>
+          <a href="{% url "item list"%}?search=plumber"><img src="{% static "assets/carousel/carousel/img/shifting/11.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
+          </a><p>Plumbers</p>
         </div>
           </div>
           <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
@@ -369,29 +370,29 @@ a{color: white;}
           <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
               <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-          <img src="{%static "assets/carousel/carousel/img/health/1.jpg"%}" class="img-fluid mx-auto d-block" alt="img1">
-          <p>Fitness Trainer at Home</p>
+          <a href="{% url "item list"%}?search=trainer"><img src="{%static "assets/carousel/carousel/img/health/1.jpg"%}" class="img-fluid mx-auto d-block" alt="img1">
+          </a><p>Fitness Trainer at Home</p>
           
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/health/2.jpg"%}" class="img-fluid mx-auto d-block" alt="img2">
-          <p>Yoga Trainer at Home </p>
+          <a href="{% url "item list"%}?search=trainer"><img src="{% static "assets/carousel/carousel/img/health/2.jpg"%}" class="img-fluid mx-auto d-block" alt="img2">
+          </a><p>Yoga Trainer at Home </p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/health/3.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
-          <p>Dietician</p>
+          <a href="{% url "item list"%}?search=diet"><img src="{% static "assets/carousel/carousel/img/health/3.jpg"%}" class="img-fluid mx-auto d-block" alt="img3">
+          </a><p>Dietician</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/health/4.jpg"%}" class="img-fluid mx-auto d-block" alt="img4">
-          <p>Saloon at Home for Women</p>
+          <a href="{% url "item list"%}?search=salon"><img src="{% static "assets/carousel/carousel/img/health/4.jpg"%}" class="img-fluid mx-auto d-block" alt="img4">
+          </a><p>Salon at Home for Women</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/health/5.jpg"%}" class="img-fluid mx-auto d-block" alt="img5">
-          <p>Massage for Women</p>
+          <a href="{% url "item list"%}?search=massage"><img src="{% static "assets/carousel/carousel/img/health/5.jpg"%}" class="img-fluid mx-auto d-block" alt="img5">
+          </a><p>Massage for Women</p>
         </div>
         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-          <img src="{% static "assets/carousel/carousel/img/health/6.jpg"%}" class="img-fluid mx-auto d-block" alt="img6">
-          <p>Massage for Men</p>
+          <a href="{% url "item list"%}?search=massage"><img src="{% static "assets/carousel/carousel/img/health/6.jpg"%}" class="img-fluid mx-auto d-block" alt="img6">
+          </a><p>Massage for Men</p>
         </div>
           </div>
           <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">

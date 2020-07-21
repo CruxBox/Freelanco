@@ -125,9 +125,7 @@
 									</a>
 									<div class="media-body">
 										<h4 class="media-heading"><a href="#">{{ item.title }}</a></h4>
-										<h5 class="media-heading"> by <a href="#"> {{ item.provider }} </a></h5>
-										<span>Status: </span><span class="text-warning" ><strong> No update,
-												yet.</strong></span>
+										<h5 class="media-heading"> by <p style="color:green;">{{ item.provider.user.username|title }}</p></h5>
 									</div>
 								</div>
 							</td>

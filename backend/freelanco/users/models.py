@@ -20,6 +20,11 @@ class CustomUser(AbstractUser):
     is_freelancer=models.BooleanField(default=False)
 
 class CustomerProfile(models.Model):
+
+    """
+    Stores Details of Customer, related to :model:`users.CustomUser`.
+    """
+
     user=models.OneToOneField(to=CustomUser,on_delete=models.CASCADE,null=False,related_name="customer_profile")
     location=models.TextField(choices=LOCATION_CHOICES,max_length=None,default='Hyd')
     #address=models.OneToOneField(to=Address,on_delete=models.CASCADE,null=True,related_name="customer_address")
@@ -36,6 +41,9 @@ class CustomerProfile(models.Model):
         #user.customer_profile.image=user.socialaccount_set.filter(provider='google')[0].extra_data['picture']
         user.customer_profile.save()
 class FreelancerProfile(models.Model):
+    """
+    Stores Details of Freelancer, related to :model:`users.CustomUser`.
+    """
     user=models.OneToOneField(to=CustomUser,on_delete=models.CASCADE,null=False,related_name="freelancer_profile")
     location=models.TextField(choices=LOCATION_CHOICES,max_length=None,default='Hyd')
 
@@ -44,6 +52,10 @@ class FreelancerProfile(models.Model):
         return f"Freelancer-{self.user.username}"
 
 class Address(models.Model):
+    """
+    Stores Details of the address of a Customer or a Freelancer, related to :model:`users.CustomerProfile`
+    and :model:`users.CustomerProfile`.
+    """
     name=models.CharField("Name", max_length=100,blank=True,null=True)
     address1 = models.CharField("Address line 1", max_length=1024)
     address2 = models.CharField("Address line 2", max_length=1024, blank=True, null=True)

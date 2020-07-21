@@ -110,7 +110,7 @@ html {
 
   font-family: 'Poppins',sans-serif;
 
-  height: 900px;
+  height: 780px;
   padding-left: 50px;
   padding-right: 50px;
   font-size: 18px;
@@ -144,10 +144,25 @@ input[type="text"] {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
+<<<<<<< HEAD
   
+=======
+  outline: none;
+>>>>>>> e4c47ed4e3b66e6d4805b1ed013c53aafa8024b8
   /* -webkit-transition: width 0.1s ease-in-out;
   transition: width 0.4s ease-in-out; */ 
 }
 
+<<<<<<< HEAD
 /* input[type=text]:focus {
   color: black; */
+=======
+
+
+
+input[type=text]:focus {
+  outline: none !important;
+  border: 2px solid #ccc;
+  box-shadow: 0 0 10px rgb(32, 30, 30);
+}
+>>>>>>> e4c47ed4e3b66e6d4805b1ed013c53aafa8024b8
