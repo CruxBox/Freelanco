@@ -35,26 +35,23 @@ def item_list(request):
 		}
 	return render(request, "services_temp/service_providers.html", context)
 
-@only_customer
 @login_required
+@only_customer
 def display_cart_items(request):
 
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
-	print(order_objects)
-	if order_objects.exists() and len(order_objects[0].items.all()):
 
+	if order_objects.exists() and order_objects[0].items.count():
 		order_items = order_objects[0].items.all()
 		items = Item.objects.filter(orderitem__in = order_items)
 		number_of_items = len(items)
-		
 		sub_total = 0
 
 		for item in items:
 			if item.discounted_cost !=-1:
 				sub_total += item.discounted_cost
 			else:
-				sub_total += item.actual_cost 
-
+				sub_total += item.actual_cost
 		context = {
 			'cart_items': items,
 			'items_exist': True,
@@ -70,8 +67,9 @@ def display_cart_items(request):
 		}
 	return render(request, "services_temp/cart.html", context)
 
-@only_customer
+
 @login_required
+@only_customer
 def old_orders(request):
 	# This will give a list of orders that are now history
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = True)
@@ -87,20 +85,19 @@ def old_orders(request):
 	return render(request, "base.html", context)
 
 # Add item
-@only_customer
 @login_required
+@only_customer
 def add_to_cart(request, pk):
+	print(pk)
 	item = get_object_or_404(Item, pk=pk)
-	print(item.title)
-	orderItem = OrderItem.objects.create(
+	orderItem, created = OrderItem.objects.get_or_create(
 		item = item,
 		user = request.user.customer_profile,
-		ordered = False
+		ordered = False,
+		accepted = 3
 	)
 
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
-	#print(cart.exists)
-	#print(cart.items)
 	if cart.exists():
 		cart = cart[0]
 		if cart.items.filter(item = item).exists():
@@ -108,31 +105,35 @@ def add_to_cart(request, pk):
 
 		else:
 			cart.items.add(orderItem)
-
 	else:
 		cart = Order.objects.create( user = request.user.customer_profile )
 		cart.items.add(orderItem)
 
+	print(cart.items.all())
 	return redirect(request.META.get('HTTP_REFERER'))
 
 # Delete item
-@only_customer
 @login_required
+@only_customer
 def remove_from_cart(request,pk):
+	print("Remove from cart:")
+	print(pk)
 	item = get_object_or_404(Item, pk=pk)
-
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
 		cart = cart[0]
 		orderItem = OrderItem.objects.filter(
 										user = request.user.customer_profile,
-										item = item
-										)[0]
+										item = item,
+										ordered = False,
+										accepted = 3
+										)
+		print("all items")
+		print(orderItem)
+		orderItem = orderItem[0]
 		cart.items.remove(orderItem)
-		# else:
-			# messages.info("This item wasn't present in your cart.")
 	else:
-		messages.info("You don't have an ongoing order.")
+		messages.info("This item wasn't present in your cart.")
 	return redirect("display cart items")
 
 # Item detail view
@@ -244,7 +245,7 @@ def reject_order_item(request, pk):
 def start_order_item(request, pk):
 	# after
 	provider = request.user.freelancer_profile
-	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.status = 0;
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))
@@ -254,7 +255,7 @@ def start_order_item(request, pk):
 @login_required
 def finished_order_item(request, pk):
 	provider = request.user.freelancer_profile
-	orderItem = OrderItem.objects.filter(pk=pk).first()
+	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.status = 1;
 	orderItem.save()
 	return HttpResponseRedirect(reverse("service_curr"))

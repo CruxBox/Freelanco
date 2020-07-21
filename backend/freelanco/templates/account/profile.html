@@ -46,7 +46,7 @@
       </a>
     </li>
     <li>
-      <a href="#news">News</a>
+      <a href="{% url 'home' %}">Home</a>
     </li>
     <li>
       <a href="#contact">Contact</a>
@@ -82,12 +82,12 @@
       <div class="row valign-wrapper">
         <div class="col l0" style="width: 190px;position: absolute;top: 204px;left: 215px;">
         {%if user.is_freelancer%}
-        <a href="{% url "service_list" %}" class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:12px; background-color:black;">my services</a>
-          <a href="{% url "service_curr" %}" class="waves-effect waves btn"style="border-radius: 30px;background-color:black;margin-bottom:12px;">current orders</a>
-          <a href="{% url "service_done" %}" class="waves-effect waves btn"style="border-radius: 30px;background-color:black; margin-bottom:12px;">completed orders</a>
+        <a href="{% url 'service_list' %}" class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:12px; background-color:black;">my services</a>
+          <a href="{% url 'service_curr' %}" class="waves-effect waves btn"style="border-radius: 30px;background-color:black;margin-bottom:12px;">current orders</a>
+          <a href="{% url 'service_done' %}" class="waves-effect waves btn"style="border-radius: 30px;background-color:black; margin-bottom:12px;">completed orders</a>
           {% else %}
-          <a href="{% url "user ongoing orders" %}" class="waves-effect waves btn"style="border-radius: 30px; margin-bottom:12px; background-color:black; line-height: 1em;">Ongoing Services</a>
-          <a href="{% url "user completed orders" %}" class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:12px; background-color:black;">Completed Services</a>
+          <a href="{% url 'user ongoing orders' %}" class="waves-effect waves btn"style="border-radius: 30px; margin-bottom:12px; background-color:black; line-height: 1em;">Ongoing Services</a>
+          <a href="{% url 'user completed orders' %}" class="waves-effect waves btn"style="border-radius: 25px; margin-bottom:12px; background-color:black;">Completed Services</a>
        {%endif%}
         </div>
         
