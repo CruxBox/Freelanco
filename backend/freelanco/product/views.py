@@ -19,6 +19,9 @@ enum_acc=["Pending Approval","Accepted","Rejected"]
 enum_stat=["Ongoing","Done","Not Started"]
 
 def item_list(request):
+	"""
+	This function is used to list all the items that are offered by all active freelancers
+	"""
 	name_filter=request.GET.get('search', '')
 	if name_filter:
 		items=Item.objects.filter(Q(title__icontains=name_filter) | Q(description__icontains=name_filter))
@@ -38,7 +41,10 @@ def item_list(request):
 @login_required
 @only_customer
 def display_cart_items(request):
-
+	"""
+	This function is used to display all cart items of a customer. The user is supposed to be
+	logged and should be a customer, else throw a 403 Forbidden error
+	"""
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = False)
 
 	if order_objects.exists() and order_objects[0].items.count():
@@ -71,7 +77,10 @@ def display_cart_items(request):
 @login_required
 @only_customer
 def old_orders(request):
-	# This will give a list of orders that are now history
+	"""
+	This function is used to display list of orders that are now history for a customer.
+	The user is supposed to be logged and should be a customer, else throw a 403 Forbidden error
+	"""
 	order_objects = Order.objects.filter(user=request.user.customer_profile , ordered = True)
 	if order_objects.exists():
 		context={
@@ -88,7 +97,11 @@ def old_orders(request):
 @login_required
 @only_customer
 def add_to_cart(request, pk):
-	print(pk)
+	"""
+	This function is used to add an item to the cart of a customer. Can be called when trying to REORDER.
+	The user is supposed to be logged and should be a customer, else throw a 403 Forbidden error
+	Parameters to be passed in: Primary Key of the Item
+	"""
 	item = get_object_or_404(Item, pk=pk)
 	orderItem, created = OrderItem.objects.get_or_create(
 		item = item,
@@ -118,8 +131,11 @@ def add_to_cart(request, pk):
 @login_required
 @only_customer
 def remove_from_cart(request,pk):
-	print("Remove from cart:")
-	print(pk)
+	"""
+	This function is used to remove an item to the cart of a customer.
+	The user is supposed to be logged and should be a customer, else throw a 403 Forbidden error
+	Parameters to be passed in: Primary Key of the Item
+	"""
 	item = get_object_or_404(Item, pk=pk)
 	cart = Order.objects.filter(user = request.user.customer_profile, ordered=False)
 	if cart.exists():
@@ -153,7 +169,10 @@ def detail_view(request, pk):
 @login_required
 @only_freelancer
 def list_services(request):
-	print(request.user)
+	"""
+	This function is used list all active items published by a freelancer.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	"""
 	freelancer=request.user.freelancer_profile
 	items=freelancer.items.all()
 	print(items)
@@ -169,6 +188,10 @@ def list_services(request):
 @login_required
 @only_customer
 def place_order(request):
+	"""
+	This function is used to place an order (during checkout).
+	The user is supposed to be logged and should be a customer, else throw a 403 Forbidden error
+	"""
 	cust = request.user.customer_profile
 	order = Order.objects.filter(user = cust, ordered = False)[0]
 	orderItems = order.items.all()
@@ -185,6 +208,11 @@ def place_order(request):
 @login_required
 @only_freelancer
 def show_completed_orders_freelancer(request):
+	"""
+	This function is used to show all the completed orders of a freelancer.
+	The orders that were rejected or accepted and completed are shown here.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	"""
 	provider = request.user.freelancer_profile
 	items_provided = provider.items.all()
 	ret_list = []
@@ -201,6 +229,11 @@ def show_completed_orders_freelancer(request):
 @login_required
 @only_freelancer
 def current_requested_orders(request):
+	"""
+	This function is used to list all the ongoing and requested orders on the freelancer page.
+	The orders that were accepted and need to start/finish or the ones that need approval.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	"""
 	provider = request.user.freelancer_profile
 	items_provided = provider.items.all()
 	#accepted=1,status!=1 and accepted = 0
@@ -218,6 +251,11 @@ def current_requested_orders(request):
 @login_required
 @only_freelancer
 def accept_order_item(request, pk):
+	"""
+	This function is used accept an order item that is shown on the freelancer approval page.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	Parameters: Primary key of the order item
+	"""
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.accepted = 1
@@ -228,6 +266,11 @@ def accept_order_item(request, pk):
 @login_required
 @only_freelancer
 def reject_order_item(request, pk):
+	"""
+	This function is used reject an order item that is shown on the freelancer approval page.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	Parameters: Primary key of the order item
+	"""
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.accepted = 2
@@ -239,7 +282,11 @@ def reject_order_item(request, pk):
 @login_required
 @only_freelancer
 def start_order_item(request, pk):
-	# after
+	"""
+	This function is used start an order item that is shown on the freelancer current order page.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	Parameters: Primary key of the order item
+	"""
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.status = 0
@@ -250,6 +297,11 @@ def start_order_item(request, pk):
 @login_required
 @only_freelancer
 def finished_order_item(request, pk):
+	"""
+	This function is used to finish an order item that is shown on the freelancer current order page.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	Parameters: Primary key of the order item
+	"""
 	provider = request.user.freelancer_profile
 	orderItem = OrderItem.objects.filter(pk=pk)[0]
 	orderItem.status = 1
@@ -259,6 +311,11 @@ def finished_order_item(request, pk):
 @login_required
 @only_freelancer
 def edit_item(request, pk):
+	"""
+	This function is used to edit an item that is shown on the freelancer item list.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	Parameters: Primary key of the Item
+	"""
     if request.method=='POST':
         form=ItemEditForm(request.POST,request.FILES,instance=Item.objects.filter(pk = pk)[0])
         #print(form)
@@ -273,6 +330,11 @@ def edit_item(request, pk):
 @login_required
 @only_freelancer
 def add_item(request):
+	"""
+	This function is used to add an item that is shown on the freelancer item list.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	Parameters: Primary key of the Item
+	"""
     if request.method=='POST':
         form=ItemEditForm(request.POST,request.FILES)
         if form.is_valid():
@@ -288,6 +350,11 @@ def add_item(request):
 @login_required
 @only_freelancer
 def delete_item(request, pk):
+	"""
+	This function is used to delete an item that is shown on the freelancer item list.
+	The user is supposed to be logged and should be a freelancer, else throw a 403 Forbidden error
+	Parameters: Primary key of the Item
+	"""
     item=Item.objects.get(pk = pk)
     if request.method=='POST':
         item.delete()
@@ -297,6 +364,11 @@ def delete_item(request, pk):
 @login_required
 @only_customer
 def show_completed_orders_customer(request):
+	"""
+	This function is used to show all completed orders to the customer.
+	The order items that are rejected or are accepted and completed are shown here.
+	The user is supposed to be logged and should be a customer, else throw a 403 Forbidden error
+	"""
 	# rejected, (accepted and completed)
 	cust = request.user.customer_profile
 	finishedOrderItems = cust.orderitem_set.filter(accepted = 1, status = 1)
@@ -311,6 +383,11 @@ def show_completed_orders_customer(request):
 @login_required
 @only_customer
 def show_ongoing_orders_customer(request):
+	"""
+	This function is used to show all ongoing orders to the customer.
+	The order items that are pending an approval or are accepted and ongoing are shown here.
+	The user is supposed to be logged and should be a customer, else throw a 403 Forbidden error
+	"""
 	#pending approval, (accepted and ongoing)
 	cust = request.user.customer_profile
 	ongoingOrderItems = cust.orderitem_set.filter(accepted = 1, status = 0)

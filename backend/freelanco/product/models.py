@@ -4,6 +4,10 @@ from django.db import models
 from users.models import FreelancerProfile, CustomerProfile
 
 class Item(models.Model):
+	"""
+	An Item is added by the freelancer and has multiple fields like cost, title, description etc
+	Only one instance of this should exist in the database.
+	"""
 	title = models.CharField(max_length=100)
 	actual_cost = models.FloatField()
 	discounted_cost = models.FloatField(default = -1)
@@ -31,6 +35,10 @@ class Item(models.Model):
 		return self.title
 
 class OrderItem(models.Model):
+	"""
+	An OrderItem instance would be in an ongoing order, a past order or an order that hasn't been placed.
+	This model is there to prevent making multiple copies of Item model and remove redundancy.
+	"""
 	item = models.ForeignKey(Item, on_delete=models.CASCADE)
 	quantity = models.IntegerField(default=0)
 	ordered = models.BooleanField(default=False)
@@ -51,6 +59,10 @@ class OrderItem(models.Model):
 
 
 class Order(models.Model):
+	"""
+	Each order has order items and hence the relation field 'items'. An order is also
+	a representation of a cart provided that the order hasn't been placed.
+	"""
 	user = models.ForeignKey(CustomerProfile,
 								on_delete=models.CASCADE)
 
